@@ -5,10 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name="subjects")
 @Data
+@EqualsAndHashCode(callSuper= false)
 public class Subjects extends BaseEntity{
 	
 	private String name;

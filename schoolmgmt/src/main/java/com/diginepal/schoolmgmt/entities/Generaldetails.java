@@ -10,7 +10,6 @@ import lombok.Data;
 @Table (name="genraldetails")
 @Data
 public class Generaldetails extends BaseEntity {
-	private int id;
 	private String address;
 	private String code;
 	private String email;
