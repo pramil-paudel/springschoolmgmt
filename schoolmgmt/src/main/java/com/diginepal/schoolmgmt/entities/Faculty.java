@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,9 +19,6 @@ import lombok.EqualsAndHashCode;
 public class Faculty extends BaseEntity{
 	private String name; 
 	
-	@ManyToOne
-    @JoinColumn(name = "grade_id")
-    private Grade grade;
 
 	
 }

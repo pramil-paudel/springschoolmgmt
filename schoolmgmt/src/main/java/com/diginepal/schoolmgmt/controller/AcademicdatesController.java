@@ -1,9 +1,11 @@
 package com.diginepal.schoolmgmt.controller;
+
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,44 +13,46 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.diginepal.schoolmgmt.entities.Academicdates;
-import com.diginepal.schoolmgmt.entities.Company;
-import com.diginepal.schoolmgmt.repo.CompanyRepo;
+import com.diginepal.schoolmgmt.exception.GlobalException;
+import com.diginepal.schoolmgmt.repo.AcademicdatesRepo;
 
 @RestController
-@RequestMapping("company")
-public class CompanyController {
-	@Autowired
-	CompanyRepo companyRepo;
+@RequestMapping("academicdates")
+public class AcademicdatesController {
+	
+	@Autowired 
+	AcademicdatesRepo academicdatesRepo;
 	
 	@PostMapping(value="/save")
-	public Company save(@RequestBody Company company) {
-		return companyRepo.save(company);
+	public Academicdates save(@Valid @RequestBody Academicdates academicdates, Errors error) {
+		
+		return academicdatesRepo.save(academicdates); 
 	}
 	
 	@GetMapping(value="/list")
-	public List<Company> findAll(){
-		return companyRepo.findAll();
+	public List<Academicdates> findAll(){
+		return academicdatesRepo.findAll();
 	}
 	
 	@GetMapping(value="/{id}")
-	public Company findOne(@PathVariable int id){
+	public Academicdates findOne(@PathVariable int id){
 		System.out.println(id);
-		return companyRepo.findById(id).get();
+		return academicdatesRepo.findById(id).get();
 	}
 	
 	@PutMapping(value="/update/{id}")
-	public Company update(@PathVariable int id,@RequestBody Company company) {
-		company.setId(id);
-		return companyRepo.save(company);
+	public Academicdates update(@PathVariable int id,@RequestBody Academicdates academicdates) {
+		academicdates.setId(id);
+		return academicdatesRepo.save(academicdates);
 	}
 	
 	@DeleteMapping(value="/delete/{id}")
 	public void delete(@PathVariable int id) {
-		Company company=companyRepo.findById(id).get();
-		companyRepo.delete(company);
-}
+		Academicdates academicdates=academicdatesRepo.findById(id).get();
+		academicdatesRepo.delete(academicdates);
+	}
+
 }

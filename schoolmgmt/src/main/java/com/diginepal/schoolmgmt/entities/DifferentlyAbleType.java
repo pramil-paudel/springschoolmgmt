@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class DifferentlyAbleType extends BaseEntity {
 
-	@Column(name = "disabilitytype", nullable = true)
-	private String disabilityType;
+	@Column(name = "name", nullable = true)
+	private String name;
 
 }
