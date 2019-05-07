@@ -56,7 +56,7 @@ public class AcademicdatesController {
 	
 	
 	@GetMapping(value="/{id}")
-	public Academicdates findOne(@PathVariable int id,@RequestBody Academicdates acdemicdates ){
+	public ResponseEntity<?> findOne(@PathVariable int id,@RequestBody Academicdates acdemicdates ){
 		ResponseMessage response= new ResponseMessage();
 		Academicdates search= academicdatesRepo.findById(id).get();
 		if (search==null) {
@@ -64,10 +64,9 @@ public class AcademicdatesController {
 			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
 		}
 		else {
-			Academicdates.setId(id);
-			academicdates=academicdatesRepo.save(academicdates);
+			
 			response=Response.successful();
-			return new ResponseEntity<(respose, HTTP status.OK)>
+			return new ResponseEntity<>(search, HttpStatus.OK);
 		}
 			
 		}
