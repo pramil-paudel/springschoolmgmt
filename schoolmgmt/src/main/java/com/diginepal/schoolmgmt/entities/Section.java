@@ -1,22 +1,17 @@
 package com.diginepal.schoolmgmt.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name="user")
+@Table(name = "section")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class User extends BaseEntity{
-	
-	private char username;
-	private char password; 
-
-	@OneToOne
-	private Employee employee;
-
+public class Section extends BaseEntity {
+	@Column(nullable = false)
+	private String name;
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.diginepal.schoolmgmt.entities.Academicdates;
+import com.diginepal.schoolmgmt.entities.Subjects;
 import com.diginepal.schoolmgmt.exception.GlobalException;
 import com.diginepal.schoolmgmt.repo.AcademicdatesRepo;
+import com.diginepal.schoolmgmt.response.Response;
+import com.diginepal.schoolmgmt.response.ResponseMessage;
 
 @RestController
 @RequestMapping("academicdates")
@@ -27,21 +32,46 @@ public class AcademicdatesController {
 	AcademicdatesRepo academicdatesRepo;
 	
 	@PostMapping(value="/save")
-	public Academicdates save(@Valid @RequestBody Academicdates academicdates, Errors error) {
-		
-		return academicdatesRepo.save(academicdates); 
+	public ResponseEntity<?> save(@RequestBody Academicdates academicdates) {
+		ResponseMessage response=new ResponseMessage();
+		academicdates=academicdatesRepo.save(academicdates);
+		if(academicdates==null) {
+			response=Response.badrequest();
+			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+		}
+		response=Response.created();
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 	
 	@GetMapping(value="/list")
-	public List<Academicdates> findAll(){
-		return academicdatesRepo.findAll();
+	public ResponseEntity<?> findAll(){
+		ResponseMessage response=new ResponseMessage();
+		List<Academicdates> list=academicdatesRepo.findAll();
+		if(list.isEmpty()) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
+	
 	@GetMapping(value="/{id}")
-	public Academicdates findOne(@PathVariable int id){
-		System.out.println(id);
-		return academicdatesRepo.findById(id).get();
-	}
+	public Academicdates findOne(@PathVariable int id,@RequestBody Academicdates acdemicdates ){
+		ResponseMessage response= new ResponseMessage();
+		Academicdates search= academicdatesRepo.findById(id).get();
+		if (search==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
+			Academicdates.setId(id);
+			academicdates=academicdatesRepo.save(academicdates);
+			response=Response.successful();
+			return new ResponseEntity<(respose, HTTP status.OK)>
+		}
+			
+		}
+		
 	
 	@PutMapping(value="/update/{id}")
 	public Academicdates update(@PathVariable int id,@RequestBody Academicdates academicdates) {

@@ -10,10 +10,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name="employee")
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Employee extends BaseEntity {
 	private String name;
 	private String address;

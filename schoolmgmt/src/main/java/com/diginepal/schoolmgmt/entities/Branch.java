@@ -6,10 +6,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity 
 @Table(name="branch")
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Branch extends BaseEntity{
 private int code;
 private String name;
