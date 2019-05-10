@@ -1,0 +1,37 @@
+!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Employee</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:if="${not #lists.isEmpty(employee)}">
+<h2>Employee</h2>
+<table class="glyphicon glyphicon-calendar table-bordered">
+<tr>
+<th>Id </th>
+<th> Code </th>
+<th> Address </th>
+<th> D.O.B </th>
+<th> E-mail </th>
+<th> Gender </th>
+<th> Join Date </th>
+<th> Name </th>
+<th> Status </th>
+<th> Branch Id </th>
+</tr>
+<tr th:each="employee : ${employee}">
+<td th:text="${employee.id}"></td>
+<td th:text="${employee.code}"></td>
+<td th:text="${employee.address}"></td>
+<td th:text="${employee.dob}"></td>
+<td th:text="${employee.gender}"></td>
+<td th:text="${employee.joindate}"></td>
+<td th:text="${employee.name}"></td>
+<td th:text="${employee.status}"></td>
+<td th:text="${employee.branch}"></td>
+</tr>
+</table>
+</div>
+</body>
+</html>

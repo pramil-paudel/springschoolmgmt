@@ -1,0 +1,27 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Academic Dates</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:if="${not #lists.isEmpty(academicdates)}">
+<h2>Academic Date List</h2>
+<table class="glyphicon glyphicon-calendar table-bordered">
+<tr>
+<th>Id</th>
+<th>Date (B.S)</th>
+<th>Date (A.X)</th>
+</tr>
+<tr th:each="academicdate : ${academicdates}">
+<td th:text="${academicdate.id}"></td>
+<td th:text="${academicdate.academicdate}"></td>
+<td th:text="${academicdate.academicdateen}"></td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+

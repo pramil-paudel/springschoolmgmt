@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title> Grade</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:if="${not #lists.isEmpty(grade)}">
+<h2>Grade</h2>
+<table class="glyphicon glyphicon-calendar table-bordered">
+<tr>
+<th>Id</th>
+<th> Name</th>
+</tr>
+<tr th:each="grade : ${grade}">
+<td th:text="${grade.id}"></td>
+<td th:text="${grade.grade}"></td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+

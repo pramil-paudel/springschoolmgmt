@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:if="${not #lists.isEmpty(user)}">
+<h2>User</h2>
+<table class="glyphicon glyphicon-calendar table-bordered">
+<tr>
+<th>Id</th>
+<th>Password</th>
+<th>User Name</th>
+<th>Employee Id</th>
+</tr>
+<tr th:each="user : ${user}">
+<td th:text="${user.id}"></td>
+<td th:text="${user.password}"></td>
+<td th:text="${user.username}"></td>
+<td th:text="${user.employeeid}"></td>
+</tr>
+</table>
+</div>
+</body>
+</html>

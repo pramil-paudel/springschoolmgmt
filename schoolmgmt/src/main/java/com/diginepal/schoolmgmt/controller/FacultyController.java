@@ -3,6 +3,8 @@ package com.diginepal.schoolmgmt.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,14 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.diginepal.schoolmgmt.entities.Company;
-import com.diginepal.schoolmgmt.entities.DifferentlyAbleType;
 import com.diginepal.schoolmgmt.entities.Faculty;
 import com.diginepal.schoolmgmt.repo.FacultyRepo;
 
-@RestController
+@Controller
 @RequestMapping("faculty")
 public class FacultyController {
 
@@ -30,9 +29,11 @@ public Faculty save(@RequestBody Faculty faculty) {
 	
 }
 
-@GetMapping (value="/list")
-public List<Faculty> findAll(){
-	return facultyRepo.findAll();
+@GetMapping(value="/list")
+public String findAll(Model model){
+	List<Faculty> list=facultyRepo.findAll();
+	model.addAttribute("faculty", list);
+	return "faculty/list";
 }
 
 @GetMapping (value="/{id}")

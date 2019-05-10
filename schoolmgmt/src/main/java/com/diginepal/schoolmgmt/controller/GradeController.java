@@ -3,6 +3,8 @@ package com.diginepal.schoolmgmt.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,15 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.diginepal.schoolmgmt.entities.Faculty;
 import com.diginepal.schoolmgmt.entities.Grade;
 import com.diginepal.schoolmgmt.repo.GradeRepo;
 
 
 
-@RestController
+@Controller
 @RequestMapping("grade")
 public class GradeController {
 	
@@ -30,11 +30,12 @@ public class GradeController {
 		return gradeRepo.save(grade);
 	}
 	
-	@GetMapping (value="/list")
-	public List<Grade> findAll(){
-		return gradeRepo.findAll();
+	@GetMapping(value="/list")
+	public String findAll(Model model){
+		List<Grade> list=gradeRepo.findAll();
+		model.addAttribute("grade", list);
+		return "grade/list";
 	}
-	
 	@GetMapping (value="/{id}")
 	public Grade findOne (@PathVariable int id){
 		return gradeRepo.findById(id).get();

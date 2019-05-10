@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Section</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:if="${not #lists.isEmpty(section)}">
+<h2>Section</h2>
+<table class="glyphicon glyphicon-calendar table-bordered">
+<tr>
+<th>Id</th>
+<th>Name</th>
+</tr>
+<tr th:each="section : ${section}">
+<td th:text="${section.id}"></td>
+<td th:text="${section.name}"></td>
+</tr>
+</table>
+</div>
+</body>
+</html>

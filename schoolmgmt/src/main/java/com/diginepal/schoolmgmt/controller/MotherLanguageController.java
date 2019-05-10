@@ -3,6 +3,8 @@ package com.diginepal.schoolmgmt.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,13 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.diginepal.schoolmgmt.entities.Housegroup;
 import com.diginepal.schoolmgmt.entities.MotherLanguage;
 import com.diginepal.schoolmgmt.repo.MotherLanguageRepo;
 
-@RestController
+@Controller
 @RequestMapping("motherlanguage")
 public class MotherLanguageController {
 	@Autowired
@@ -27,11 +27,12 @@ public class MotherLanguageController {
 		return motherLanguageRepo.save(motherLanguage);
 	}
 
-	@GetMapping(value = "/list")
-	public List<MotherLanguage> findAll() {
-		return motherLanguageRepo.findAll();
+	@GetMapping(value="/list")
+	public String findAll(Model model){
+		List<MotherLanguage> list=motherLanguageRepo.findAll();
+		model.addAttribute("motherLangauge", list);
+		return "motherlanguage/list";
 	}
-
 	@GetMapping(value = "/{id}")
 	public MotherLanguage findOne(@PathVariable int id) {
 		return motherLanguageRepo.findById(id).get();

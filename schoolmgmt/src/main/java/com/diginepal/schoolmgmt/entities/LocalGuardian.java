@@ -1,40 +1,35 @@
 package com.diginepal.schoolmgmt.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "Localguardian")
+@Table(name = "localguardian")
 @EqualsAndHashCode(callSuper = false)
 @Data
+@JsonSerialize
 public class LocalGuardian extends BaseEntity {
 	
 
-	@Column(name = "guradian_name")
 	private String name;
 
-	@Column(name = "address")
 	private String address;
 
-	@Column(name = "phone_no", unique = true)
 	private String phone;
 
-	@Column(name = "mobile_no", unique = true)
 	private String mobile;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "localGuardian")
-	private List<Student> students = new ArrayList<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "student_id")
+	@JsonIgnore
+	private Student student;
 }

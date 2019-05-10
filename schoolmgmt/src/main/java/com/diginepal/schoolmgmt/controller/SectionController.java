@@ -3,6 +3,7 @@ package com.diginepal.schoolmgmt.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.diginepal.schoolmgmt.entities.MotherLanguage;
 import com.diginepal.schoolmgmt.entities.Section;
 import com.diginepal.schoolmgmt.repo.SectionRepo;
 
@@ -23,9 +25,11 @@ public class SectionController {
 		return sectionRepo.save(section);
 	}
 	
-	@GetMapping (value="/list")
-	public List<Section> findAll(){
-		return sectionRepo.findAll();
+	@GetMapping(value="/list")
+	public String findAll(Model model){
+		List<Section> list=sectionRepo.findAll();
+		model.addAttribute("section", list);
+		return "section/list";
 	}
 	
 	@GetMapping (value="/{id}")
