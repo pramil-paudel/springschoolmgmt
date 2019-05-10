@@ -3,6 +3,8 @@ package com.diginepal.schoolmgmt.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.diginepal.schoolmgmt.entities.Housegroup;
+import com.diginepal.schoolmgmt.entities.MotherLanguage;
 import com.diginepal.schoolmgmt.repo.HousegroupRepo;
+import com.diginepal.schoolmgmt.response.Response;
+import com.diginepal.schoolmgmt.response.ResponseMessage;
 
 @Controller
 @RequestMapping("housegroup")
@@ -23,32 +28,66 @@ public class HousegroupController {
 	@Autowired
 	HousegroupRepo housegroupRepo;
 	
-	@PostMapping  (value="/save")
-	public Housegroup save(@RequestBody Housegroup housegroup) {
-		return housegroupRepo.save(housegroup);
+	@PostMapping 
+	public ResponseEntity<?> save(@RequestBody Housegroup housegroup) {
+		ResponseMessage response=new ResponseMessage();
+		housegroup=housegroupRepo.save(housegroup);
+		if(housegroup==null) {
+			response=Response.badrequest();
+			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+		}
+		response=Response.created();
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 	
 	@GetMapping(value="/list")
-	public String findAll(Model model){
+	public ResponseEntity<?> findAll(){
+		ResponseMessage response=new ResponseMessage();
 		List<Housegroup> list=housegroupRepo.findAll();
-		model.addAttribute("housegroup", list);
-		return "housegroup/list";
+		if(list.isEmpty()) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	@GetMapping (value="/{id}")
-	public Housegroup findOne (@PathVariable int id){
-		return housegroupRepo.findById(id).get();
+	public ResponseEntity<?> findOne (@PathVariable int id){
+		Housegroup housegroup=housegroupRepo.findById(id).get();
+		ResponseMessage response=new ResponseMessage();
+		if(housegroup==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(housegroup, HttpStatus.OK);
 	}
 	
 	@PutMapping(value="/update/{id}")
-	public Housegroup update(@PathVariable int id,@RequestBody Housegroup housegroup) {
-		housegroup.setId(id);
-		return housegroupRepo.save(housegroup);
-
+	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Housegroup housegroup) {
+		ResponseMessage response=new ResponseMessage();
+		Housegroup search=housegroupRepo.findById(id).get();
+		if(search==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
+			housegroup.setId(id);
+			housegroup=housegroupRepo.save(housegroup);
+			response=Response.successful();
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
 }
 	@DeleteMapping(value="/delete/{id}")
-	public void delete(@PathVariable int id) {
+	public ResponseEntity<?> delete(@PathVariable int id) {
+		ResponseMessage response=new ResponseMessage();
 		Housegroup housegroup=housegroupRepo.findById(id).get();
+		if(housegroup==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
 		housegroupRepo.delete(housegroup);
+		response=Response.successful();
+		return new ResponseEntity<>(response,HttpStatus.OK);
+		}
 	}
 }
-

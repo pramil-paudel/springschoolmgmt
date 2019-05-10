@@ -19,7 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.diginepal.schoolmgmt.entities.Academicdates;
 import com.diginepal.schoolmgmt.entities.Branch;
 import com.diginepal.schoolmgmt.entities.Company;
+import com.diginepal.schoolmgmt.entities.Employee;
 import com.diginepal.schoolmgmt.repo.CompanyRepo;
+import com.diginepal.schoolmgmt.response.Response;
+import com.diginepal.schoolmgmt.response.ResponseMessage;
 
 @Controller
 @RequestMapping("company")
@@ -27,33 +30,70 @@ public class CompanyController {
 	@Autowired
 	CompanyRepo companyRepo;
 	
-	@PostMapping(value="/save")
-	public Company save(@RequestBody Company company) {
-		return companyRepo.save(company);
+	@PostMapping
+	public ResponseEntity<?> save(@RequestBody Company company) {
+		ResponseMessage response=new ResponseMessage();
+		company=companyRepo.save(company);
+		if(company==null) {
+			response=Response.badrequest();
+			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+		}
+		response=Response.created();
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 	
 	@GetMapping(value="/list")
-	public String findAll(Model model){
+	public ResponseEntity<?> findAll(){
+		ResponseMessage response=new ResponseMessage();
 		List<Company> list=companyRepo.findAll();
-		model.addAttribute("company", list);
-		return "company/list";
+		if(list.isEmpty()) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/{id}")
-	public Company findOne(@PathVariable int id){
-		System.out.println(id);
-		return companyRepo.findById(id).get();
+	public ResponseEntity<?> findOne (@PathVariable int id){
+		Company company=companyRepo.findById(id).get();
+		ResponseMessage response=new ResponseMessage();
+		if(company==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(company, HttpStatus.OK);
 	}
+
 	
 	@PutMapping(value="/update/{id}")
-	public Company update(@PathVariable int id,@RequestBody Company company) {
-		company.setId(id);
-		return companyRepo.save(company);
+	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Company company) {
+		ResponseMessage response=new ResponseMessage();
+		Company search=companyRepo.findById(id).get();
+		if(search==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
+			company.setId(id);
+			company=companyRepo.save(company);
+			response=Response.successful();
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
 	}
-	
 	@DeleteMapping(value="/delete/{id}")
-	public void delete(@PathVariable int id) {
+	public ResponseEntity<?> delete(@PathVariable int id) {
+		ResponseMessage response=new ResponseMessage();
 		Company company=companyRepo.findById(id).get();
+		if(company==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
 		companyRepo.delete(company);
-}
+		response=Response.successful();
+		return new ResponseEntity<>(response,HttpStatus.OK);
+		}
+	}
+
+
 }

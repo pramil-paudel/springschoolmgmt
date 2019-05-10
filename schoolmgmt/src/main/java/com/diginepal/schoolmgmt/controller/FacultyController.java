@@ -3,6 +3,8 @@ package com.diginepal.schoolmgmt.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.diginepal.schoolmgmt.entities.Faculty;
+import com.diginepal.schoolmgmt.entities.Generaldetails;
 import com.diginepal.schoolmgmt.repo.FacultyRepo;
+import com.diginepal.schoolmgmt.response.Response;
+import com.diginepal.schoolmgmt.response.ResponseMessage;
 
 @Controller
 @RequestMapping("faculty")
@@ -23,33 +28,68 @@ public class FacultyController {
 @Autowired
 FacultyRepo facultyRepo;
 
-@PostMapping (value="/save")
-public Faculty save(@RequestBody Faculty faculty) {
-	return facultyRepo.save(faculty);
-	
+@PostMapping 
+public ResponseEntity<?> save(@RequestBody Faculty faculty) {
+	ResponseMessage response=new ResponseMessage();
+	faculty=facultyRepo.save(faculty);
+	if(faculty==null) {
+		response=Response.badrequest();
+		return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	}
+	response=Response.created();
+	return new ResponseEntity<>(response, HttpStatus.CREATED);
 }
 
 @GetMapping(value="/list")
-public String findAll(Model model){
+public ResponseEntity<?> findAll(){
+	ResponseMessage response=new ResponseMessage();
 	List<Faculty> list=facultyRepo.findAll();
-	model.addAttribute("faculty", list);
-	return "faculty/list";
+	if(list.isEmpty()) {
+		response=Response.resourcenotfound();
+		return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+	}
+	return new ResponseEntity<>(list, HttpStatus.OK);
 }
 
 @GetMapping (value="/{id}")
-public Faculty findOne (@PathVariable int id){
-	return facultyRepo.findById(id).get();
+public ResponseEntity<?> findOne (@PathVariable int id){
+	Faculty faculty=facultyRepo.findById(id).get();
+	ResponseMessage response=new ResponseMessage();
+	if(faculty==null) {
+		response=Response.resourcenotfound();
+		return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+	}
+	return new ResponseEntity<>(faculty, HttpStatus.OK);
 }
 
 @PutMapping(value="/update/{id}")
-public Faculty update(@PathVariable int id,@RequestBody Faculty faculty) {
-	faculty.setId(id);
-	return facultyRepo.save(faculty);
+public ResponseEntity<?> update(@PathVariable int id,@RequestBody Faculty faculty) {
+	ResponseMessage response=new ResponseMessage();
+	Faculty search=facultyRepo.findById(id).get();
+	if(search==null) {
+		response=Response.resourcenotfound();
+		return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+	}
+	else {
+		faculty.setId(id);
+		faculty=facultyRepo.save(faculty);
+		response=Response.successful();
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
 }
 @DeleteMapping(value="/delete/{id}")
-public void delete(@PathVariable int id) {
+public ResponseEntity<?> delete(@PathVariable int id) {
+	ResponseMessage response=new ResponseMessage();
 	Faculty faculty=facultyRepo.findById(id).get();
+	if(faculty==null) {
+		response=Response.resourcenotfound();
+		return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+	}
+	else {
 	facultyRepo.delete(faculty);
+	response=Response.successful();
+	return new ResponseEntity<>(response,HttpStatus.OK);
+	}
 }
 
 }

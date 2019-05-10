@@ -3,6 +3,8 @@ package com.diginepal.schoolmgmt.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.diginepal.schoolmgmt.entities.Employee;
+import com.diginepal.schoolmgmt.entities.Ethnicgroup;
 import com.diginepal.schoolmgmt.repo.EmployeeRepo;
+import com.diginepal.schoolmgmt.response.Response;
+import com.diginepal.schoolmgmt.response.ResponseMessage;
 
 @Controller
 @RequestMapping("employee")
@@ -24,33 +29,71 @@ public class EmployeeController {
 	@Autowired
 	EmployeeRepo employeeRepo;
 	
-	@PostMapping (value="/save")
-	public Employee save(@RequestBody Employee employee) {
-		return employeeRepo.save(employee);
+	@PostMapping 
+	public ResponseEntity<?> save(@RequestBody Employee employee) {
+		ResponseMessage response=new ResponseMessage();
+		employee=employeeRepo.save(employee);
+		if(employee==null) {
+			response=Response.badrequest();
+			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+		}
+		response=Response.created();
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 	
 	@GetMapping(value="/list")
-	public String findAll(Model model){
+	public ResponseEntity<?> findAll(){
+		ResponseMessage response=new ResponseMessage();
 		List<Employee> list=employeeRepo.findAll();
-		model.addAttribute("employee", list);
-		return "employee/list";
+		if(list.isEmpty()) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
 	@GetMapping (value="/{id}")
-	public Employee findOne (@PathVariable int id){
-		return employeeRepo.findById(id).get();
+	public ResponseEntity<?> findOne (@PathVariable int id){
+		Employee employee=employeeRepo.findById(id).get();
+		ResponseMessage response=new ResponseMessage();
+		if(employee==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(employee, HttpStatus.OK);
 	}
 
+
 	@PutMapping(value="/update/{id}")
-	public Employee update(@PathVariable int id,@RequestBody Employee employee) {
-		employee.setId(id);
-		return employeeRepo.save(employee);
-}
-	@DeleteMapping(value="/delete/{id}")
-	public void delete(@PathVariable int id) {
-		Employee employee=employeeRepo.findById(id).get();
-		employeeRepo.delete(employee);
+	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Employee employee) {
+		ResponseMessage response=new ResponseMessage();
+		Employee search=employeeRepo.findById(id).get();
+		if(search==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
+			employee.setId(id);
+			employee=employeeRepo.save(employee);
+			response=Response.successful();
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
 	}
+	@DeleteMapping(value="/delete/{id}")
+	public ResponseEntity<?> delete(@PathVariable int id) {
+		ResponseMessage response=new ResponseMessage();
+		Employee employee=employeeRepo.findById(id).get();
+		if(employee==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
+		employeeRepo.delete(employee);
+		response=Response.successful();
+		return new ResponseEntity<>(response,HttpStatus.OK);
+		}
+	}
+
 
 
 }

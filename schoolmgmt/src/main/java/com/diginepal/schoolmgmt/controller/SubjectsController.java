@@ -27,7 +27,7 @@ public class SubjectsController {
 	@Autowired
 	SubjectsRepo subjectsRepo;
 	
-	@PostMapping  (value="/save")
+	@PostMapping 
 	public ResponseEntity<?> save(@RequestBody Subjects subjects) {
 		ResponseMessage response=new ResponseMessage();
 		subjects=subjectsRepo.save(subjects);
@@ -60,7 +60,7 @@ public class SubjectsController {
 		}
 		return new ResponseEntity<>(subjects, HttpStatus.OK);
 	}
-	@PutMapping(value="/update/{id}")
+	@PutMapping(value="/{id}")
 	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Subjects subjects) {
 		ResponseMessage response=new ResponseMessage();
 		Subjects search=subjectsRepo.findById(id).get();
@@ -75,7 +75,7 @@ public class SubjectsController {
 			return new ResponseEntity<>(response, HttpStatus.OK);
 		}
 }
-	@DeleteMapping(value="/delete/{id}")
+	@DeleteMapping(value="/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id) {
 		ResponseMessage response=new ResponseMessage();
 		Subjects subjects=subjectsRepo.findById(id).get();

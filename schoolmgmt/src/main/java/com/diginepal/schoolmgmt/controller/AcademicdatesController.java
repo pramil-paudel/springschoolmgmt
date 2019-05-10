@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.diginepal.schoolmgmt.entities.Academicdates;
+import com.diginepal.schoolmgmt.entities.Branch;
 import com.diginepal.schoolmgmt.repo.AcademicdatesRepo;
 import com.diginepal.schoolmgmt.response.Response;
 import com.diginepal.schoolmgmt.response.ResponseMessage;
@@ -35,7 +36,7 @@ public class AcademicdatesController {
 		return "form";
 	}
 	
-	@PostMapping(value="/save")
+	@PostMapping
 	public ResponseEntity<?> save(@RequestBody Academicdates academicdates) {
 		ResponseMessage response=new ResponseMessage();
 		academicdates=academicdatesRepo.save(academicdates);
@@ -73,15 +74,34 @@ public class AcademicdatesController {
 		
 	
 	@PutMapping(value="/update/{id}")
-	public Academicdates update(@PathVariable int id,@RequestBody Academicdates academicdates) {
-		academicdates.setId(id);
-		return academicdatesRepo.save(academicdates);
-	}
-	
-	@DeleteMapping(value="/delete/{id}")
-	public void delete(@PathVariable int id) {
-		Academicdates academicdates=academicdatesRepo.findById(id).get();
-		academicdatesRepo.delete(academicdates);
+	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Academicdates academicdates) {
+		ResponseMessage response=new ResponseMessage();
+		Academicdates search=academicdatesRepo.findById(id).get();
+		if(search==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
+			academicdates.setId(id);
+			academicdates=academicdatesRepo.save(academicdates);
+			response=Response.successful();
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
 	}
 
+	
+	@DeleteMapping(value="/delete/{id}")
+	public ResponseEntity<?> delete(@PathVariable int id) {
+		ResponseMessage response=new ResponseMessage();
+		Academicdates academicdates=academicdatesRepo.findById(id).get();
+		if(academicdates==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
+		academicdatesRepo.delete(academicdates);
+		response=Response.successful();
+		return new ResponseEntity<>(response,HttpStatus.OK);
+		}
+	}
 }
