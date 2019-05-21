@@ -1,28 +1,9 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+ 
   <title>ADBL DMS-PEEPALSOFT</title>
-<!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="/webjars/mdbootstrap-bootstrap-material-design/4.5.3/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="/css/mdb.min.css" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="/webjars/mdbootstrap-bootstrap-material-design/4.5.3/css/style.css" rel="stylesheet">
-  <style>
-  
-.nav-link[data-toggle].collapsed:after {
-    content: " >>";
-}
-.nav-link[data-toggle]:not(.collapsed):after {
-    content: " <<";
-}
-  </style>
+
   </head>
 
 <body class="fixed-sn">
@@ -35,8 +16,8 @@
   <!-- Logo -->
   <li>
     <div class="logo-wrapper sn-ad-avatar-wrapper">
-      <a href="#"><img src="http://124.41.193.91/projectdatas/araniko/images/logo.jpg"
-          class="rounded-circle"><span style="color:white">Welcome, Sahakari</span></a>
+      <a href="#"><img src=""
+          class="rounded-circle"><span style="color:white">Welcome, User</span></a>
     </div>
   </li>
   <!--/. Logo -->
@@ -45,20 +26,128 @@
     <ul class="collapsible collapsible-accordion">
         <li><a id="toggle" class="waves-effect" href="login-user.do">DASHBOARD</a>
         </li>
-      <!--MEMBER-->
+    
+       <!--STUDENT-->
       <li class="nav-item ">
-          <a class="nav-link collapsed" href="#member" data-toggle="collapse" data-target="#member">MEMBER</a>
-          <div class="collapse" id="member" aria-expanded="false">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#student">STUDENT</a>
+          <div class="collapse" id="student" aria-expanded="false">
               <ul class="flex-column pl-2 nav">
-              
-                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/customers"/>">New Member</a></li>
-                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/customers"/>">List Members</a></li>
-                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/customers/search"/>">Search Member</a></li>
-                  <li class="nav-item"><a class="nav-link py-0" href="#">Authorize Member</a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="">New Member</a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="">List Members</a></li>
               </ul>
           </div>
       </li>
-      <!--./MEMBER-->
+      <!--./STUDENT-->
+       <!--EMPLOYEE-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#employee">EMPLOYEE</a>
+          <div class="collapse" id="employee" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/employee/new"/>"> New Employee</a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/employee"/>">List Employee</a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./EMPLOYEE-->
+       <!--ACADEMIC DATES-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#academicdates">ACADEMIC DATES</a>
+          <div class="collapse" id="academicdates" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/academicdates/new"/>"> New Academic Dates</a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/academicdates"/>">List Academic Dates</a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./ACADEMIC DATES-->
+       <!--BRANCH-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#branch"> BRANCH </a>
+          <div class="collapse" id="branch" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/branch/new"/>"> New Branch </a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/branch"/>">List Branch </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./ BRANCH-->
+         <!--COMPANY -->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#company"> COMPANY</a>
+          <div class="collapse" id="company" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/company/new"/>"> New Company</a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/company"/>">List Company </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./COMPANY -->
+      <!--DIFFERENTLY ABLE -->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#differentlyable"> DIFFERENTLY ABLE</a>
+          <div class="collapse" id="differentlyable" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/differentlyable/new"/>"> New Differently Able</a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/differentlyable"/>">List Differently Able </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./DIFFERENTLY ABLE -->
+   <!--ETHNIC GROUP -->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ethnicgroup"> ETHNIC GROUP</a>
+          <div class="collapse" id="ethnicgroup" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/ethnicgroup/new"/>"> New Ethnic Group</a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/ethnicgroup"/>">List Ethnic Group </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./ETHNIC GROUP -->
+      <!--EXAM -->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#exam"> EXAM</a>
+          <div class="collapse" id="exam" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/exam/new"/>"> New Exam </a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/exam"/>">List Exam  </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./EXAM  -->
+            <!--EXAM TYPE-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#examtype"> EXAM TYPE</a>
+          <div class="collapse" id="examtype" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/examtype/new"/>"> New Exam Type </a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/examtype"/>">List Exam Type </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./EXAM TYPE -->
+      <!--FACULTY-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#faculty"> FACULTY </a>
+          <div class="collapse" id="faculty" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/faculty/new"/>"> New Faculty  </a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/faculty"/>">List Faculty  </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./EXAM TYPE -->
+      
+    
     </ul>
   </li>
   <!--/. Side navigation links -->

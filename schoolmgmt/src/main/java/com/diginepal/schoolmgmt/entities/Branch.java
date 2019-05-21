@@ -16,7 +16,7 @@ public class Branch extends BaseEntity{
 private int code;
 private String name;
 private String address;
-private int phone;
+private String phone;
 private String email;
 
 @ManyToOne

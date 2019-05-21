@@ -22,6 +22,7 @@ public class Company extends BaseEntity {
 	private int phonenumber;
 	private String email;
 	private String vatpan;
+	private String name;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)

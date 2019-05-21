@@ -13,8 +13,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class User extends BaseEntity{
 	
-	private char username;
-	private char password; 
+	private String username;
+	private String password; 
 
 	@OneToOne
 	private Employee employee;

@@ -21,14 +21,12 @@ public class Employee extends BaseEntity {
 	private String address;
 	private String email;
 	
-	@Temporal(TemporalType.DATE)
-	private Date dob;
+	private String dob;
 	private String status;
 	private String gender;
 	private String code;
 	
-	@Temporal(TemporalType.DATE)
-	private Date joindate;
+	private String joindate;
  
 	 @OneToOne
 	 private Branch branch;
