@@ -23,6 +23,7 @@
 				<th class="th-sm"> Start Date </th>
 				<th class="th-sm"> Start Date English </th>
 				<th class="th-sm"> Exam Type ID </th>
+				<th class="th-sm"> Action </th>
 			</tr>
 		</thead>
 	</table>
@@ -41,12 +42,20 @@
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"academicyear"},
-					{"data":"code"},
-					{"data":"name"},
-					{"data":"startdate"},
-					{"data":"startdateen"},
-					{"data":"examtypeid"}
+					{"data":"academicyear","defaultContent":""},
+					{"data":"code","defaultContent":""},
+					{"data":"name","defaultContent":""},
+					{"data":"startdate","defaultContent":""},
+					{"data":"startdateen","defaultContent":""},
+					{"data":"examtypeid","defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/exam/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
 				]
 
 			});

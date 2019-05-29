@@ -16,7 +16,7 @@ public class Generaldetails extends BaseEntity {
 	private String code;
 	private String email;
 	private String name;
-	private int phone;
+	private String phone;
 	private String title;
 	
 	@OneToOne

@@ -18,7 +18,8 @@
 		<thead>
 			<tr>
 				<th class="th-sm"> Name </th>
-			</tr>
+				<th class="th-sm"> Action </th>
+				</tr>
 		</thead>
 	</table>
 	</div>
@@ -36,7 +37,15 @@
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"name"},
+					{"data":"name", "defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/differentlyable/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
 					
 				]
 

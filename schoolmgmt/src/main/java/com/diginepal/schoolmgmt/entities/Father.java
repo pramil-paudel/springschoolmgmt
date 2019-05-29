@@ -17,14 +17,13 @@ import lombok.EqualsAndHashCode;
 public class Father extends BaseEntity {
 	
 
-	@Column(name = "full_name")
+	
 	private String fullName;
 
 	private String address;
 	
 	private String email;
 	
-	@Column(name = "e_phone")
 	private long ePhone;
 
 	private String office;

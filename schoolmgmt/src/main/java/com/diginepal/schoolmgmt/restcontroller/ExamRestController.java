@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.DifferentlyAbleType;
 import com.diginepal.schoolmgmt.entities.Exam;
 import com.diginepal.schoolmgmt.repo.AcademicdatesRepo;
 import com.diginepal.schoolmgmt.repo.ExamRepo;
@@ -78,15 +79,12 @@ public ResponseEntity<?> findAll(){
 	return new ResponseEntity<>(list, HttpStatus.OK);
 }
 
-@GetMapping(value = "/{id}")
-public ResponseEntity<?> findOne (@PathVariable int id){
+@GetMapping (value="/{id}")
+public  ModelAndView findOne (@PathVariable int id){
 	Exam exam=examRepo.findById(id).get();
-	ResponseMessage response=new ResponseMessage();
-	if(exam==null) {
-		response=Response.resourcenotfound();
-		return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-	}
-	return new ResponseEntity<>(exam, HttpStatus.OK);
+	ModelAndView model = new ModelAndView("exam/form");
+	model.addObject(exam);
+	return model;
 }
 
 @PutMapping(value = "/update/{id}")

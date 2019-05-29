@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,6 +36,7 @@ public class EmployeeRestController {
 	@Autowired
 	BranchRepo branchRepo;
 	
+	
 	@GetMapping(value="/new")
 	public ModelAndView form() 
 	{
@@ -53,6 +55,7 @@ public class EmployeeRestController {
 	public ResponseEntity<?> save(@RequestBody Employee employee) {
 		ResponseMessage response=new ResponseMessage();
 		employee=employeeRepo.save(employee);
+		System.out.println(employee);
 		if(employee==null) {
 			response=Response.badrequest();
 			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
@@ -73,14 +76,13 @@ public class EmployeeRestController {
 	}
 	
 	@GetMapping (value="/{id}")
-	public ResponseEntity<?> findOne (@PathVariable int id){
+	public ModelAndView findOne (@PathVariable int id){
 		Employee employee=employeeRepo.findById(id).get();
-		ResponseMessage response=new ResponseMessage();
-		if(employee==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(employee, HttpStatus.OK);
+		System.out.println(employee);
+		ModelAndView model = new ModelAndView("employee/form");
+		model.addObject("branches", branchRepo.findAll());
+		model.addObject(employee);
+		return model;
 	}
 
 

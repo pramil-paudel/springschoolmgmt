@@ -9,7 +9,7 @@
 <body>
 	<tags:header />
 
-	<form class="border border-light p-5" method="post" action="/company">
+	<form class="border border-light p-5" method="post" action="/student">
 
 		<div class="text-center">
 			<p class="h4 mb-4"> Student </p>
@@ -55,7 +55,7 @@
 					id=" hobby" name=" hobby" class="form-control mb-4">
 			</div>
 			<div class="col-md-4">
-				<label for="textInput">PDate of Birth (Nepali)</label> <input type="text"
+				<label for="textInput">Date of Birth (Nepali)</label> <input type="text"
 					id="issued_by" name="dob_nepali" class="form-control mb-4">
 			</div>
 			<div class="col-md-4">

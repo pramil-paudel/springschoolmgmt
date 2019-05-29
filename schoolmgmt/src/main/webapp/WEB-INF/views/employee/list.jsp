@@ -26,7 +26,8 @@
 				<th class="th-sm"> Name </th>
 				<th class="th-sm"> Status </th>
 				<th class="th-sm"> Branch </th>
-			</tr>
+				<th class="th-sm"> Action </th>
+				</tr>
 		</thead>
 	</table>
 	</div>
@@ -52,7 +53,15 @@
 					{"data":"joindate","defaultContent":""},
 					{"data":"name","defaultContent":""},
 					{"data":"status","defaultContent":""},
-					{"data":"branch.name","defaultContent":""}
+					{"data":"branch.name","defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/employee/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
 				]
 
 			});

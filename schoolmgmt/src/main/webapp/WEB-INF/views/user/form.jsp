@@ -19,8 +19,8 @@
 				aria-label="Basic example">
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-			<button type="button" class="btn btn-danger btn-sm" id="submitbtn">Save</button>
-			</div>
+			<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/user')">Save</button>	
+					</div>
 		</div>
 		<br>
 		<div class="row">

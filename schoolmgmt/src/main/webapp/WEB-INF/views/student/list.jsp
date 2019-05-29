@@ -10,15 +10,21 @@
 <tags:header/>
 <div class="card">
   <div class="card-header">
-     Ethnic Group
+    GENERAL DETAILS
   </div>
   <div class="card-body">
-	<table id="datatablee" class="table table-striped" cellspacing="0"
+	<table id="customerstbl" class="table table-striped" cellspacing="0"
 		width="100%">
 		<thead>
 			<tr>
-				<th class="th-sm"> Ethnic Group </th>
-				<th class="th-sm"> Action </th>
+				<th class="th-sm"> Address </th>
+				<th class="th-sm"> Code </th>
+				<th class="th-sm"> Email </th>
+				<th class="th-sm"> Name </th>
+				<th class="th-sm"> Phone </th>
+				<th class="th-sm"> Title </th>
+				<th class="th-sm"> Academic Dates ID </th>
+					<th class="th-sm"> Action </th>
 			</tr>
 		</thead>
 	</table>
@@ -27,26 +33,31 @@
 	<tags:script/>
 	<script>
 		$(document).ready(function() {
-			$('#datatablee').DataTable({
+			$('#customerstbl').DataTable({
 				"scrollX" : true,
 				"bProcessing" : true,
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/ethnicgroup/list",
+					"url" : "generaldetails/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"name","defaultContent":""},
+					{"data":"address", "defaultContent"},
+					{"data":"code", "defaultContent"},
+					{"data":"email", "defaultContent"},
+					{"data":"name", "defaultContent"},
+					{"data":"phone", "defaultContent"},
+					{"data":"title", "defaultContent"},
+					{"data":"academicdatesid", "defaultContent"},
 					{"data":"Action",
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/ethnicgroup/'+row.id+'">Edit</a>';
+							var a= '<a href="/generaldetails/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}
-					
 				]
 
 			});

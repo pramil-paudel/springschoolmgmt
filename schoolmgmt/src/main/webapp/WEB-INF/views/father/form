@@ -3,20 +3,20 @@
 <html>
 <head>
 <tags:meta />
-<title> General Details </title>
+<title> Father </title>
 <tags:style />
 </head>
 <body>
 	<tags:header />
 
-	<form class="border border-light p-5" method="post" action="/generaldetails">
+	<form class="border border-light p-5" method="post" action="/father">
 
 		<div class="text-center">
 			<p class="h4 mb-4"> General Details </p>
 			<div class="btn-group btn-group-sm" role="group">
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/generaldetails')">Save</button>
+				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/father')">Save</button>
 			</div>
 		</div>
 		<br>
@@ -26,7 +26,7 @@
 				id="address" name="address"  class="form-control mb-4">
 			</div>
 			<div class="col-md-4">
-				<label for="textInput"> School code</label> <input type="text"
+				<label for="textInput"> E-phone </label> <input type="text"
 					id="code" name="code" class="form-control mb-4">
 			</div>
 			<div class="col-md-4">

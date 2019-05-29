@@ -18,6 +18,7 @@
 		<thead>
 			<tr>
 				<th class="th-sm"> House group </th>
+				<th class="th-sm"> Action </th>
 			</tr>
 		</thead>
 	</table>
@@ -36,7 +37,15 @@
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"name"},
+					{"data":"name", "defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/housegroup/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
 					
 				]
 

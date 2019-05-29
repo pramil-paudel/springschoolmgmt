@@ -22,6 +22,7 @@
 				<th class="th-sm"> Email </th>
 				<th class="th-sm"> Phone Number </th>
 				<th class="th-sm"> Vat Pan </th>
+				<th class="th-sm"> Action </th>
 			</tr>
 		</thead>
 	</table>
@@ -40,11 +41,19 @@
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"address"},
-					{"data":"code"},
-					{"data":"email"},
-					{"data":"phonenumber"},
-					{"data":"vatpan"}
+					{"data":"address", "defaultContent":""},
+					{"data":"code", "defaultContent":""},
+					{"data":"email", "defaultContent":""},
+					{"data":"phonenumber", "defaultContent":""},
+					{"data":"vatpan", "defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/company/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
 				]
 
 			});

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,80 +16,99 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.diginepal.schoolmgmt.entities.Company;
-import com.diginepal.schoolmgmt.entities.DifferentlyAbleType;
-import com.diginepal.schoolmgmt.entities.Employee;
-import com.diginepal.schoolmgmt.repo.DifferentlyAbledRepo;
+import com.diginepal.schoolmgmt.entities.Father;
+import com.diginepal.schoolmgmt.repo.FatherRepo;
 import com.diginepal.schoolmgmt.response.Response;
 import com.diginepal.schoolmgmt.response.ResponseMessage;
 
 @CrossOrigin("*")
 @Controller
-@RequestMapping("differentlyable")
-public class DifferentlyAbledRestController {
+@RequestMapping("father")
+
+
+public class FatherRestController {
+
 	@Autowired
-	DifferentlyAbledRepo differentlyAbledRepo;
-	
+	FatherRepo fatherRepo;
+
 	@GetMapping(value="/new")
 	public ModelAndView form() 
 	{
-		ModelAndView model = new ModelAndView("differentlyable/form");
+		ModelAndView model = new ModelAndView("father/form");
 		return model;
 	}
-	
+
 	@GetMapping
 	public ModelAndView list() {
-		return new ModelAndView("differentlyable/list");
+		return new ModelAndView("father/list");
 	}
-	
+
 	@PostMapping 
-	public ResponseEntity<?> save(@RequestBody DifferentlyAbleType differentlyable) {
+	public ResponseEntity<?> save(@RequestBody Father father) {
 		ResponseMessage response=new ResponseMessage();
-		differentlyable=differentlyAbledRepo.save(differentlyable);
-		if(differentlyable==null) {
+		father=fatherRepo.save(father);
+		if(father==null) {
 			response=Response.badrequest();
 			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		}
 		response=Response.created();
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
-	}	
+	}
+
+
 	@GetMapping(value="/list")
 	public ResponseEntity<?> findAll(){
 		ResponseMessage response=new ResponseMessage();
-		List<DifferentlyAbleType> list=differentlyAbledRepo.findAll();
+		List<Father> list=fatherRepo.findAll();
 		if(list.isEmpty()) {
 			response=Response.resourcenotfound();
 			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
-	
+
 	@GetMapping (value="/{id}")
-	public  ModelAndView findOne (@PathVariable int id){
-		DifferentlyAbleType differentlyAbleType=differentlyAbledRepo.findById(id).get();
-		ModelAndView model = new ModelAndView("differentlyable/form");
-		model.addObject(differentlyAbleType);
-		return model;
-	}
-	@PutMapping(value="/update/{id}")
-	public ResponseEntity<?> update(@PathVariable int id,@RequestBody DifferentlyAbleType differentlyable) {
+	public ResponseEntity<?> findOne (@PathVariable int id){
+		Father father=fatherRepo.findById(id).get();
 		ResponseMessage response=new ResponseMessage();
-		DifferentlyAbleType search=differentlyAbledRepo.findById(id).get();
+		if(father==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(father, HttpStatus.OK);
+	}
+
+	@PutMapping(value="/update/{id}")
+	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Father father) {
+		ResponseMessage response=new ResponseMessage();
+		Father search=fatherRepo.findById(id).get();
 		if(search==null) {
 			response=Response.resourcenotfound();
 			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
 		}
 		else {
-			differentlyable.setId(id);
-			differentlyable=differentlyAbledRepo.save(differentlyable);
+			father.setId(id);
+			father=fatherRepo.save(father);
 			response=Response.successful();
 			return new ResponseEntity<>(response, HttpStatus.OK);
 		}
-		
 	}
 	@DeleteMapping(value="/delete/{id}")
-	public void delete(@PathVariable int id) {
-		DifferentlyAbleType differentlyabled=differentlyAbledRepo.findById(id).get();
-		differentlyAbledRepo.delete(differentlyabled);
-}
-}
+	public ResponseEntity<?> delete(@PathVariable int id) {
+		ResponseMessage response=new ResponseMessage();
+		Father father=fatherRepo.findById(id).get();
+		if(father==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
+		fatherRepo.delete(father);
+		response=Response.successful();
+		return new ResponseEntity<>(response,HttpStatus.OK);
+		}
+	}
+		
+	}
+
+
+

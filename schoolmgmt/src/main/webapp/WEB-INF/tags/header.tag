@@ -145,7 +145,91 @@
               </ul>
           </div>
       </li>
-      <!--./EXAM TYPE -->
+      <!--./FACULTY -->
+      <!--GENERAL DETAILS-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#generaldetails"> GENERAL DETAILS </a>
+          <div class="collapse" id="generaldetails" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/generaldetails/new"/>"> New General Details  </a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/generaldetails"/>">List General Details  </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./GENERAL DETAILS -->
+       <!--GRADE-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#grade"> GRADE </a>
+          <div class="collapse" id="grade" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/grade/new"/>"> New Grade   </a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/grade"/>">List Grade   </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./GRADE  -->
+       <!--HOUSE GROUP-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#housegroup"> HOUSE GROUP </a>
+          <div class="collapse" id="housegroup" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/housegroup/new"/>"> New House Group   </a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/housegroup"/>">List House Group   </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./HOUSE GROUP  -->
+      <!--MOTHER LANGUAGE-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#motherlanguage"> MOTHER LANGUAGE </a>
+          <div class="collapse" id="motherlanguage" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/motherlanguage/new"/>"> New Mother Language   </a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/motherlanguage"/>">List Mother Language   </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./MOTHER LANGUAGE  -->
+       <!--SECTION-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#section"> SECTION </a>
+          <div class="collapse" id="section" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/section/new"/>"> New  Section   </a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/section"/>">List Section    </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./SECTION  -->
+      <!--SUBJECTS-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#subjects"> SUBJECTS </a>
+          <div class="collapse" id="subjects" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/subjects/new"/>"> New  Subjects   </a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/subjects"/>">List Subjects    </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./SUBJECTS  -->
+       <!--USER-->
+      <li class="nav-item ">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user"> USER </a>
+          <div class="collapse" id="user" aria-expanded="false">
+              <ul class="flex-column pl-2 nav">
+              
+                 <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/user/new"/>"> New  User   </a></li>
+                  <li class="nav-item"><a class="nav-link py-0" href="<c:url value="/user"/>">List User    </a></li>
+              </ul>
+          </div>
+      </li>
+      <!--./USER  -->
       
     
     </ul>

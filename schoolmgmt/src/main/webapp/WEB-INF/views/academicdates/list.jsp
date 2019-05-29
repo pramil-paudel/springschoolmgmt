@@ -19,12 +19,14 @@
 			<tr>
 				<th class="th-sm"> Academic Date </th>
 				<th class="th-sm"> Academic Date English </th>
+				<th class="th-sm"> Action </th>
 				</tr>
 		</thead>
 	</table>
 	</div>
 	</div>
 	<tags:script/>
+	
 	<script>
 		$(document).ready(function() {
 			$('#customerstbl').DataTable({
@@ -37,8 +39,16 @@
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"academicdate"},
-					{"data":"academicdateen"}
+					{"data":"academicdate", "defaultContent":""},
+					{"data":"academicdateen","defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/academicdates/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
 				]
 
 			});

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.DifferentlyAbleType;
 import com.diginepal.schoolmgmt.entities.Examtype;
 import com.diginepal.schoolmgmt.repo.ExamtypeRepo;
 import com.diginepal.schoolmgmt.response.Response;
@@ -65,15 +66,12 @@ public class ExamtypeRestController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> findOne (@PathVariable int id){
+	@GetMapping (value="/{id}")
+	public  ModelAndView findOne (@PathVariable int id){
 		Examtype examtype=examtypeRepo.findById(id).get();
-		ResponseMessage response=new ResponseMessage();
-		if(examtype==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(examtype, HttpStatus.OK);
+		ModelAndView model = new ModelAndView("examtype/form");
+		model.addObject(examtype);
+		return model;
 	}
 
 

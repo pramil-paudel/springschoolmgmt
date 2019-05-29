@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,33 +61,17 @@ public class CompanyRestController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/{id}")
-	public ResponseEntity<?> findOne (@PathVariable int id){
-		Company company=companyRepo.findById(id).get();
-		ResponseMessage response=new ResponseMessage();
-		if(company==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(company, HttpStatus.OK);
-	}
+	
 
 	
-	@PutMapping(value="/update/{id}")
-	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Company company) {
-		ResponseMessage response=new ResponseMessage();
-		Company search=companyRepo.findById(id).get();
-		if(search==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		else {
-			company.setId(id);
-			company=companyRepo.save(company);
-			response=Response.successful();
-			return new ResponseEntity<>(response, HttpStatus.OK);
-		}
+	@GetMapping (value="/{id}")
+	public  ModelAndView findOne (@PathVariable int id){
+		Company company=companyRepo.findById(id).get();
+		ModelAndView model = new ModelAndView("company/form");
+		model.addObject(company);
+		return model;
 	}
+	
 	@DeleteMapping(value="/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id) {
 		ResponseMessage response=new ResponseMessage();

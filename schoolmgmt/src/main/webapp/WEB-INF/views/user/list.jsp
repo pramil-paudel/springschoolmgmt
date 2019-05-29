@@ -19,6 +19,7 @@
 			<tr>
 				<th class="th-sm">Username</th>
 				<th class="th-sm">Employee Name</th>
+				<th class="th-sm"> Action </th>
 				
 			</tr>
 		</thead>
@@ -38,8 +39,16 @@
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"username"},
-					{"data":"employee.name"}
+					{"data":"username", "defaultContent":""},
+					{"data":"employee.name", "defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/user/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
 				]
 
 			});

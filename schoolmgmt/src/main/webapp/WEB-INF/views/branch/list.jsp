@@ -22,6 +22,7 @@
 				<th class="th-sm"> Email </th>
 				<th class="th-sm"> Name </th>
 				<th class="th-sm"> Phone </th>
+				<th class="th-sm"> Action </th>
 			</tr>
 		</thead>
 	</table>
@@ -40,11 +41,19 @@
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"address"},
-					{"data":"code"},
-					{"data":"email"},
-					{"data":"name"},
-					{"data":"phone"},
+					{"data":"address", "defaultContent":""},
+					{"data":"code", "defaultContent":""},
+					{"data":"email", "defaultContent":""},
+					{"data":"name", "defaultContent":""},
+					{"data":"phone", "defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/branch/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
 				]
 
 			});

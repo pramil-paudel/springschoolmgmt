@@ -63,18 +63,11 @@ public class AcademicdatesRestController {
 	
 	
 	@GetMapping(value="/{id}")
-	public ResponseEntity<?> findOne(@PathVariable int id,@RequestBody Academicdates acdemicdates ){
-		ResponseMessage response= new ResponseMessage();
-		Academicdates search= academicdatesRepo.findById(id).get();
-		if (search==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		else {
-			
-			response=Response.successful();
-			return new ResponseEntity<>(search, HttpStatus.OK);
-		}
+	public ModelAndView findOne(@PathVariable int id ){
+		ModelAndView model = new ModelAndView("academicdates/form");
+		Academicdates academicdates=academicdatesRepo.findById(id).get();
+		model.addObject("academicdates", academicdates);
+		return model;
 			
 		}
 		

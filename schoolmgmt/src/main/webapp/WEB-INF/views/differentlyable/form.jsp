@@ -17,13 +17,14 @@
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
 				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/differentlyable')">Save</button>
+				<input type="hidden" id="id" name="id" value="${differentlyAbleType.id }">
 			</div>
 		</div>
 		<br>
 	<div class="row">
 			<div class="col-md-4">
 				<label for="textInput"> Name </label> <input type="text"
-					id="name" name="name" class="form-control mb-4">
+					id="name" name="name" class="form-control mb-4" value="${differentlyAbleType.name }">
 			</div>
 			
 		</div>

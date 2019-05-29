@@ -24,7 +24,7 @@
 				<th class="th-sm"> Pass Marks Practical </th>
 				<th class="th-sm"> Pass Marks Theory </th>
 				<th class="th-sm"> Subject Type </th>
-				
+				<th class="th-sm"> Action </th>
 			</tr>
 		</thead>
 	</table>
@@ -43,13 +43,21 @@
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"code"},
-					{"data":"fullmarks_pr"},
-					{"data":"fullmarks_th"},
-					{"data":"passmarks_pr"},
-					{"data":"passmarks_th"},
-					{"data":"name"},
-					{"data":"subjecttype"}
+					{"data":"code", "defaultContent":""},
+					{"data":"fullmarks_pr", "defaultContent":""},
+					{"data":"fullmarks_th", "defaultContent":""},
+					{"data":"passmarks_pr", "defaultContent":""},
+					{"data":"passmarks_th", "defaultContent":""},
+					{"data":"name", "defaultContent":""},
+					{"data":"subjecttype", "defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/subjects/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
 				]
 
 			});

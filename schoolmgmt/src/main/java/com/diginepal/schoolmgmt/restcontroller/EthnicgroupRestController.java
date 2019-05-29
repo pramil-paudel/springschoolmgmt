@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.DifferentlyAbleType;
 import com.diginepal.schoolmgmt.entities.Ethnicgroup;
 import com.diginepal.schoolmgmt.repo.EthnincgroupRepo;
 import com.diginepal.schoolmgmt.response.Response;
@@ -63,17 +64,13 @@ public class EthnicgroupRestController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> findOne (@PathVariable int id){
+	@GetMapping (value="/{id}")
+	public  ModelAndView findOne (@PathVariable int id){
 		Ethnicgroup ethnicgroup=ethnicgroupRepo.findById(id).get();
-		ResponseMessage response=new ResponseMessage();
-		if(ethnicgroup==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(ethnicgroup, HttpStatus.OK);
+		ModelAndView model = new ModelAndView("ethnicgroup/form");
+		model.addObject(ethnicgroup);
+		return model;
 	}
-
 
 	@PutMapping(value = "/update/{id}")
 	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Ethnicgroup ethnincgroup) {

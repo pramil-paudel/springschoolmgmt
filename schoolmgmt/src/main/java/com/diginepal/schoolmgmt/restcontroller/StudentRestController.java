@@ -13,36 +13,62 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.diginepal.schoolmgmt.entities.LocalGuardian;
 import com.diginepal.schoolmgmt.entities.Student;
+import com.diginepal.schoolmgmt.repo.FatherRepo;
+import com.diginepal.schoolmgmt.repo.LocalguardainRepo;
+import com.diginepal.schoolmgmt.repo.MotherLanguageRepo;
+import com.diginepal.schoolmgmt.repo.MotherRepo;
 import com.diginepal.schoolmgmt.repo.StudentRepo;
 import com.diginepal.schoolmgmt.response.Response;
 import com.diginepal.schoolmgmt.response.ResponseMessage;
 
 @RestController
-@RequestMapping("reststudent")
+@RequestMapping("student")
 public class StudentRestController {
 	@Autowired
 	StudentRepo studentRepo;
+	
+	@Autowired
+	FatherRepo fatherRepo;
+	
+	@Autowired
+	MotherRepo motherRepo;
+	
+	@Autowired
+	MotherLanguageRepo motherlanguageRepo;
+	
+	@Autowired
+	LocalguardainRepo localguardainRepo;
+	
+	
+	@GetMapping(value="/new")
+	public ModelAndView form() 
+	{
+		ModelAndView model = new ModelAndView("student/form");
+		return model;
+	}
+	
+	@GetMapping
+	public ModelAndView list() {
+		return new ModelAndView("student/list");
+	}
+	
 
-	@PostMapping
+	@PostMapping 
 	public ResponseEntity<?> save(@RequestBody Student student) {
-		ResponseMessage response = new ResponseMessage();
-		List<LocalGuardian> llist = student.getLocalguardian();
-		for (LocalGuardian localguardian : llist) {
-			localguardian.setStudent(student);
-		}
-		student = studentRepo.save(student);
-		if (student == null) {
-			response = Response.badrequest();
+		ResponseMessage response=new ResponseMessage();
+		student=studentRepo.save(student);
+		if(student==null) {
+			response=Response.badrequest();
 			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		}
-		response = Response.created();
+		response=Response.created();
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
-	@GetMapping
+	@GetMapping(value="/list")
 	public ResponseEntity<?> findAll() {
 		ResponseMessage response = new ResponseMessage();
 		List<Student> list = studentRepo.findAll();
@@ -64,25 +90,21 @@ public class StudentRestController {
 		return new ResponseEntity<>(student, HttpStatus.OK);
 	}
 
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<?> update(@PathVariable int id, @RequestBody Student student) {
-		ResponseMessage response = new ResponseMessage();
-		Student search = studentRepo.findById(id).get();
-		if (search == null) {
-			response = Response.resourcenotfound();
-			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-		} else {
+	@PutMapping(value="/update/{id}")
+	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Student student) {
+		ResponseMessage response=new ResponseMessage();
+		Student search=studentRepo.findById(id).get();
+		if(search==null) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
 			student.setId(id);
-			List<LocalGuardian> llist = student.getLocalguardian();
-			for (LocalGuardian localguardian : llist) {
-				localguardian.setStudent(student);
-			}
-			student = studentRepo.save(student);
-			response = Response.successful();
+			student=studentRepo.save(student);
+			response=Response.successful();
 			return new ResponseEntity<>(response, HttpStatus.OK);
 		}
-	}
-
+		}
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id) {
 		ResponseMessage response = new ResponseMessage();
