@@ -26,7 +26,7 @@
 		<br>
 		<div class="row">
 			<div class="col-md-4">
-				 <select class="mdb-select md-form" id="academicdates">
+				 <select class="mdb-select md-form" id="academicdatesid" name="academicdates.id">
   <option value="" disabled selected>Select Academic Date </option>
   <c:forEach items="${academicdates }" var="b">
    <option value="${b.id }">${b.academicdate } (${b.academicdateen })</option>
@@ -53,7 +53,7 @@
 					id="startdateen" name="startdateen" class="form-control mb-4" value="${exam.startdateen }">
 			</div>
 			<div class="col-md-4">
-				 <select class="mdb-select md-form" id="examtypes">
+				 <select class="mdb-select md-form" id="examtypesid">
   <option value="" disabled selected>Select Exam Type </option>
   <c:forEach items="${examtypes }" var="b">
    <option value="${b.id }">${b.name }</option>
@@ -76,10 +76,10 @@
 				startdate: $("#startdate").val(),
 				startdateen: $("#startdateen").val(),
 				academicdates:{
-					id: parseInt($("#academicdates").val())
+					id: parseInt($("#academicdatesid").val())
 				},
 				examtype:{
-					id: parseInt($("#examtypes").val())
+					id: parseInt($("#examtypesid").val())
 				}
 			};
 		postJsonDataFromApi('/exam',data);

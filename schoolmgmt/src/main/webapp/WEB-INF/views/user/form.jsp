@@ -34,7 +34,7 @@
 					id="password" name="password" class="form-control mb-4" value="${user.password}">
 			</div>
 			<div class="col-md-4">
-				 <select class="mdb-select md-form" id="employee">
+				 <select class="mdb-select md-form" id="employeeid">
   <option value="" disabled selected>Select Employee ID </option>
   <c:forEach items="${employees }" var="b">
    <option value="${b.id }">(${b.code }) ${b.name } </option>
@@ -56,7 +56,7 @@
 				username: $("#username").val(),
 				password: $("#password").val(),
 				employee:{
-					id: parseInt($("#employee").val())
+					id: parseInt($("#employeeid").val())
 				}
 			};
 		postJsonDataFromApi('/user',data);

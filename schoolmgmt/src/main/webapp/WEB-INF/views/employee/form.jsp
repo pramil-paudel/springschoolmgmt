@@ -35,7 +35,7 @@
 					id="code" name="code" class="form-control mb-4" value="${employee.code }">
 			</div>
 			<div class="col-md-4">
-				<select class="mdb-select md-form" id="branch" name="branch">
+				<select class="mdb-select md-form" id="branchid" name="branch.id">
 					<option value="" disabled selected>Select Branch</option>
 					<c:forEach items="${branches }" var="b">
 						<option value="${b.id }">${b.name } ${b.id }</option>
@@ -91,10 +91,9 @@
 				status: $("#status").val(),
 				gender: $("#gender").val(),
 				branch:{
-					id: parseInt($("#branch").val())
+					id: parseInt($("#branchid").val())
 				}
 				};
-		alert($("#branch").val());
 		postJsonDataFromApi('/employee',data);
 	});
 	

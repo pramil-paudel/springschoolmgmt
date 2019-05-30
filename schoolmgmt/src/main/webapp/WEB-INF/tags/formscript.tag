@@ -28,7 +28,6 @@
 	}
 	function postJsonDataFromApi(url, data){
 		var jsondata = JSON.stringify(data);
-		alert(jsondata);
 		$.ajax({
 			type:"POST",
 			url:url,

@@ -28,7 +28,7 @@
 		<br>
 		<div class="row">
 			<div class="col-md-4">
-				<select class="mdb-select md-form" id="company">
+				<select class="mdb-select md-form" id="companyid" name="company.id">
 					<option disabled selected>Select Company</option>
 					<c:forEach items="${companies }" var="b">
 						<option value="${b.id }">${b.name }</option>
@@ -74,9 +74,9 @@
 				email : $("#email").val(),
 				name : $("#name").val(),
 				phone : $("#phone").val(),
-				/* company : {
-					id : parseInt($("#company").val())
-				}, */
+				 company : {
+					id : parseInt($("#companyid").val())
+				}, 
 			};
 			postJsonDataFromApi('/branch', data);
 		});
