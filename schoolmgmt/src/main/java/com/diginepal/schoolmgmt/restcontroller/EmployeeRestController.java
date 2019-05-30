@@ -55,7 +55,6 @@ public class EmployeeRestController {
 	public ResponseEntity<?> save(@RequestBody Employee employee) {
 		ResponseMessage response=new ResponseMessage();
 		employee=employeeRepo.save(employee);
-		System.out.println(employee);
 		if(employee==null) {
 			response=Response.badrequest();
 			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
@@ -78,7 +77,6 @@ public class EmployeeRestController {
 	@GetMapping (value="/{id}")
 	public ModelAndView findOne (@PathVariable int id){
 		Employee employee=employeeRepo.findById(id).get();
-		System.out.println(employee);
 		ModelAndView model = new ModelAndView("employee/form");
 		model.addObject("branches", branchRepo.findAll());
 		model.addObject(employee);

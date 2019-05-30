@@ -6,7 +6,7 @@
 <title> Section </title>
 <tags:style />
 </head>
-<body>
+<body class="fixed-sn ">
 	<tags:header />
 
 	<form class="border border-light p-5" >

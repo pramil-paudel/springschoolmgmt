@@ -8,7 +8,7 @@
 <title>New Branch</title>
 <tags:style />
 </head>
-<body>
+<body class="fixed-sn ">
 	<tags:header />
 
 	<form class="border border-light p-5">
@@ -31,7 +31,9 @@
 				<select class="mdb-select md-form" id="companyid" name="company.id">
 					<option disabled selected>Select Company</option>
 					<c:forEach items="${companies }" var="b">
-						<option value="${b.id }">${b.name }</option>
+					
+					<%-- <c:if test="${branch.company.id eq b.id }">selected</c:if> --%>
+						<option value="${b.id }" <c:if test="${branch.company.id eq b.id }">selected</c:if>>${b.name }</option>
 					</c:forEach>
 
 				</select>

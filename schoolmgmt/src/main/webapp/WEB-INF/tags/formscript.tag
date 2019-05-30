@@ -15,7 +15,6 @@
 			},
 			data:JSON.stringify(formObject),
 			success: function(data){
-				$('form')[0].reset();
 				$('#statusCode').html(data.statusCode);
 				$('#msg').html(data.message);
 				$('#response').modal('show');
@@ -37,7 +36,6 @@
 			},
 			data:jsondata,
 			success: function(data){
-				$('form')[0].reset();
 				$('#statusCode').html(data.statusCode);
 				$('#msg').html(data.message);
 				$('#response').modal('show');

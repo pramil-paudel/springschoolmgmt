@@ -8,9 +8,8 @@
 <title>Employee</title>
 <tags:style />
 </head>
-<body>
+<body class="fixed-sn ">
 	<tags:header />
-
 	<form class="border border-light p-5" method="post" action="/employee">
 
 		<div class="text-center">
@@ -38,7 +37,7 @@
 				<select class="mdb-select md-form" id="branchid" name="branch.id">
 					<option value="" disabled selected>Select Branch</option>
 					<c:forEach items="${branches }" var="b">
-						<option value="${b.id }">${b.name } ${b.id }</option>
+						<option value="${b.id }" <c:if test="${employee.branch.id eq b.id }">selected</c:if>>${b.name } ${b.id }</option>
 					</c:forEach>
 
 				</select>
@@ -81,7 +80,7 @@
 	$("#submitbtn").click(function(){
 		var data = {
 				id: $("#id").val(),
-				address: $("#addres").val(),
+				address: $("#address").val(),
 				code: $("#code").val(),
 				dob: $("#dob").val(),
 				email: $("#email").val(),
