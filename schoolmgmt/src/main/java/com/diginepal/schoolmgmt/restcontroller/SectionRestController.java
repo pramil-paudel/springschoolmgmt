@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.Grade;
+import com.diginepal.schoolmgmt.entities.MotherLanguage;
 import com.diginepal.schoolmgmt.entities.Section;
 import com.diginepal.schoolmgmt.repo.SectionRepo;
 import com.diginepal.schoolmgmt.response.Response;
@@ -65,14 +67,11 @@ public class SectionRestController {
 	}
 	
 	@GetMapping (value="/{id}")
-	public ResponseEntity<?> findOne (@PathVariable int id){
+	public  ModelAndView findOne (@PathVariable int id){
 		Section section=sectionRepo.findById(id).get();
-		ResponseMessage response=new ResponseMessage();
-		if(section==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(section, HttpStatus.OK);
+		ModelAndView model = new ModelAndView("section/form");
+		model.addObject(section);
+		return model;
 	}
 
 	@PutMapping(value="/update/{id}")

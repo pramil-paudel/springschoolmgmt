@@ -10,7 +10,7 @@
 <tags:header/>
 <div class="card">
   <div class="card-header">
-     STUDENTS
+     GENERAL DETAILS
   </div>
   <div class="card-body">
 	<table id="customerstbl" class="table table-striped" cellspacing="0"
@@ -39,7 +39,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "students/list",
+					"url" : "generaldetails/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -54,7 +54,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/students/'+row.id+'">Edit</a>';
+							var a= '<a href="/generaldetails/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}

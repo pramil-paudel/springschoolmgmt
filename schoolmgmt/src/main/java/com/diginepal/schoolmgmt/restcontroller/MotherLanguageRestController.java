@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.Housegroup;
 import com.diginepal.schoolmgmt.entities.MotherLanguage;
 import com.diginepal.schoolmgmt.entities.Section;
 import com.diginepal.schoolmgmt.repo.MotherLanguageRepo;
@@ -63,15 +64,12 @@ public class MotherLanguageRestController {
 		}
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> findOne (@PathVariable int id){
+	@GetMapping (value="/{id}")
+	public  ModelAndView findOne (@PathVariable int id){
 		MotherLanguage motherLanguage=motherLanguageRepo.findById(id).get();
-		ResponseMessage response=new ResponseMessage();
-		if(motherLanguage==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(motherLanguage, HttpStatus.OK);
+		ModelAndView model = new ModelAndView("motherlanguage/form");
+		model.addObject(motherLanguage);
+		return model;
 	}
 	@PutMapping(value="/update/{id}")
 	public ResponseEntity<?> update(@PathVariable int id,@RequestBody MotherLanguage motherLanguage) {

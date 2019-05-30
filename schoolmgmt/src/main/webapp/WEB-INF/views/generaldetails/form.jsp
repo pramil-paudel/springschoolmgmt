@@ -17,41 +17,43 @@
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
 				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/generaldetails')">Save</button>
+				<input type="hidden" id="id" name="id" value="${generaldetails.id }">
+				
 			</div>
 		</div>
 		<br>
 		<div class="row">
 			<div class="col-md-4">
 				<label for="textInput">Address </label> <input type="text" 
-				id="address" name="address"  class="form-control mb-4">
+				id="address" name="address"  class="form-control mb-4" value="${generaldetails.address}">
 			</div>
 			<div class="col-md-4">
 				<label for="textInput"> School code</label> <input type="text"
-					id="code" name="code" class="form-control mb-4">
+					id="code" name="code" class="form-control mb-4" value="${generaldetails.code}">
 			</div>
 			<div class="col-md-4">
 				<label for="textInput">Email </label> <input type="text"
-					id="email" name="email" class="form-control mb-4">
+					id="email" name="email" class="form-control mb-4" value="${generaldetails.email}">
 			</div>
 			</div>
 			<div class="row">
 			<div class="col-md-4">
 				<label for="textInput"> Name </label> <input type="text"
-					id="name" name="name" class="form-control mb-4">
+					id="name" name="name" class="form-control mb-4" value="${generaldetails.name}">
 			</div>
 			<div class="col-md-4">
 				<label for="textInput"> Phone Number </label> <input type="text"
-					id="phone" name="phone" class="form-control mb-4">
+					id="phone" name="phone" class="form-control mb-4" value="${generaldetails.phone}">
 			</div>
 			<div class="col-md-4">
 				<label for="textInput"> Title </label> <input type="text"
-					id="title" name="title" class="form-control mb-4">
+					id="title" name="title" class="form-control mb-4" value="${generaldetails.title}">
 			</div>
 			</div>
 			<div class="row">
 			<div class="col-md-4">
 				<label for="textInput"> Academic Dates ID </label> <input type="text"
-					id="academicdates_id" name="academicdates_id" class="form-control mb-4">
+					id="academicdates_id" name="academicdates_id" class="form-control mb-4" value="">
 			</div>
 			</div>
 			

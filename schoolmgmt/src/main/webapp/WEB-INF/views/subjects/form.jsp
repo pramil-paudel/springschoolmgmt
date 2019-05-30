@@ -17,42 +17,43 @@
 				aria-label="Basic example">
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/subjects')">Save</button>	
+				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/subjects')">Save</button>
+				<input type="hidden" id="id" name="id" value="${subjects.id}">	
 			</div>
 		</div>
 		<br>
 		<div class="row">
 			<div class="col-md-4">
 				<label for="textInput">Subject Code </label> <input type="text" 
-				id="code" name="code"  class="form-control mb-4">
+				id="code" name="code"  class="form-control mb-4" value="${subjects.code}">
 			</div>
 			<div class="col-md-4">
 				<label for="textInput"> Full marks Practical </label> <input type="text"
-					id="fullmarks_pr" name="fullmarks_pr" class="form-control mb-4">
+					id="fullmarks_pr" name="fullmarks_pr" class="form-control mb-4" value="${subjects.fullmarks_pr}">
 			</div>
 			<div class="col-md-4">
 				<label for="textInput">Full marks Theory </label> <input type="text"
-					id="fullmarks_th" name="fullmarks_th" class="form-control mb-4">
+					id="fullmarks_th" name="fullmarks_th" class="form-control mb-4" value="${subjects.fullmarks_th}">
 			</div>
 			</div>
 			<div class="row">
 			<div class="col-md-4">
 				<label for="textInput"> Name </label> <input type="text"
-					id="name" name="name" class="form-control mb-4">
+					id="name" name="name" class="form-control mb-4" value="${subjects.name}">
 			</div>
 			<div class="col-md-4">
 				<label for="textInput"> Pass marks Practical  </label> <input type="text"
-					id="passmarks_pr" name="passmarks_pr" class="form-control mb-4">
+					id="passmarks_pr" name="passmarks_pr" class="form-control mb-4" value="${subjects.passmarks_pr}">
 			</div>
 			<div class="col-md-4">
 				<label for="textInput"> Pass marks Theory  </label> <input type="text"
-					id="passmarks_th" name="passmarks_th" class="form-control mb-4">
+					id="passmarks_th" name="passmarks_th" class="form-control mb-4" value="${subjects.passmarks_th}">
 			</div>
 			</div>
 			<div class="row">
 			<div class="col-md-4">
 				<label for="textInput"> Subject Type </label> <input type="text"
-					id="subjecttype" name="subjecttype" class="form-control mb-4">
+					id="subjecttype" name="subjecttype" class="form-control mb-4" value="${subjects.subjecttype}">
 			</div>
 			</div>
 			

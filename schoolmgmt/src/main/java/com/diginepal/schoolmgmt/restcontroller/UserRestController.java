@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.diginepal.schoolmgmt.entities.Employee;
+import com.diginepal.schoolmgmt.entities.Section;
 import com.diginepal.schoolmgmt.entities.User;
 import com.diginepal.schoolmgmt.repo.EmployeeRepo;
 import com.diginepal.schoolmgmt.repo.UserRepo;
@@ -72,14 +73,11 @@ public class UserRestController {
 	
 	
 	@GetMapping (value="/{id}")
-	public ResponseEntity<?> findOne (@PathVariable int id){
+	public  ModelAndView findOne (@PathVariable int id){
 		User user=userRepo.findById(id).get();
-		ResponseMessage response=new ResponseMessage();
-		if(user==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(user, HttpStatus.OK);
+		ModelAndView model = new ModelAndView("user/form");
+		model.addObject(user);
+		return model;
 	}
 
 	@PutMapping(value="/{id}")

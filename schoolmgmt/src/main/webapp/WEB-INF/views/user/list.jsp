@@ -17,7 +17,7 @@
 		width="100%">
 		<thead>
 			<tr>
-				<th class="th-sm">Username</th>
+				<th class="th-sm">User name</th>
 				<th class="th-sm">Employee Name</th>
 				<th class="th-sm"> Action </th>
 				

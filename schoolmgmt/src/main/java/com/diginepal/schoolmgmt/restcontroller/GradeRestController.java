@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.Generaldetails;
 import com.diginepal.schoolmgmt.entities.Grade;
 import com.diginepal.schoolmgmt.entities.Housegroup;
 import com.diginepal.schoolmgmt.repo.GradeRepo;
@@ -68,14 +69,11 @@ public class GradeRestController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	@GetMapping (value="/{id}")
-	public ResponseEntity<?> findOne (@PathVariable int id){
+	public  ModelAndView findOne (@PathVariable int id){
 		Grade grade=gradeRepo.findById(id).get();
-		ResponseMessage response=new ResponseMessage();
-		if(grade==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(grade, HttpStatus.OK);
+		ModelAndView model = new ModelAndView("grade/form");
+		model.addObject(grade);
+		return model;
 	}
 	
 	@PutMapping(value="/update/{id}")

@@ -18,13 +18,14 @@
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
 					<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/housegroup')">Save</button>
+						<input type="hidden" id="id" name="id" value="${housegroup.id}">
 			</div>
 		</div>
 		<br>
 		<div class="row">
 			<div class="col-md-4">
 				<label for="textInput"> House Group Name </label> <input type="text"
-					id="name" name="name" class="form-control mb-4">
+					id="name" name="name" class="form-control mb-4" value="${housegroup.name}">
 			</div>
 			
 		</div>

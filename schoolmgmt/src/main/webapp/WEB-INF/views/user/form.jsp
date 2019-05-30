@@ -20,17 +20,18 @@
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
 			<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/user')">Save</button>	
+			<input type="hidden" id="id" name="id" value="${user.id}">	
 					</div>
 		</div>
 		<br>
 		<div class="row">
 			<div class="col-md-4">
 				<label for="textInput">User Name </label> <input type="text" 
-				id="username" name="username"  class="form-control mb-4">
+				id="username" name="username"  class="form-control mb-4" value="${user.username}">
 			</div>
 			<div class="col-md-4">
 				<label for="textInput"> Password </label> <input type="text"
-					id="password" name="password" class="form-control mb-4">
+					id="password" name="password" class="form-control mb-4" value="${user.password}">
 			</div>
 			<div class="col-md-4">
 				 <select class="mdb-select md-form" id="employee">

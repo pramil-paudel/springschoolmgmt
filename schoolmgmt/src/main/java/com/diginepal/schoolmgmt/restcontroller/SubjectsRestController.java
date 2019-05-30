@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.Section;
 import com.diginepal.schoolmgmt.entities.Subjects;
 import com.diginepal.schoolmgmt.repo.SubjectsRepo;
 import com.diginepal.schoolmgmt.response.Response;
@@ -66,15 +67,13 @@ public class SubjectsRestController {
 	}
 	
 	@GetMapping (value="/{id}")
-	public ResponseEntity<?> findOne (@PathVariable int id){
+	public  ModelAndView findOne (@PathVariable int id){
 		Subjects subjects=subjectsRepo.findById(id).get();
-		ResponseMessage response=new ResponseMessage();
-		if(subjects==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(subjects, HttpStatus.OK);
+		ModelAndView model = new ModelAndView("subjects/form");
+		model.addObject(subjects);
+		return model;
 	}
+
 	@PutMapping(value="/{id}")
 	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Subjects subjects) {
 		ResponseMessage response=new ResponseMessage();

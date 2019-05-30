@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.Grade;
 import com.diginepal.schoolmgmt.entities.Housegroup;
 import com.diginepal.schoolmgmt.entities.MotherLanguage;
 import com.diginepal.schoolmgmt.repo.HousegroupRepo;
@@ -65,16 +66,12 @@ public class HousegroupRestController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	@GetMapping (value="/{id}")
-	public ResponseEntity<?> findOne (@PathVariable int id){
+	public  ModelAndView findOne (@PathVariable int id){
 		Housegroup housegroup=housegroupRepo.findById(id).get();
-		ResponseMessage response=new ResponseMessage();
-		if(housegroup==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(housegroup, HttpStatus.OK);
+		ModelAndView model = new ModelAndView("housegroup/form");
+		model.addObject(housegroup);
+		return model;
 	}
-	
 	@PutMapping(value="/update/{id}")
 	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Housegroup housegroup) {
 		ResponseMessage response=new ResponseMessage();
