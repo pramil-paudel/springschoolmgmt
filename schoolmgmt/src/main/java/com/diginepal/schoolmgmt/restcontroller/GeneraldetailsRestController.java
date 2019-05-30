@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.diginepal.schoolmgmt.entities.Faculty;
 import com.diginepal.schoolmgmt.entities.Generaldetails;
 import com.diginepal.schoolmgmt.entities.Grade;
+import com.diginepal.schoolmgmt.repo.AcademicdatesRepo;
 import com.diginepal.schoolmgmt.repo.GeneraldetailsRepo;
 import com.diginepal.schoolmgmt.response.Response;
 import com.diginepal.schoolmgmt.response.ResponseMessage;
@@ -33,10 +34,15 @@ public class GeneraldetailsRestController {
 @Autowired
 GeneraldetailsRepo genraldetailsRepo;
 
+@Autowired
+AcademicdatesRepo academicdatesRepo;
+
 @GetMapping(value="/new")
 public ModelAndView form() 
 {
 	ModelAndView model = new ModelAndView("generaldetails/form");
+	model.addObject("academicdates",academicdatesRepo.findAll());
+	
 	return model;
 }
 
@@ -73,6 +79,7 @@ public ResponseEntity<?> findAll(){
 public  ModelAndView findOne (@PathVariable int id){
 	Generaldetails generaldetails=genraldetailsRepo.findById(id).get();
 	ModelAndView model = new ModelAndView("generaldetails/form");
+	model.addObject("academicdates",academicdatesRepo.findAll());
 	model.addObject(generaldetails);
 	return model;
 }

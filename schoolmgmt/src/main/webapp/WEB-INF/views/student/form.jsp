@@ -9,61 +9,44 @@
 <body>
 	<tags:header />
 
-	<form class="border border-light p-5" method="post" action="/student">
+	<!-- Classic tabs -->
+<div class="classic-tabs">
 
-		<div class="text-center">
-			<p class="h4 mb-4"> Student </p>
-			<div class="btn-group btn-group-sm" role="group"
-				aria-label="Basic example">
-				<button type="button" class="btn btn-primary btn-sm">Validate</button>
-				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-				<button type="submit" class="btn btn-danger btn-sm">Save</button>
-			</div>
-		</div>
-		<br>
-		<div class="row">
-			<div class="col-md-4">
-				<label for="textInput"> Admission Date</label> <input type="text" 
-				id=" admission_datenp"  name=" admission_datenp" class="form-control mb-4">
-			</div>
-			<div class="col-md-4">
-				<label for="textInput"> Birth Certificate Number </label> <input type="text"
-					id=" birth_certificate_no" name=" birth_certificate_no" class="form-control mb-4">
-			</div>
-			<div class="col-md-4">
-				<label for="textInput"> District </label> <input type="text"
-					id="district" name="district" class="form-control mb-4">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<label for="textInput">Date of Birth (English)</label> <input type="text"
-					id=" dob_english" name=" dob_english" class="form-control mb-4">
-			</div>
-			<div class="col-md-4">
-				<label for="textInput">Date of Birth (Nepali)</label> <input type="text"
-					id="dob_nepali" name="dob_nepali" class="form-control mb-4">
-			</div>
-			<div class="col-md-4">
-				<label for="textInput"> Gender</label> <input type="text"
-					id="gender" name="gender" class="form-control mb-4">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<label for="textInput">Hobby</label> <input type="text"
-					id=" hobby" name=" hobby" class="form-control mb-4">
-			</div>
-			<div class="col-md-4">
-				<label for="textInput">Date of Birth (Nepali)</label> <input type="text"
-					id="issued_by" name="dob_nepali" class="form-control mb-4">
-			</div>
-			<div class="col-md-4">
-				<label for="textInput"> Gender</label> <input type="text"
-					id="gender" name="gender" class="form-control mb-4">
-			</div>
-		</div>
-	</form>
+  <ul class="nav tabs-cyan" id="myClassicTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link  waves-light active show" id="profile-tab-classic" data-toggle="tab" href="#student-classic"
+        role="tab" aria-controls="profile-classic" aria-selected="true">Student</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="follow-tab-classic" data-toggle="tab" href="#father-classic" role="tab"
+        aria-controls="follow-classic" aria-selected="false">Follow</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="contact-tab-classic" data-toggle="tab" href="#contact-classic" role="tab"
+        aria-controls="contact-classic" aria-selected="false">Contact</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="awesome-tab-classic" data-toggle="tab" href="#awesome-classic" role="tab"
+        aria-controls="awesome-classic" aria-selected="false">Be awesome</a>
+    </li>
+  </ul>
+  <div class="tab-content border-right border-bottom border-left rounded-bottom" id="myClassicTabContent">
+    <div class="tab-pane fade active show" id="student-classic" role="tabpanel" aria-labelledby="profile-tab-classic">
+      <!-- STUDENT FORM -->
+    </div>
+    <div class="tab-pane fade" id="father-classic" role="tabpanel" aria-labelledby="follow-tab-classic">
+      <!-- FATHER FORM -->
+    </div>
+    <div class="tab-pane fade" id="contact-classic" role="tabpanel" aria-labelledby="contact-tab-classic">
+      <!-- MOTHER FORM -->
+    </div>
+    <div class="tab-pane fade" id="awesome-classic" role="tabpanel" aria-labelledby="awesome-tab-classic">
+      <!-- LOCALGUARDIAN FORM -->
+    </div>
+  </div>
+
+</div>
+<!-- Classic tabs -->
 	<tags:response/>
 	<tags:footer />
 	<tags:script />

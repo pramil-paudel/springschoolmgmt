@@ -19,8 +19,7 @@
 			<div class="btn-group btn-group-sm" role="group">
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-				<button type="button" class="btn btn-danger btn-sm"
-					onclick="postDataFromApi('/generaldetails')">Save</button>
+				<button type="button" class="btn btn-danger btn-sm" id="submitbtn">Save</button>
 				<input type="hidden" id="id" name="id" value="${generaldetails.id }">
 
 			</div>
@@ -66,8 +65,7 @@
 					name="academicdates.id">
 					<option value="" disabled selected>Select Academic Date</option>
 					<c:forEach items="${academicdates }" var="b">
-						<option value="${b.id }">${b.academicdate }
-							(${b.academicdateen })</option>
+						<option value="${b.id }">${b.academicdate }(${b.academicdateen })</option>
 					</c:forEach>
 
 				</select>
@@ -78,6 +76,24 @@
 	<tags:response />
 	<tags:footer />
 	<tags:script />
+	<script>
+	$("#submitbtn").click(function(){
+		var data = {
+				id: $("#id").val(),
+				address: $("#address").val(),
+				code: $("code").val(),
+				email: $("email").val(),
+				name: $("name").val,
+				phone: $("phone").val(),
+				title: $("title").val(),
+				academicdates: {
+					id: $("#academicdatesid").val()
+				}
+			};
+		postJsonDataFromApi('/generaldetails',data);
+	});
+	
+	</script>
 	<tags:formscript />
 </body>
 </html>

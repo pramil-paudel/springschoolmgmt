@@ -19,7 +19,7 @@
 				aria-label="Basic example">
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-			<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/user')">Save</button>	
+			<button type="button" class="btn btn-danger btn-sm" id="submitbtn">Save</button>	
 			<input type="hidden" id="id" name="id" value="${user.id}">	
 					</div>
 		</div>
@@ -53,6 +53,7 @@
 	<script>
 	$("#submitbtn").click(function(){
 		var data = {
+				id:$("#id").val(),
 				username: $("#username").val(),
 				password: $("#password").val(),
 				employee:{

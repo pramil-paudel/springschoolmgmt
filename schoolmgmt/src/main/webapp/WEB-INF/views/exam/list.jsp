@@ -17,7 +17,7 @@
 		width="100%">
 		<thead>
 			<tr>
-				<th class="th-sm"> Academic Year </th>
+				<th class="th-sm"> Academic Date </th>
 				<th class="th-sm"> Code </th>
 				<th class="th-sm"> Name </th>
 				<th class="th-sm"> Start Date </th>
@@ -42,12 +42,12 @@
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"academicyear","defaultContent":""},
+					{"data":"academicdates.academicdate","defaultContent":""},
 					{"data":"code","defaultContent":""},
 					{"data":"name","defaultContent":""},
 					{"data":"startdate","defaultContent":""},
 					{"data":"startdateen","defaultContent":""},
-					{"data":"examtypeid","defaultContent":""},
+					{"data":"examtype.name","defaultContent":""},
 					{"data":"Action",
 						"orderable":false,
 						"searchable":false,

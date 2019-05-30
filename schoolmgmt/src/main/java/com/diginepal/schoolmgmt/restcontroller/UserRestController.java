@@ -76,6 +76,7 @@ public class UserRestController {
 	public  ModelAndView findOne (@PathVariable int id){
 		User user=userRepo.findById(id).get();
 		ModelAndView model = new ModelAndView("user/form");
+		model.addObject("employees", employeeRepo.findAll());
 		model.addObject(user);
 		return model;
 	}
