@@ -1,17 +1,8 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<html>
-<head>
- 
-  <title>ADBL DMS-PEEPALSOFT</title>
-
-  </head>
-
-<body class="fixed-sn">
-
  <!--Main Navigation-->
 <header>
 <!-- Sidebar navigation -->
-<div id="slide-out" class="side-nav fixed custom-scrollbar " >
+<div id="slide-out" class="side-nav sn-bg-4 mdb-sidenav fixed" >
 <ul class="rgba-blue-grey-strong custom-scrollbar ">
   <!-- Logo -->
   <li>

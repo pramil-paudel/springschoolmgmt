@@ -1,4 +1,4 @@
-<!-- SCRIPTS -->
+ <!-- SCRIPTS -->
   <!-- JQuery -->
   <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
   <!-- Bootstrap tooltips -->
@@ -7,10 +7,12 @@
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="/js/mdb.min.js"></script>
-  <!-- DATA TABLES -->
   <script type="text/javascript" src="/js/addons/datatables.min.js"></script>
-  <script>
-  $('.mdb-select').material_select();
+    <script type="text/javascript">
+ // Material Select Initialization
+    $(document).ready(function() {
+    $(".mdb-select").material_select();
+    });
 	</script>
   <script>
     // SideNav Button Initialization

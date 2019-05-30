@@ -6,14 +6,14 @@
   <link href="/css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="/css/style.css" rel="stylesheet">
-  <!-- DATA TABLES -->
+ <!-- Data tables -->
   <link href="/css/addons/datatables.min.css" rel="stylesheet">
   <style>
   
-.nav-link[data-toggle].collapsed:after {
+.side-nav .nav-link[data-toggle].collapsed:after {
     content: " >>";
 }
-.nav-link[data-toggle]:not(.collapsed):after {
+.side-nav .nav-link[data-toggle]:not(.collapsed):after {
     content: " <<";
 }
   </style>
