@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Company</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:if="${not #lists.isEmpty(company)}">
+<h2>Company</h2>
+<table class="glyphicon glyphicon-calendar table-bordered">
+<tr>
+<th>Id</th>
+<th> Address </th>
+<th> Code </th>
+<th> E-mail </th>
+<th> Phone Number </th>
+<th> Vatpan </th>
+
+</tr>
+<tr th:each="company : ${company}">
+<td th:text="${company.id}"></td>
+<td th:text="${company.address}"></td>
+<td th:text="${company.code}"></td>
+<td th:text="${company.email}"></td>
+<td th:text="${company.phonenumber}"></td>
+<td th:text="${company.vatpan}"></td>
+</tr>
+</table>
+</div>
+</body>
+</html>
