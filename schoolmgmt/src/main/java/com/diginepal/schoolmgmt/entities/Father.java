@@ -24,7 +24,7 @@ public class Father extends BaseEntity {
 	
 	private String email;
 	
-	private long ePhone;
+	private String ePhone;
 
 	private String office;
 

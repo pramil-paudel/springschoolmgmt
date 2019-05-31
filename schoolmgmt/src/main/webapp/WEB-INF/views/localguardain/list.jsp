@@ -10,20 +10,17 @@
 <tags:header/>
 <div class="card">
   <div class="card-header">
-     FATHER
+     LOCAL GUARDIAN 
   </div>
   <div class="card-body">
 	<table id="customerstbl" class="table table-striped" cellspacing="0"
 		width="100%">
 		<thead>
 			<tr>
-				<th class="th-sm"> Full Name </th>
+				<th class="th-sm">  Name </th>
 				<th class="th-sm"> Address </th>
-				<th class="th-sm"> E-mail </th>
-				<th class="th-sm"> E-phone </th>
-				<th class="th-sm"> Office </th>
-				<th class="th-sm"> Income </th>
-				<th class="th-sm"> Position </th>
+				<th class="th-sm"> Phone </th>
+				<th class="th-sm"> Mobile </th>
 					<th class="th-sm"> Action </th>
 			</tr>
 		</thead>
@@ -39,22 +36,19 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "father/list",
+					"url" : "localguardain/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"fullname", "defaultContent":""},
+					{"data":"name", "defaultContent":""},
 					{"data":"address", "defaultContent":""},
-					{"data":"email", "defaultContent":""},
-					{"data":"ePhone", "defaultContent":""},
-					{"data":"office", "defaultContent":""},
-					{"data":"income", "defaultContent":""},
-					{"data":"position", "defaultContent":""},
+					{"data":"phone", "defaultContent":""},
+					{"data":"mobile", "defaultContent":""},
 					{"data":"Action",
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/father/'+row.id+'">Edit</a>';
+							var a= '<a href="/localguardain/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}

@@ -83,6 +83,8 @@ public ResponseEntity<?> findAll(){
 public  ModelAndView findOne (@PathVariable int id){
 	Exam exam=examRepo.findById(id).get();
 	ModelAndView model = new ModelAndView("exam/form");
+	model.addObject("academicdates", academicdatesRepo.findAll());
+	model.addObject("examtypes", examtypeRepo.findAll());
 	model.addObject(exam);
 	return model;
 }

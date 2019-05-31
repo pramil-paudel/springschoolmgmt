@@ -33,7 +33,7 @@ public class Mother extends BaseEntity{
 	  private String email;
 	  private long telephone;
 	  private String mobile;
-	private long ePhone;
+	private String ePhone;
 	private String office;
 	private double income;
 	private String position;

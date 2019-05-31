@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.Grade;
 import com.diginepal.schoolmgmt.entities.LocalGuardian;
 import com.diginepal.schoolmgmt.repo.LocalguardainRepo;
 import com.diginepal.schoolmgmt.response.Response;
@@ -64,16 +65,12 @@ public class LocalguardainRestController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	@GetMapping (value="/{id}")
-	public ResponseEntity<?> findOne (@PathVariable int id){
+	public  ModelAndView findOne (@PathVariable int id){
 		LocalGuardian localguardain=localguardainRepo.findById(id).get();
-		ResponseMessage response=new ResponseMessage();
-		if(localguardain==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(localguardain, HttpStatus.OK);
+		ModelAndView model = new ModelAndView("localguardain/form");
+		model.addObject(localguardain);
+		return model;
 	}
-	
 	@PutMapping(value="/update/{id}")
 	public ResponseEntity<?> update(@PathVariable int id,@RequestBody LocalGuardian localguardain) {
 		ResponseMessage response=new ResponseMessage();

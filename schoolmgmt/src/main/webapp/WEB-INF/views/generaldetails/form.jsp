@@ -65,7 +65,7 @@
 					name="academicdates.id">
 					<option value="" disabled selected>Select Academic Date</option>
 					<c:forEach items="${academicdates }" var="b">
-						<option value="${b.id }">${b.academicdate }(${b.academicdateen })</option>
+						<option value="${b.id }" <c:if test="${generaldetails.academicdates.id eq b.id }">selected</c:if>>${b.academicdate }(${b.academicdateen })</option>
 					</c:forEach>
 
 				</select>

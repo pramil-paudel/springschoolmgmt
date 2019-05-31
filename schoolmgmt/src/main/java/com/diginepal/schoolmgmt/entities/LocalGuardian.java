@@ -26,10 +26,9 @@ public class LocalGuardian extends BaseEntity {
 	private String phone;
 
 	private String mobile;
-
 	
 	@ManyToOne
-	@JoinColumn(name = "student_id")
 	@JsonIgnore
 	private Student student;
+
 }

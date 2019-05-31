@@ -30,8 +30,7 @@
 					name="academicdates.id">
 					<option value="" disabled selected>Select Academic Date</option>
 					<c:forEach items="${academicdates }" var="b">
-						<option value="${b.id }">${b.academicdate }
-							(${b.academicdateen })</option>
+						<option value="${b.id }" <c:if test="${exam.academicdates.id eq b.id }">selected</c:if>>${b.academicdate }(${b.academicdateen })</option>
 					</c:forEach>
 
 				</select>
@@ -60,7 +59,7 @@
 				<select class="mdb-select md-form" id="examtypesid">
 					<option value="" disabled selected>Select Exam Type</option>
 					<c:forEach items="${examtypes }" var="b">
-						<option value="${b.id }">${b.name }</option>
+						<option value="${b.id }" <c:if test="${exam.examtype.id eq b.id }">selected</c:if>>${b.name }</option>  
 					</c:forEach>
 
 				</select>

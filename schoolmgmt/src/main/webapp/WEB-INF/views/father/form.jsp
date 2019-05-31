@@ -6,52 +6,58 @@
 <title> Father </title>
 <tags:style />
 </head>
-<body>
+<body  class="fixed-sn">
 	<tags:header />
 
-	<form class="border border-light p-5" method="post" action="/father">
+	<form class="border border-light p-5" >
 
 		<div class="text-center">
-			<p class="h4 mb-4"> General Details </p>
+			<p class="h4 mb-4"> Father </p>
 			<div class="btn-group btn-group-sm" role="group">
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
 				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/father')">Save</button>
+				<input type="hidden" name="id" id="id">
 			</div>
 		</div>
 		<br>
 		<div class="row">
 			<div class="col-md-4">
-				<label for="textInput">Address </label> <input type="text" 
-				id="address" name="address"  class="form-control mb-4">
+				<label for="textInput">Full Name </label> <input type="text" 
+				id="fullName" name="fullName"  class="form-control mb-4">
 			</div>
 			<div class="col-md-4">
-				<label for="textInput"> E-phone </label> <input type="text"
-					id="code" name="code" class="form-control mb-4">
+				<label for="textInput"> Address </label> <input type="text"
+					id="address" name="address" class="form-control mb-4">
 			</div>
 			<div class="col-md-4">
-				<label for="textInput">Email </label> <input type="text"
+				<label for="textInput">E-mail </label> <input type="text"
 					id="email" name="email" class="form-control mb-4">
 			</div>
 			</div>
 			<div class="row">
 			<div class="col-md-4">
-				<label for="textInput"> Name </label> <input type="text"
-					id="name" name="name" class="form-control mb-4">
+				<label for="textInput"> E-phone </label> <input type="text"
+					id="ePhone" name="ePhone" class="form-control mb-4">
 			</div>
 			<div class="col-md-4">
 				<label for="textInput"> Phone Number </label> <input type="text"
 					id="phone" name="phone" class="form-control mb-4">
 			</div>
 			<div class="col-md-4">
-				<label for="textInput"> Title </label> <input type="text"
-					id="title" name="title" class="form-control mb-4">
+				<label for="textInput"> Office </label> <input type="text"
+					id="office" name="office" class="form-control mb-4">
 			</div>
 			</div>
 			<div class="row">
 			<div class="col-md-4">
-				<label for="textInput"> Academic Dates ID </label> <input type="text"
-					id="academicdates_id" name="academicdates_id" class="form-control mb-4">
+				<label for="textInput">  Income </label> <input type="text"
+					id="income" name="income" class="form-control mb-4">
+			</div>
+			
+			<div class="col-md-4">
+				<label for="textInput"> Position </label> <input type="text"
+					id="position" name="position" class="form-control mb-4">
 			</div>
 			</div>
 			

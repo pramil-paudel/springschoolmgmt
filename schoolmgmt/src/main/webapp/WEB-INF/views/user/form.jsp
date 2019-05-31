@@ -37,14 +37,11 @@
 				 <select class="mdb-select md-form" id="employeeid">
   <option value="" disabled selected>Select Employee ID </option>
   <c:forEach items="${employees }" var="b">
-   <option value="${b.id }">(${b.code }) ${b.name } </option>
-  </c:forEach>
+   <option value="${b.id }" <c:if test="${user.employee.id eq b.id }">selected</c:if>>${b.name }</option>  </c:forEach>
+ </select>
  
-</select>
- 
-
-			</div>
-			</div>
+</div>
+</div>
 			
 	</form>
 	<tags:response/>
