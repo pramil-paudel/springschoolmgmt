@@ -11,7 +11,7 @@
 </head>
 <body class="fixed-sn ">
 	<tags:header />
-	<form:form class="border border-light p-5" modelAttribute="branch">
+	<form:form class="border border-light p-5" modelAttribute="branch" >
 		<div class="text-center">
 			<p class="h4 mb-4">Branch</p>
 			<div class="btn-group btn-group-sm" role="group">
@@ -68,6 +68,12 @@
 	<tags:footer />
 	<tags:script />
 	<script>
+	$("#submitbtn").click(function() {
+		var url="/branch";
+		postDataFromApi(url);
+	});
+	</script>
+	<!-- <script>
 		$("#submitbtn").click(function() {
 			var data = {
 				//step 4
@@ -83,7 +89,7 @@
 			};
 			postJsonDataFromApi('/branch', data);
 		});
-	</script>
+	</script> -->
 	<tags:formscript />
 </body>
 </html>
