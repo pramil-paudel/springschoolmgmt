@@ -19,10 +19,11 @@
 			<tr>
 				<th class="th-sm"> Legacy ID  </th>
 				<th class="th-sm"> Name </th>
-				<th class="th-sm"> Email </th>
+				<th class="th-sm"> Gender </th>
 				<th class="th-sm"> Date of Birth Nepali </th>
 				<th class="th-sm"> Date of Birth English </th>
 				<th class="th-sm">  District   </th>
+				<th class="th-sm">  Hobby   </th>
 				<th class="th-sm"> Roll No. </th>
 				<th class="th-sm"> Municipality </th>
 				<th class="th-sm"> Religion </th>
@@ -33,10 +34,6 @@
 				<th class="th-sm"> Admission Date Nepali </th>
 				<th class="th-sm"> Birth Certificate Number </th>
 				<th class="th-sm"> Issued By  </th>
-				<th class="th-sm"> Father </th>
-				<th class="th-sm"> Mother  </th>
-				<th class="th-sm"> Local Guardian  </th>
-				<th class="th-sm"> Mother Language </th>
 				<th class="th-sm"> Action </th>
 			</tr>
 		</thead>
@@ -52,16 +49,17 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "student/list",
+					"url" : "/student/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
 					{"data":"legacyId", "defaultContent":""},
 					{"data":"name", "defaultContent":""},
-					{"data":"email", "defaultContent":""},
+					{"data":"gender", "defaultContent":""},
 					{"data":"dobNepali", "defaultContent":""},
 					{"data":"dobEnglish", "defaultContent":""},
 					{"data":"district", "defaultContent":""},
+					{"data":"hobby", "defaultContent":""},
 					{"data":"rollNo", "defaultContent":""},
 					{"data":"municipality", "defaultContent":""},
 					{"data":"religion", "defaultContent":""},
@@ -70,12 +68,8 @@
 					{"data":"oldSchool", "defaultContent":""},
 					{"data":"reasonLeave", "defaultContent":""},
 					{"data":"admissionDatenp", "defaultContent":""},
-					{"data":"birthCertificate_no", "defaultContent":""},
+					{"data":"birthCertificateNo", "defaultContent":""},
 					{"data":"issuedBy", "defaultContent":""},
-					{"data":"fatherid", "defaultContent":""},
-					{"data":"motherid", "defaultContent":""},
-					{"data":"localgurdainid", "defaultContent":""},
-					{"data":"motherlanguageid", "defaultContent":""},
 					{"data":"Action",
 						"orderable":false,
 						"searchable":false,

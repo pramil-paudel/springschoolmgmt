@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.Examtype;
 import com.diginepal.schoolmgmt.entities.Grade;
 import com.diginepal.schoolmgmt.entities.LocalGuardian;
 import com.diginepal.schoolmgmt.repo.LocalguardainRepo;
@@ -66,9 +67,9 @@ public class LocalguardainRestController {
 	}
 	@GetMapping (value="/{id}")
 	public  ModelAndView findOne (@PathVariable int id){
-		LocalGuardian localguardain=localguardainRepo.findById(id).get();
+		LocalGuardian localGuardian=localguardainRepo.findById(id).get();
 		ModelAndView model = new ModelAndView("localguardain/form");
-		model.addObject(localguardain);
+		model.addObject(localGuardian);
 		return model;
 	}
 	@PutMapping(value="/update/{id}")

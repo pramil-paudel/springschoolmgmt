@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.Father;
 import com.diginepal.schoolmgmt.entities.Mother;
 import com.diginepal.schoolmgmt.repo.MotherRepo;
 import com.diginepal.schoolmgmt.response.Response;
@@ -69,16 +70,12 @@ public class MotherRestController {
 		}
 
 		@GetMapping (value="/{id}")
-		public ResponseEntity<?> findOne (@PathVariable int id){
+		public  ModelAndView findOne (@PathVariable int id){
 			Mother mother=motherRepo.findById(id).get();
-			ResponseMessage response=new ResponseMessage();
-			if(mother==null) {
-				response=Response.resourcenotfound();
-				return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-			}
-			return new ResponseEntity<>(mother, HttpStatus.OK);
+			ModelAndView model = new ModelAndView("mother/form");
+			model.addObject(mother);
+			return model;
 		}
-
 		@PutMapping(value="/update/{id}")
 		public ResponseEntity<?> update(@PathVariable int id,@RequestBody Mother mother) {
 			ResponseMessage response=new ResponseMessage();

@@ -15,6 +15,7 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import lombok.Data;
@@ -28,14 +29,18 @@ import lombok.EqualsAndHashCode;
 public class Mother extends BaseEntity{
 
 	  
-	  private String fullName;
+	  private String fullname;
 	  private String address;
 	  private String email;
 	  private long telephone;
 	  private String mobile;
-	private String ePhone;
+	private String ephone;
 	private String office;
 	private double income;
 	private String position;
-
+	
+	
+	@JsonIgnore
+	@OneToOne
+	private Student student;
 }

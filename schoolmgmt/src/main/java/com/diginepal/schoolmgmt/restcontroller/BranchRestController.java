@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.diginepal.schoolmgmt.entities.Branch;
+import com.diginepal.schoolmgmt.entities.Company;
 import com.diginepal.schoolmgmt.repo.BranchRepo;
 import com.diginepal.schoolmgmt.repo.CompanyRepo;
 import com.diginepal.schoolmgmt.response.Response;
@@ -36,16 +37,19 @@ public class BranchRestController {
 		@Autowired
 		CompanyRepo companyRepo;
 		
+		
+		//EXTRA
 		@ModelAttribute
 		public void models(Model model) {
-			model.addAttribute("companies", companyRepo.findAll());
+			//model.addAttribute("companies", companyRepo.findAll());
 		}
 		
 		@GetMapping(value="/new")
 		public ModelAndView form() 
 		{
 			ModelAndView model = new ModelAndView("branch/form");
-			model.addObject("branch",new Branch());
+			Branch branch= new Branch();
+			model.addObject("branch",branch);
 			return model;	
 			}
 		
@@ -81,7 +85,7 @@ public class BranchRestController {
 		public  ModelAndView findOne (@PathVariable int id){
 			Branch branch=branchRepo.findById(id).get();
 			ModelAndView model = form();
-			model.addObject(branch);
+			model.addObject("branch",branch);
 			return model;
 		}
 		

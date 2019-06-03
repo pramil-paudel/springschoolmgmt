@@ -1,5 +1,6 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,7 @@
 </head>
 <body class="fixed-sn ">
 	<tags:header />
-	<form class="border border-light p-5" method="post" action="/employee">
+	<form:form class="border border-light p-5" modelAttribute="employee">
 
 		<div class="text-center">
 			<p class="h4 mb-4">Employee</p>
@@ -19,60 +20,56 @@
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
 		<button type="button" class="btn btn-danger btn-sm" id="submitbtn">Save</button>
-		<input type="hidden" name="id" id="id" value="${employee.id }">
+		<form:input type="hidden" path="id" id="id" value=""/>
 			</div>
 		</div>
 		<br>
 		<div class="row">
 
 			<div class="col-md-4">
-				<label for="textInput"> Address </label> <input type="text"
-					id="address" name="address" class="form-control mb-4" value="${employee.address }">
+				<label for="textInput"> Address </label> <form:input type="text"
+					id="address" path="address" class="form-control mb-4" />
 			</div>
 			<div class="col-md-4">
-				<label for="textInput">Employee Code</label> <input type="text"
-					id="code" name="code" class="form-control mb-4" value="${employee.code }">
+				<label for="textInput">Employee Code</label> <form:input type="text"
+					id="code" path="code" class="form-control mb-4" value=""/>
 			</div>
 			<div class="col-md-4">
-				<select class="mdb-select md-form" id="branchid" name="branch.id">
+				<form:select class="mdb-select md-form" id="branchid" path="branch.id">
 					<option value="" disabled selected>Select Branch</option>
-					<c:forEach items="${branches }" var="b">
-						<option value="${b.id }" <c:if test="${employee.branch.id eq b.id }">selected</c:if>>${b.name } ${b.id }</option>
-					</c:forEach>
-
-				</select>
+					<form:options items="${branches}" itemValue="id" itemLabel="name" />
+				</form:select>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-4">
-				<label for="textInput">Date Of Birth</label> <input type="text"
-					id="dob" name="dob" class="form-control mb-4" value="${employee.dob }">
+				<label for="textInput">Date Of Birth</label> <form:input type="text"
+					id="dob" path="dob" class="form-control mb-4" value=""/>
 			</div>
 			<div class="col-md-4">
-				<label for="textInput"> E-mail</label> <input type="text" id="email"
-					name="email" class="form-control mb-4" value="${employee.email }">
+				<label for="textInput"> E-mail</label> <form:input type="text" id="email"
+					path="email" class="form-control mb-4" value=""/>
 			</div>
 			<div class="col-md-4">
-				<label for="textInput"> Gender </label> <input type="text"
-					id="gender" name="gender" class="form-control mb-4" value="${employee.gender }">
+				<label for="textInput"> Gender </label> <form:input type="text"
+					id="gender" path="gender" class="form-control mb-4" value=""/>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-4">
-				<label for="textInput">Join Date</label> <input type="text"
-					id="joindate" name="joindate" class="form-control mb-4" value="${employee.joindate }">
+				<label for="textInput">Join Date</label> <form:input type="text"
+					id="joindate" path="joindate" class="form-control mb-4" value=""/>
 			</div>
 			<div class="col-md-4">
-				<label for="textInput"> Name </label> <input type="text" id="name"
-					name="name" class="form-control mb-4" value="${employee.name }">
+				<label for="textInput"> Name </label> <form:input type="text" id="name"
+					path="name" class="form-control mb-4" value=""/>
 			</div>
 			<div class="col-md-4">
-				<label for="textInput"> Status </label> <input type="text"
-					id="status" name="status" class="form-control mb-4" value="${employee.status }">
+				<label for="textInput"> Status </label> <form:input type="text"
+					id="status" path="status" class="form-control mb-4" value=""/>
 			</div>
 		</div>
-
-	</form>
+</form:form>
 	<tags:response />
 	<tags:footer />
 	<tags:script />

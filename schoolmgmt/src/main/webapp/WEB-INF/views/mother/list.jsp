@@ -41,7 +41,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "mother/list",
+					"url" : "/mother/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -50,7 +50,7 @@
 					{"data":"email", "defaultContent":""},
 					{"data":"telephone", "defaultContent":""},
 					{"data":"mobile", "defaultContent":""},
-					{"data":"ePhone", "defaultContent":""},
+					{"data":"ephone", "defaultContent":""},
 					{"data":"office", "defaultContent":""},
 					{"data":"income", "defaultContent":""},
 					{"data":"position", "defaultContent":""},

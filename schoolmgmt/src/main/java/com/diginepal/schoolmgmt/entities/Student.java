@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -34,18 +35,20 @@ public class Student extends BaseEntity {
 	private String oldSchool;
 	private String reasonLeave; 
 	private String admissionDatenp;
-	private String birthCertificate_no;
+	private String birthCertificateNo;
 	private String issuedBy;
 
-	@OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
-	private Father father;
 
-	@OneToOne( cascade = {CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
-	private Mother mother;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-	private Set<LocalGuardian> LocalGuardian;
+	private Set<LocalGuardian> localGuardian;
+	
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "student", cascade = CascadeType.ALL)
+    private Father father;
+	
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "student", cascade = CascadeType.ALL)
+    private Mother mother;
 
 	
 	@OneToOne

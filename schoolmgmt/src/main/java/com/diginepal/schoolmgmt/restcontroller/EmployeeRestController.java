@@ -36,12 +36,18 @@ public class EmployeeRestController {
 	@Autowired
 	BranchRepo branchRepo;
 	
+	@ModelAttribute
+	public void models(Model model) {
+		//model.addAttribute("branches", branchRepo.findAll());
+	}
+	
 	
 	@GetMapping(value="/new")
 	public ModelAndView form() 
 	{
 		ModelAndView model = new ModelAndView("employee/form");
-		model.addObject("branches", branchRepo.findAll());
+		model.addObject("employee", new Employee());
+		//model.addObject("branches",branchRepo.findAll());
 		return model;
 	}
 	
@@ -77,9 +83,9 @@ public class EmployeeRestController {
 	@GetMapping (value="/{id}")
 	public ModelAndView findOne (@PathVariable int id){
 		Employee employee=employeeRepo.findById(id).get();
-		ModelAndView model = new ModelAndView("employee/form");
-		model.addObject("branches", branchRepo.findAll());
-		model.addObject(employee);
+		//EXTRA
+		ModelAndView model = form();
+		model.addObject("employee",employee);
 		return model;
 	}
 

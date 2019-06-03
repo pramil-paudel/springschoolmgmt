@@ -1,6 +1,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,38 +11,38 @@
 </head>
 <body class="fixed-sn ">
 	<tags:header />
-
 	<!-- Classic tabs -->
-	<div class="classic-tabs mx-2">
-		<form:form modelAttribute="student">
+	<div class="classic-tabs">
 
-			<ul class="nav tabs-cyan" id="myClassicTabShadow" role="tablist">
-				<li class="nav-item"><a
-					class="nav-link  waves-light active show"
-					id="profile-tab-classic-shadow" data-toggle="tab"
-					href="#profile-classic-shadow" role="tab"
-					aria-controls="profile-classic-shadow" aria-selected="true">STUDENT</a>
-				</li>
-				<li class="nav-item"><a class="nav-link waves-light"
-					id="follow-tab-classic-shadow" data-toggle="tab"
-					href="#follow-classic-shadow" role="tab"
-					aria-controls="follow-classic-shadow" aria-selected="false">FATHER</a>
-				</li>
-				<li class="nav-item"><a class="nav-link waves-light"
-					id="contact-tab-classic-shadow" data-toggle="tab"
-					href="#contact-classic-shadow" role="tab"
-					aria-controls="contact-classic-shadow" aria-selected="false">MOTHER</a>
-				</li>
-				<li class="nav-item"><a class="nav-link waves-light"
-					id="awesome-tab-classic-shadow" data-toggle="tab"
-					href="#awesome-classic-shadow" role="tab"
-					aria-controls="awesome-classic-shadow" aria-selected="false">LOCALGUARDIAN</a>
-				</li>
-			</ul>
+		<ul class="nav tabs-cyan" id="myClassicTab" role="tablist">
+			<li class="nav-item"><a
+				class="nav-link  waves-light active show" id="profile-tab-classic"
+				data-toggle="tab" href="#student-classic" role="tab"
+				aria-controls="profile-classic" aria-selected="true">STUDENT</a></li>
+			<li class="nav-item"><a class="nav-link waves-light"
+				id="follow-tab-classic" data-toggle="tab" href="#father-classic"
+				role="tab" aria-controls="follow-classic" aria-selected="false">FATHER</a>
+			</li>
+			<li class="nav-item"><a class="nav-link waves-light"
+				id="contact-tab-classic" data-toggle="tab" href="#mother-classic"
+				role="tab" aria-controls="contact-classic" aria-selected="false">MOTHER</a>
+			</li>
+			<li class="nav-item"><a class="nav-link waves-light"
+				id="awesome-tab-classic" data-toggle="tab"
+				href="#localguardian-classic" role="tab"
+				aria-controls="awesome-classic" aria-selected="false">LOCAL
+					GUARDIAN</a></li>
+		</ul>
+		<form:form  modelAttribute="student">
+			<div
+				class="tab-content border-right border-bottom border-left rounded-bottom"
+				id="myClassicTabContent">
 
-			<div class="tab-content card" id="myClassicTabContentShadow">
-				<div class="tab-pane fade active show" id="profile-classic-shadow"
-					role="tabpanel" aria-labelledby="profile-tab-classic-shadow">
+				<div class="tab-pane fade active show" id="student-classic"
+					role="tabpanel" aria-labelledby="profile-tab-classic">
+
+
+
 					<div class="text-center">
 						<p class="h4 mb-4">Student</p>
 						<div class="btn-group btn-group-sm" role="group">
@@ -152,87 +153,97 @@
 								class="form-control mb-4" value="" />
 						</div>
 					</div>
+
 				</div>
-				<div class="tab-pane fade" id="follow-classic-shadow"
-					role="tabpanel" aria-labelledby="follow-tab-classic-shadow">
+				<div class="tab-pane fade" id="father-classic" role="tabpanel"
+					aria-labelledby="follow-tab-classic">
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput">Full Name </label>
 							<form:input type="text" id="fullName" path="father.fullname"
-								class="form-control mb-4" value="" />
+								class="form-control mb-4" value="${father.fullname}" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Address </label>
-							<form:input type="text" id="address" path="father.address"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="address" path="address"
+								class="form-control mb-4" value="${father.address}" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput">E-mail </label>
-							<form:input type="text" id="email" path="father.email"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="email" path="email"
+								class="form-control mb-4" value="${father.email}" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> E-phone </label>
-							<form:input type="text" id="ePhone" path="father.ephone"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="ePhone" path="ephone"
+								class="form-control mb-4" value="${father.ephone}" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Office </label>
-							<form:input type="text" id="office" path="father.office"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="office" path="office"
+								class="form-control mb-4" value="${father.office}" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Income </label>
-							<form:input type="text" id="income" path="father.income"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="income" path="income"
+								class="form-control mb-4" value="${father.income}" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> Position </label>
-							<form:input type="text" id="position" path="father.position"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="position" path="position"
+								class="form-control mb-4" value="${father.position}" />
 						</div>
 					</div>
+
 				</div>
-				<div class="tab-pane fade" id="contact-classic-shadow"
-					role="tabpanel" aria-labelledby="contact-tab-classic-shadow">
+
+				<div class="tab-pane fade" id="mother-classic" role="tabpanel"
+					aria-labelledby="contact-tab-classic">
 
 
+					<div class="text-center">
+						<p class="h4 mb-4">Mother</p>
+						<form:input type="hidden" path="mother.id" id="motherid" value="" />
+					</div>
+					<br>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput">Full Name </label>
 							<form:input type="text" id="mother_fullname"
-								path="mother.fullname" class="form-control mb-4" value="" />
+								path="mother.fullname" class="form-control mb-4"
+								value="${mother.fullname}" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Address </label>
-							<form:input type="text" id="mother_address" 
-							path="mother.address" class="form-control mb-4" value="" />
+							<form:input type="text" id="mother_address" path="mother.address"
+								class="form-control mb-4" value="${mother.address}" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput">E-mail </label>
-							<form:input type="text" id="mother_email" 
-							path="mother.email" class="form-control mb-4" value="" />
+							<form:input type="text" id="mother_email" path="mother.email"
+								class="form-control mb-4" value="${mother.email}" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> Telephone </label>
 							<form:input type="text" id="mother_telephone"
-								path="mother.telephone" class="form-control mb-4" value="" />
+								path="mother.telephone" class="form-control mb-4"
+								value="${mother.telephone}" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Mobile </label>
 							<form:input type="text" id="mother_mobile" path="mother.mobile"
-								class="form-control mb-4" value="" />
+								class="form-control mb-4" value="${mother.mobile}" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> E-phone </label>
 							<form:input type="text" id="mother_ephone" path="mother.ephone"
-								class="form-control mb-4" value="" />
+								class="form-control mb-4" value="${mother.ephone}" />
 						</div>
 
 
@@ -240,60 +251,83 @@
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> Office </label>
-							<form:input type="text" id="office" path="mother.office"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="office" path="office"
+								class="form-control mb-4" value="${mother.office}" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Income </label>
-							<form:input type="text" id="income" path="mother.income"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="income" path="income"
+								class="form-control mb-4" value="${mother.income}" />
 						</div>
 
 						<div class="col-md-4">
 							<label for="textInput"> Position </label>
-							<form:input type="text" id="position" path="mother.position"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="position" path="position"
+								class="form-control mb-4" value="${mother.position}" />
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="awesome-classic-shadow"
-					role="tabpanel" aria-labelledby="awesome-tab-classic-shadow">
-					<c:forEach items="${student.localGuardian}" var="l" varStatus="tagStatus">
- 
+				<div class="tab-pane fade" id="localguardian-classic"
+					role="tabpanel" aria-labelledby="awesome-tab-classic">
+
+					<p class="h4 mb-4">Local Guardian</p>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> Name </label>
-							<form:input type="text" value="" id="name"
-								path="localGuardian[${tagStatus.index}].name" class="form-control mb-4" />
+							<form:input type="text" value="${localGuardian.name}" id="name"
+								path="name" class="form-control mb-4" />
 						</div>
-						
 						<div class="col-md-4">
 							<label for="textInput"> Address </label>
-							<form:input type="text" value=""
-								id="address" path="localGuardian[${tagStatus.index}].address" class="form-control mb-4" />
+							<form:input type="text" value="${localGuardian.address }"
+								id="address" path="address" class="form-control mb-4" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Phone </label>
-							<form:input type="text" value=""
-								id="phone" path="localGuardian[${tagStatus.index}].phone" class="form-control mb-4" />
+							<form:input type="text" value="${localGuardian.phone }"
+								id="phone" path="phone" class="form-control mb-4" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> Mobile </label>
-							<form:input type="text" value=""
-								id="mobile" path="localGuardian[${tagStatus.index}].mobile" class="form-control mb-4" />
+							<form:input type="text" value="${localGuardian.mobile }"
+								id="mobile" path="mobile" class="form-control mb-4" />
 						</div>
-					</div> 
-					</c:forEach>
+					</div>
 				</div>
+
 			</div>
 		</form:form>
 	</div>
 	<!-- Classic tabs -->
+
 	<tags:response />
 	<tags:footer />
 	<tags:script />
+	<script>
+		$("#submitbtn").click(function() {
+			var data = {
+				id : $("#id").val(),
+				
+				//other student details
+				 father : {
+					id : parseInt($("#father_id").val()),
+					//other father details
+				}, 
+				mother:{
+					id : parseInt($("#mother_id").val()),
+					email: $("#mother_email").val(),
+					ephone: $("#mother_ephone")
+					//other mother details},
+				localguardian:{
+					id : parseInt($("#locanguardian_id").val()),
+					//other localguardian details
+				}
+			};
+			postJsonDataFromApi('/student', data);
+		});
+	</script>
 	<tags:formscript />
 </body>
 </html>

@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diginepal.schoolmgmt.entities.Exam;
 import com.diginepal.schoolmgmt.entities.Student;
 import com.diginepal.schoolmgmt.repo.FatherRepo;
 import com.diginepal.schoolmgmt.repo.LocalguardainRepo;
@@ -30,23 +33,12 @@ public class StudentRestController {
 	@Autowired
 	StudentRepo studentRepo;
 	
-	@Autowired
-	FatherRepo fatherRepo;
-	
-	@Autowired
-	MotherRepo motherRepo;
-	
-	@Autowired
-	MotherLanguageRepo motherlanguageRepo;
-	
-	@Autowired
-	LocalguardainRepo localguardainRepo;
-	
 	
 	@GetMapping(value="/new")
 	public ModelAndView form() 
 	{
 		ModelAndView model = new ModelAndView("student/form");
+		model.addObject("student", new Student());
 		return model;
 	}
 	
@@ -79,15 +71,12 @@ public class StudentRestController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> findOne(@PathVariable int id) {
-		Student student = studentRepo.findById(id).get();
-		ResponseMessage response = new ResponseMessage();
-		if (student == null) {
-			response = Response.resourcenotfound();
-			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(student, HttpStatus.OK);
+	@GetMapping (value="/{id}")
+	public  ModelAndView findOne (@PathVariable int id){
+		Student student=studentRepo.findById(id).get();
+		ModelAndView model = form();
+		model.addObject("student",student);
+		return model;
 	}
 
 	@PutMapping(value="/update/{id}")

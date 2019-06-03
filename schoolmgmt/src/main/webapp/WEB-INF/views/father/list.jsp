@@ -39,14 +39,14 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "father/list",
+					"url" : "/father/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
 					{"data":"fullname", "defaultContent":""},
 					{"data":"address", "defaultContent":""},
 					{"data":"email", "defaultContent":""},
-					{"data":"ePhone", "defaultContent":""},
+					{"data":"ephone", "defaultContent":""},
 					{"data":"office", "defaultContent":""},
 					{"data":"income", "defaultContent":""},
 					{"data":"position", "defaultContent":""},

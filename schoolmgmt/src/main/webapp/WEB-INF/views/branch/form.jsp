@@ -67,13 +67,8 @@
 	<tags:response />
 	<tags:footer />
 	<tags:script />
+	
 	<script>
-	$("#submitbtn").click(function() {
-		var url="/branch";
-		postDataFromApi(url);
-	});
-	</script>
-	<!-- <script>
 		$("#submitbtn").click(function() {
 			var data = {
 				//step 4
@@ -89,7 +84,7 @@
 			};
 			postJsonDataFromApi('/branch', data);
 		});
-	</script> -->
+	</script>
 	<tags:formscript />
 </body>
 </html>
