@@ -37,7 +37,9 @@
 			<div class="col-md-4">
 				<form:select class="mdb-select md-form" id="branchid" path="branch.id">
 					<option value="" disabled selected>Select Branch</option>
-					<form:options items="${branches}" itemValue="id" itemLabel="name" />
+					<c:forEach items="${branch }" var="b">
+						<option value="${b.id }" >${b.name }</option>
+					</c:forEach>
 				</form:select>
 			</div>
 		</div>

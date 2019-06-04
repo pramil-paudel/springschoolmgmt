@@ -39,7 +39,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "subjects/list",
+					"url" : "/subjects/list",
 					"type" : "GET"
 				},
 				"columns" : [ 

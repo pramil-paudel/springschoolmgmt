@@ -41,11 +41,11 @@ public class BranchRestController {
 		//EXTRA
 		@ModelAttribute
 		public void models(Model model) {
-			//model.addAttribute("companies", companyRepo.findAll());
+			model.addAttribute("companies", companyRepo.findAll());
 		}
 		
 		@GetMapping(value="/new")
-		public ModelAndView form() 
+		public ModelAndView form()
 		{
 			ModelAndView model = new ModelAndView("branch/form");
 			Branch branch= new Branch();

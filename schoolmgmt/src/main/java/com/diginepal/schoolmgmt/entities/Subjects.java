@@ -1,7 +1,11 @@
 package com.diginepal.schoolmgmt.entities;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -11,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @Table(name="subjects")
 @Data
 @EqualsAndHashCode(callSuper= false)
-public class Subjects extends BaseEntity{
+public class Subjects extends BaseEntity implements Serializable{
 	
 	private String name;
 	
@@ -27,6 +31,9 @@ public class Subjects extends BaseEntity{
 	private float passmarks_th;
 	
 	private float passmarks_pr; 
+	
+	@ManyToMany(mappedBy = "subjects")
+    private List<Student> students;
 	
 	
 }

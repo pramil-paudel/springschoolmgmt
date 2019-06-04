@@ -10,6 +10,17 @@
 </head>
 <body class="fixed-sn ">
 	<tags:header />
+	
+	<div class="text-center">
+						<p class="h4 mb-4">Student</p>
+						<div class="btn-group btn-group-sm" role="group">
+							<button type="button" class="btn btn-primary btn-sm">Validate</button>
+							<button type="reset" class="btn btn-warning btn-sm">Reset</button>
+							<button type="button" class="btn btn-success btn-sm"
+								id="submitbtn">Save</button>
+						</div>
+					</div>
+					<br>
 
 	<!-- Classic tabs -->
 	<div class="classic-tabs mx-2">
@@ -42,19 +53,9 @@
 			<div class="tab-content card" id="myClassicTabContentShadow">
 				<div class="tab-pane fade active show" id="profile-classic-shadow"
 					role="tabpanel" aria-labelledby="profile-tab-classic-shadow">
-					<div class="text-center">
-						<p class="h4 mb-4">Student</p>
-						<div class="btn-group btn-group-sm" role="group">
-							<button type="button" class="btn btn-primary btn-sm">Validate</button>
-							<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-							<button type="button" class="btn btn-danger btn-sm"
-								onclick="f('/student')">Save</button>
-							<form:input type="hidden" id="id" path="id" value="" />
-						</div>
-					</div>
-					<br>
 					<div class="row">
 						<div class="col-md-4">
+						<form:input type="hidden" id="id" path="id" value="" />
 							<label for="textInput">Legacy ID </label>
 							<form:input type="text" id="legacyId" path="legacyId"
 								class="form-control mb-4" value="" />
@@ -65,9 +66,12 @@
 								class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
-							<label for="textInput">Gender </label>
-							<form:input type="text" id="gender" path="gender"
-								class="form-control mb-4" value="" />
+							<form:select class="mdb-select md-form" id="gender" path="gender">
+					<option value="" disabled >Select Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+					<option value="other">Other</option>
+				</form:select>
 						</div>
 					</div>
 					<div class="row">
@@ -108,11 +112,15 @@
 					</div>
 					<div class="row">
 						<div class="col-md-4">
-							<label for="textInput"> Religion </label>
-							<form:input type="text" id="religion" path="religion"
-								class="form-control mb-4" value="" />
-						</div>
-						<div class="col-md-4">
+							<form:select class="mdb-select md-form" id="religion" path="religion">
+					<option value="" disabled >Select Religion</option>
+					<option value="hinduism">Hinduism</option>
+					<option value="buddhism">Buddhism</option>
+					<option value="muslim">Muslim</option>
+					<option value="christianity">Christianity</option>
+				</form:select>
+						</div>				
+								<div class="col-md-4">
 							<label for="textInput"> Temporary Address </label>
 							<form:input type="text" id="temporaryAddress"
 								path="temporaryAddress" class="form-control mb-4" value="" />
@@ -151,48 +159,57 @@
 							<form:input type="text" id="issuedBy" path="issuedBy"
 								class="form-control mb-4" value="" />
 						</div>
+						<div class="col-md-4">
+				<form:select class="mdb-select md-form" id="motherlanguageid" path="motherLanguage.id">
+					<option value="" disabled >Select Mother Language</option>
+					<c:forEach items="${motherlanguage }" var="b">
+						<option value="${b.id }" >${b.name }</option>
+					</c:forEach>
+				</form:select>
+			</div>
 					</div>
 				</div>
 				<div class="tab-pane fade" id="follow-classic-shadow"
 					role="tabpanel" aria-labelledby="follow-tab-classic-shadow">
 					<div class="row">
 						<div class="col-md-4">
+						<form:input type="hidden" id="father_id" path="father.id" value="" />
 							<label for="textInput">Full Name </label>
-							<form:input type="text" id="fullName" path="father.fullname"
+							<form:input type="text" id="father_fullName" path="father.fullname"
 								class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Address </label>
-							<form:input type="text" id="address" path="father.address"
+							<form:input type="text" id="father_address" path="father.address"
 								class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput">E-mail </label>
-							<form:input type="text" id="email" path="father.email"
+							<form:input type="text" id="father_email" path="father.email"
 								class="form-control mb-4" value="" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> E-phone </label>
-							<form:input type="text" id="ePhone" path="father.ephone"
+							<form:input type="text" id="father_ePhone" path="father.ephone"
 								class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Office </label>
-							<form:input type="text" id="office" path="father.office"
+							<form:input type="text" id="father_office" path="father.office"
 								class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Income </label>
-							<form:input type="text" id="income" path="father.income"
+							<form:input type="text" id="father_income" path="father.income"
 								class="form-control mb-4" value="" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> Position </label>
-							<form:input type="text" id="position" path="father.position"
+							<form:input type="text" id="father_position" path="father.position"
 								class="form-control mb-4" value="" />
 						</div>
 					</div>
@@ -203,6 +220,7 @@
 
 					<div class="row">
 						<div class="col-md-4">
+						<form:input type="hidden" id="mother_id" path="mother.id" value="" />
 							<label for="textInput">Full Name </label>
 							<form:input type="text" id="mother_fullname"
 								path="mother.fullname" class="form-control mb-4" value="" />
@@ -240,60 +258,116 @@
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> Office </label>
-							<form:input type="text" id="office" path="mother.office"
+							<form:input type="text" id="mother_office" path="mother.office"
 								class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Income </label>
-							<form:input type="text" id="income" path="mother.income"
+							<form:input type="text" id="mother_income" path="mother.income"
 								class="form-control mb-4" value="" />
 						</div>
 
 						<div class="col-md-4">
 							<label for="textInput"> Position </label>
-							<form:input type="text" id="position" path="mother.position"
+							<form:input type="text" id="mother_position" path="mother.position"
 								class="form-control mb-4" value="" />
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane fade" id="awesome-classic-shadow"
 					role="tabpanel" aria-labelledby="awesome-tab-classic-shadow">
-					<c:forEach items="${student.localGuardian}" var="l" varStatus="tagStatus">
- 
 					<div class="row">
 						<div class="col-md-4">
+						<form:input type="hidden" id="localGuardain_id" path="localGuardian.id" value="" />
 							<label for="textInput"> Name </label>
-							<form:input type="text" value="" id="name"
-								path="localGuardian[${tagStatus.index}].name" class="form-control mb-4" />
+							<form:input type="text" value="" id="localGuardian_name"
+								path="localGuardian.name" class="form-control mb-4" />
 						</div>
 						
 						<div class="col-md-4">
 							<label for="textInput"> Address </label>
 							<form:input type="text" value=""
-								id="address" path="localGuardian[${tagStatus.index}].address" class="form-control mb-4" />
+								id="localGuardian_address" path="localGuardian.address" class="form-control mb-4" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Phone </label>
 							<form:input type="text" value=""
-								id="phone" path="localGuardian[${tagStatus.index}].phone" class="form-control mb-4" />
+								id="localGuardian_phone" path="localGuardian.phone" class="form-control mb-4" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> Mobile </label>
 							<form:input type="text" value=""
-								id="mobile" path="localGuardian[${tagStatus.index}].mobile" class="form-control mb-4" />
+								id="localGuardian_mobile" path="localGuardian.mobile" class="form-control mb-4" />
 						</div>
 					</div> 
-					</c:forEach>
 				</div>
 			</div>
 		</form:form>
 	</div>
 	<!-- Classic tabs -->
+	
 	<tags:response />
 	<tags:footer />
 	<tags:script />
+	<script>
+	$("#submitbtn").click(function() {
+		var data={
+				id:$("#id").val(),
+				legacyId:$("#legacyId").val(),
+				name:$("#name").val(),
+				gender:$("#gender").val(),
+				dobNepali:$("#dobNepali").val(),
+				dobEnglish:$("#dobEnglish").val(),
+				district:$("#district").val(),
+				hobby:$("#hobby").val(),
+				rollNo:$("#rollNo").val(),
+				municipality:$("#municipality").val(),
+				religion:$("#religion").val(),
+				temporaryAddress:$("#temporaryAddress").val(),
+				wardNo:$("#wardNo").val(),
+				oldSchool:$("#oldSchool").val(),
+				reasonLeave:$("#reasonLeave").val(),
+				admissionDatenp:$("#admissionDatenp").val(),
+				birthCertificateNo:$("#birthCertificateNo").val(),
+				issuedBy:$("#issuedBy").val(),
+				motherlanguage:{
+					id: parseInt($("#motherlanguageid").val())
+				},
+				father:{
+					id:$("#father_id").val(),
+					fullname:$("#father_fullName").val(),
+					address:$("#father_address").val(),
+					email:$("#father_email").val(),
+					ephone:$("#father_ePhone").val(),
+					office:$("#father_office").val(),
+					income:$("#father_income").val(),
+					position:$("#father_position").val(),
+					},
+		mother:{
+			id:$("#mother_id").val(),
+			fullname:$("#mother_fullname").val(),
+			address:$("#mother_address").val(),
+			email:$("#mother_email").val(),
+			telephone:$("#mother_telephone").val(),
+			mobile:$("#mother_mobile").val(),
+			ephone:$("#mother_ephone").val(),
+			office:$("#mother_office").val(),
+			income:$("#mother_income").val(),
+			position:$("#mother_position").val(),
+			},
+		localGuardian: {
+			id:$("#localGuardain_id").val(),
+			name:$("#localGuardian_name").val(),
+			address:$("#localGuardian_address").val(),
+			phone:$("#localGuardian_phone").val(),
+			mobile:$("#localGuardian_mobile").val(),
+				}
+		};
+		postJsonDataFromApi('/student', data);
+	});
+	</script>
 	<tags:formscript />
 </body>
 </html>

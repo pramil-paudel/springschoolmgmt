@@ -38,7 +38,7 @@ public class EmployeeRestController {
 	
 	@ModelAttribute
 	public void models(Model model) {
-		//model.addAttribute("branches", branchRepo.findAll());
+		model.addAttribute("branch", branchRepo.findAll());
 	}
 	
 	
@@ -47,7 +47,6 @@ public class EmployeeRestController {
 	{
 		ModelAndView model = new ModelAndView("employee/form");
 		model.addObject("employee", new Employee());
-		//model.addObject("branches",branchRepo.findAll());
 		return model;
 	}
 	

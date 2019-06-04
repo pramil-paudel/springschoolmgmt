@@ -33,6 +33,13 @@ public class StudentRestController {
 	@Autowired
 	StudentRepo studentRepo;
 	
+	@Autowired
+	MotherLanguageRepo motherLanguageRepo;
+	@ModelAttribute
+	public void models(Model model) {
+		model.addAttribute("motherlanguage",motherLanguageRepo.findAll());
+	}
+	
 	
 	@GetMapping(value="/new")
 	public ModelAndView form() 

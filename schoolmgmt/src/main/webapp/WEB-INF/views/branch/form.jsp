@@ -30,7 +30,9 @@
 				<form:select path="company.id" class="mdb-select md-form"
 					id="companyid">
 					<option disabled selected>Select Company</option>
-					<form:options items="${companies}" itemValue="id" itemLabel="name" />
+					<c:forEach items="${companies }" var="b">
+						<option value="${b.id }" >${b.name }</option>
+					</c:forEach>
 				</form:select>
 
 			</div>

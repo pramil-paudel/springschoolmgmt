@@ -35,9 +35,7 @@ public class Father extends BaseEntity {
 
 	private String position;
 
-	@JsonIgnore
-	@OneToOne
-	private Student student;
+	
 
 }
 

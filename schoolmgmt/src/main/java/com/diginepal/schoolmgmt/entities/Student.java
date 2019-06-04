@@ -1,15 +1,14 @@
 package com.diginepal.schoolmgmt.entities;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -40,17 +39,24 @@ public class Student extends BaseEntity {
 
 
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-	private Set<LocalGuardian> localGuardian;
-	
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "student", cascade = CascadeType.ALL)
+	@OneToOne(cascade= { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
+    private LocalGuardian localGuardian;
+
+	@OneToOne(cascade= { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
     private Father father;
 	
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "student", cascade = CascadeType.ALL)
+	@OneToOne(cascade= { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
     private Mother mother;
 
 	
 	@OneToOne
 	private MotherLanguage motherLanguage;
+	
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+	        name = "student_subjects", 
+	        joinColumns = { @JoinColumn(name = "student_id") }, 
+	        inverseJoinColumns = { @JoinColumn(name = "subjects_id") }
+	    )
+	    List<Subjects> subjects;
 }
