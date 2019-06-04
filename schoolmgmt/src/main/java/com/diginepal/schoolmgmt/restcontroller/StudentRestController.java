@@ -24,6 +24,7 @@ import com.diginepal.schoolmgmt.repo.LocalguardainRepo;
 import com.diginepal.schoolmgmt.repo.MotherLanguageRepo;
 import com.diginepal.schoolmgmt.repo.MotherRepo;
 import com.diginepal.schoolmgmt.repo.StudentRepo;
+import com.diginepal.schoolmgmt.repo.SubjectsRepo;
 import com.diginepal.schoolmgmt.response.Response;
 import com.diginepal.schoolmgmt.response.ResponseMessage;
 
@@ -34,10 +35,15 @@ public class StudentRestController {
 	StudentRepo studentRepo;
 	
 	@Autowired
+	SubjectsRepo subjectsRepo;
+	
+	@Autowired
 	MotherLanguageRepo motherLanguageRepo;
+	
 	@ModelAttribute
 	public void models(Model model) {
 		model.addAttribute("motherlanguage",motherLanguageRepo.findAll());
+		model.addAttribute("subjects", subjectsRepo.findAll());
 	}
 	
 	

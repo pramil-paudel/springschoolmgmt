@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -32,6 +34,7 @@ public class Subjects extends BaseEntity implements Serializable{
 	
 	private float passmarks_pr; 
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "subjects")
     private List<Student> students;
 	

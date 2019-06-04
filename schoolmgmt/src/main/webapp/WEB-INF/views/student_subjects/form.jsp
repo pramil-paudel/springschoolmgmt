@@ -51,20 +51,25 @@
 	<tags:script />
 	<script>
 	$("#submitbtn").click(function() {
+		var selected="";
+		function multi(){
+		$("#subjects_id option").each(function(){
+		    selected += "id"+":"+ $(this).val()+",";
+		});
+		return selected;
+		}
 		
-		var selections=[];
+		/* var selections=[];
 		var $el=$("#subjects_id");
 		$el.find('option:selected').each(function(){
 		    selections.push({id:$(this).val()});
 		});
-		var selectionjson=JSON.stringify(selections);
+		var selectionjson=JSON.stringify(selections); */
 		
-		alert(selectionjson);
 		var data={
 				id:$("#id").val(),
-				
+				subjects: //values from multiselect
 		};
-		alert(data.id);
 		postJsonDataFromApi('/student', data);
 	});
 	</script>
