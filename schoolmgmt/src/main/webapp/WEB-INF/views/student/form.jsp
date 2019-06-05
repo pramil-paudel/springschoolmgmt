@@ -316,15 +316,6 @@
 					role="tabpanel" aria-labelledby="subjects-tab-classic-shadow">
 					<div class="row">
 						<div class="col-md-4">
-							<%-- <form:select class="mdb-select md-form" id="subjects_id"
-								path="subjects">
-								<option value="" disabled>Select Subjects</option>
-								<c:forEach items="${subjects }" var="s">
-									<option value="${s.id }">${s.code }-${s.name }</option>
-								</c:forEach>
-
-							</form:select> --%>
-
 						</div>
 					</div>
 					<div class="row">
@@ -345,6 +336,7 @@
 			</div>
 		</form:form>
 	</div>
+	<p id="p"></p>
 	<!-- Classic tabs -->
 
 	<tags:response />
@@ -423,8 +415,9 @@
 					address : $("#localGuardian_address").val(),
 					phone : $("#localGuardian_phone").val(),
 					mobile : $("#localGuardian_mobile").val(),
-				}
+				},
 			};
+			
 			postJsonDataFromApi('/student', data);
 		});
 	</script>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <tags:meta />
-<title> Student_Subjects </title>
+<title> Student Subjects </title>
 <tags:style />
 </head>
 <body class="fixed-sn ">
@@ -51,26 +51,18 @@
 	<tags:script />
 	<script>
 	$("#submitbtn").click(function() {
-		var selected="";
-		function multi(){
-		$("#subjects_id option").each(function(){
-		    selected += "id"+":"+ $(this).val()+",";
-		});
-		return selected;
-		}
 		
-		/* var selections=[];
+		 var subjects=[];
 		var $el=$("#subjects_id");
 		$el.find('option:selected').each(function(){
-		    selections.push({id:$(this).val()});
+		    subjects.push({id:$(this).val()});
 		});
-		var selectionjson=JSON.stringify(selections); */
 		
-		var data={
-				id:$("#id").val(),
-				subjects: //values from multiselect
-		};
-		postJsonDataFromApi('/student', data);
+		var data={};
+		data['id']=$("#id").val();
+		data['subjects']=subjects;
+		alert(JSON.stringify(data));
+		postJsonDataFromApi('/studentsubjects', data);
 	});
 	</script>
 	<tags:formscript/>
