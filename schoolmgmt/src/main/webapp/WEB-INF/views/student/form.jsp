@@ -10,17 +10,16 @@
 </head>
 <body class="fixed-sn ">
 	<tags:header />
-	
+
 	<div class="text-center">
-						<p class="h4 mb-4">Student</p>
-						<div class="btn-group btn-group-sm" role="group">
-							<button type="button" class="btn btn-primary btn-sm">Validate</button>
-							<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-							<button type="button" class="btn btn-success btn-sm"
-								id="submitbtn">Save</button>
-						</div>
-					</div>
-					<br>
+		<p class="h4 mb-4">Student</p>
+		<div class="btn-group btn-group-sm" role="group">
+			<button type="button" class="btn btn-primary btn-sm">Validate</button>
+			<button type="reset" class="btn btn-warning btn-sm">Reset</button>
+			<button type="button" class="btn btn-success btn-sm" id="submitbtn">Save</button>
+		</div>
+	</div>
+	<br>
 
 	<!-- Classic tabs -->
 	<div class="classic-tabs mx-2">
@@ -48,6 +47,11 @@
 					href="#awesome-classic-shadow" role="tab"
 					aria-controls="awesome-classic-shadow" aria-selected="false">LOCALGUARDIAN</a>
 				</li>
+				<li class="nav-item"><a class="nav-link waves-light"
+					id="subjects-tab-classic-shadow" data-toggle="tab"
+					href="#subjects-classic-shadow" role="tab"
+					aria-controls="subjects-classic-shadow" aria-selected="false">SUBJECTS</a>
+				</li>
 			</ul>
 
 			<div class="tab-content card" id="myClassicTabContentShadow">
@@ -55,7 +59,7 @@
 					role="tabpanel" aria-labelledby="profile-tab-classic-shadow">
 					<div class="row">
 						<div class="col-md-4">
-						<form:input type="hidden" id="id" path="id" value="" />
+							<form:input type="hidden" id="id" path="id" value="" />
 							<label for="textInput">Legacy ID </label>
 							<form:input type="text" id="legacyId" path="legacyId"
 								class="form-control mb-4" value="" />
@@ -67,11 +71,11 @@
 						</div>
 						<div class="col-md-4">
 							<form:select class="mdb-select md-form" id="gender" path="gender">
-					<option value="" disabled >Select Gender</option>
-					<option value="male">Male</option>
-					<option value="female">Female</option>
-					<option value="other">Other</option>
-				</form:select>
+								<option value="" disabled>Select Gender</option>
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+								<option value="other">Other</option>
+							</form:select>
 						</div>
 					</div>
 					<div class="row">
@@ -112,15 +116,16 @@
 					</div>
 					<div class="row">
 						<div class="col-md-4">
-							<form:select class="mdb-select md-form" id="religion" path="religion">
-					<option value="" disabled >Select Religion</option>
-					<option value="hinduism">Hinduism</option>
-					<option value="buddhism">Buddhism</option>
-					<option value="muslim">Muslim</option>
-					<option value="christianity">Christianity</option>
-				</form:select>
-						</div>				
-								<div class="col-md-4">
+							<form:select class="mdb-select md-form" id="religion"
+								path="religion">
+								<option value="" disabled>Select Religion</option>
+								<option value="hinduism">Hinduism</option>
+								<option value="buddhism">Buddhism</option>
+								<option value="muslim">Muslim</option>
+								<option value="christianity">Christianity</option>
+							</form:select>
+						</div>
+						<div class="col-md-4">
 							<label for="textInput"> Temporary Address </label>
 							<form:input type="text" id="temporaryAddress"
 								path="temporaryAddress" class="form-control mb-4" value="" />
@@ -160,23 +165,25 @@
 								class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
-				<form:select class="mdb-select md-form" id="motherlanguageid" path="motherLanguage.id">
-					<option value="" disabled >Select Mother Language</option>
-					<c:forEach items="${motherlanguage }" var="b">
-						<option value="${b.id }" >${b.name }</option>
-					</c:forEach>
-				</form:select>
-			</div>
+							<form:select class="mdb-select md-form" id="motherlanguageid"
+								path="motherLanguage.id">
+								<option value="" disabled>Select Mother Language</option>
+								<c:forEach items="${motherlanguage }" var="b">
+									<option value="${b.id }">${b.name }</option>
+								</c:forEach>
+							</form:select>
+						</div>
 					</div>
 				</div>
 				<div class="tab-pane fade" id="follow-classic-shadow"
 					role="tabpanel" aria-labelledby="follow-tab-classic-shadow">
 					<div class="row">
 						<div class="col-md-4">
-						<form:input type="hidden" id="father_id" path="father.id" value="" />
+							<form:input type="hidden" id="father_id" path="father.id"
+								value="" />
 							<label for="textInput">Full Name </label>
-							<form:input type="text" id="father_fullName" path="father.fullname"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="father_fullName"
+								path="father.fullname" class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Address </label>
@@ -209,8 +216,8 @@
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> Position </label>
-							<form:input type="text" id="father_position" path="father.position"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="father_position"
+								path="father.position" class="form-control mb-4" value="" />
 						</div>
 					</div>
 				</div>
@@ -220,20 +227,21 @@
 
 					<div class="row">
 						<div class="col-md-4">
-						<form:input type="hidden" id="mother_id" path="mother.id" value="" />
+							<form:input type="hidden" id="mother_id" path="mother.id"
+								value="" />
 							<label for="textInput">Full Name </label>
 							<form:input type="text" id="mother_fullname"
 								path="mother.fullname" class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Address </label>
-							<form:input type="text" id="mother_address" 
-							path="mother.address" class="form-control mb-4" value="" />
+							<form:input type="text" id="mother_address" path="mother.address"
+								class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput">E-mail </label>
-							<form:input type="text" id="mother_email" 
-							path="mother.email" class="form-control mb-4" value="" />
+							<form:input type="text" id="mother_email" path="mother.email"
+								class="form-control mb-4" value="" />
 						</div>
 					</div>
 					<div class="row">
@@ -269,8 +277,8 @@
 
 						<div class="col-md-4">
 							<label for="textInput"> Position </label>
-							<form:input type="text" id="mother_position" path="mother.position"
-								class="form-control mb-4" value="" />
+							<form:input type="text" id="mother_position"
+								path="mother.position" class="form-control mb-4" value="" />
 						</div>
 					</div>
 				</div>
@@ -278,95 +286,154 @@
 					role="tabpanel" aria-labelledby="awesome-tab-classic-shadow">
 					<div class="row">
 						<div class="col-md-4">
-						<form:input type="hidden" id="localGuardain_id" path="localGuardian.id" value="" />
+							<form:input type="hidden" id="localGuardain_id"
+								path="localGuardian.id" value="" />
 							<label for="textInput"> Name </label>
 							<form:input type="text" value="" id="localGuardian_name"
 								path="localGuardian.name" class="form-control mb-4" />
 						</div>
-						
+
 						<div class="col-md-4">
 							<label for="textInput"> Address </label>
-							<form:input type="text" value=""
-								id="localGuardian_address" path="localGuardian.address" class="form-control mb-4" />
+							<form:input type="text" value="" id="localGuardian_address"
+								path="localGuardian.address" class="form-control mb-4" />
 						</div>
 						<div class="col-md-4">
 							<label for="textInput"> Phone </label>
-							<form:input type="text" value=""
-								id="localGuardian_phone" path="localGuardian.phone" class="form-control mb-4" />
+							<form:input type="text" value="" id="localGuardian_phone"
+								path="localGuardian.phone" class="form-control mb-4" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4">
 							<label for="textInput"> Mobile </label>
-							<form:input type="text" value=""
-								id="localGuardian_mobile" path="localGuardian.mobile" class="form-control mb-4" />
+							<form:input type="text" value="" id="localGuardian_mobile"
+								path="localGuardian.mobile" class="form-control mb-4" />
 						</div>
-					</div> 
+					</div>
+				</div>
+				<div class="tab-pane fade" id="subjects-classic-shadow"
+					role="tabpanel" aria-labelledby="subjects-tab-classic-shadow">
+					<div class="row">
+						<div class="col-md-4">
+					  <select class="mdb-select colorful-select dropdown-primary md-form" id="subjects_id" multiple searchable="Search here..">
+								<option value="" disabled>Select Subjects</option>
+								<c:forEach items="${subjects }" var="s">
+									<option value="${s.id }">${s.code }-${s.name }</option>
+								</c:forEach>
+
+							</select> 
+
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<table id="subjectstbl" class="table table-striped"
+								cellspacing="0" width="100%">
+								<thead>
+									<tr>
+										<th class="th-sm">Code</th>
+										<th class="th-sm">Name</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</form:form>
 	</div>
+	<p id="p"></p>
 	<!-- Classic tabs -->
-	
+
 	<tags:response />
 	<tags:footer />
 	<tags:script />
 	<script>
-	$("#submitbtn").click(function() {
-		var data={
-				id:$("#id").val(),
-				legacyId:$("#legacyId").val(),
-				name:$("#name").val(),
-				gender:$("#gender").val(),
-				dobNepali:$("#dobNepali").val(),
-				dobEnglish:$("#dobEnglish").val(),
-				district:$("#district").val(),
-				hobby:$("#hobby").val(),
-				rollNo:$("#rollNo").val(),
-				municipality:$("#municipality").val(),
-				religion:$("#religion").val(),
-				temporaryAddress:$("#temporaryAddress").val(),
-				wardNo:$("#wardNo").val(),
-				oldSchool:$("#oldSchool").val(),
-				reasonLeave:$("#reasonLeave").val(),
-				admissionDatenp:$("#admissionDatenp").val(),
-				birthCertificateNo:$("#birthCertificateNo").val(),
-				issuedBy:$("#issuedBy").val(),
-				motherlanguage:{
-					id: parseInt($("#motherlanguageid").val())
-				},
-				father:{
-					id:$("#father_id").val(),
-					fullname:$("#father_fullName").val(),
-					address:$("#father_address").val(),
-					email:$("#father_email").val(),
-					ephone:$("#father_ePhone").val(),
-					office:$("#father_office").val(),
-					income:$("#father_income").val(),
-					position:$("#father_position").val(),
-					},
-		mother:{
-			id:$("#mother_id").val(),
-			fullname:$("#mother_fullname").val(),
-			address:$("#mother_address").val(),
-			email:$("#mother_email").val(),
-			telephone:$("#mother_telephone").val(),
-			mobile:$("#mother_mobile").val(),
-			ephone:$("#mother_ephone").val(),
-			office:$("#mother_office").val(),
-			income:$("#mother_income").val(),
-			position:$("#mother_position").val(),
+	$(document).ready(function() {
+		$('#subjectstbl').DataTable({
+			"bFilter": false,
+			 "paging":   false,
+		        "ordering": false,
+		        "info":     false,
+			"scrollX" : true,
+			"bProcessing" : true,
+			"sAjaxDataProp" : "",
+			"bServerSide" : false,
+			"ajax" : {
+				"url" : "/studentsubjects/"+$("#id").val(),
+				"type" : "GET"
 			},
-		localGuardian: {
-			id:$("#localGuardain_id").val(),
-			name:$("#localGuardian_name").val(),
-			address:$("#localGuardian_address").val(),
-			phone:$("#localGuardian_phone").val(),
-			mobile:$("#localGuardian_mobile").val(),
-				}
-		};
-		postJsonDataFromApi('/student', data);
+			"columns" : [ 
+				{"data":"code", "defaultContent":""},
+				{"data":"name", "defaultContent":""}
+			]
+
+		});
 	});
+	
+		$("#submitbtn").click(function() {
+			var data = {
+				id : $("#id").val(),
+				legacyId : $("#legacyId").val(),
+				name : $("#name").val(),
+				gender : $("#gender").val(),
+				dobNepali : $("#dobNepali").val(),
+				dobEnglish : $("#dobEnglish").val(),
+				district : $("#district").val(),
+				hobby : $("#hobby").val(),
+				rollNo : $("#rollNo").val(),
+				municipality : $("#municipality").val(),
+				religion : $("#religion").val(),
+				temporaryAddress : $("#temporaryAddress").val(),
+				wardNo : $("#wardNo").val(),
+				oldSchool : $("#oldSchool").val(),
+				reasonLeave : $("#reasonLeave").val(),
+				admissionDatenp : $("#admissionDatenp").val(),
+				birthCertificateNo : $("#birthCertificateNo").val(),
+				issuedBy : $("#issuedBy").val(),
+				motherlanguage : {
+					id : parseInt($("#motherlanguageid").val())
+				},
+				father : {
+					id : $("#father_id").val(),
+					fullname : $("#father_fullName").val(),
+					address : $("#father_address").val(),
+					email : $("#father_email").val(),
+					ephone : $("#father_ePhone").val(),
+					office : $("#father_office").val(),
+					income : $("#father_income").val(),
+					position : $("#father_position").val(),
+				},
+				mother : {
+					id : $("#mother_id").val(),
+					fullname : $("#mother_fullname").val(),
+					address : $("#mother_address").val(),
+					email : $("#mother_email").val(),
+					telephone : $("#mother_telephone").val(),
+					mobile : $("#mother_mobile").val(),
+					ephone : $("#mother_ephone").val(),
+					office : $("#mother_office").val(),
+					income : $("#mother_income").val(),
+					position : $("#mother_position").val(),
+				},
+				localGuardian : {
+					id : $("#localGuardain_id").val(),
+					name : $("#localGuardian_name").val(),
+					address : $("#localGuardian_address").val(),
+					phone : $("#localGuardian_phone").val(),
+					mobile : $("#localGuardian_mobile").val(),
+				},
+			};
+			  	var subjects=[];
+				var $el=$("#subjects_id");
+				$el.find('option:selected').each(function(){
+				    subjects.push({id:$(this).val()});
+				});
+				data['subjects']=subjects;
+			postJsonDataFromApi('/student', data);
+		});
 	</script>
 	<tags:formscript />
 </body>
