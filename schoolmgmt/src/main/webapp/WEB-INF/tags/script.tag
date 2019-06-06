@@ -24,4 +24,7 @@ Ps.initialize(el);
 $('.button-collapse').sideNav('show');
 // Hide sideNav
 $('.button-collapse').sideNav('hide');
+$('#response').on('hidden.bs.modal', function () {
+	location.reload(true);
+	});
   </script>

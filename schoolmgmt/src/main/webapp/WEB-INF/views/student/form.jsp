@@ -316,6 +316,14 @@
 					role="tabpanel" aria-labelledby="subjects-tab-classic-shadow">
 					<div class="row">
 						<div class="col-md-4">
+					  <select class="mdb-select colorful-select dropdown-primary md-form" id="subjects_id" multiple searchable="Search here..">
+								<option value="" disabled>Select Subjects</option>
+								<c:forEach items="${subjects }" var="s">
+									<option value="${s.id }">${s.code }-${s.name }</option>
+								</c:forEach>
+
+							</select> 
+
 						</div>
 					</div>
 					<div class="row">
@@ -364,6 +372,7 @@
 
 		});
 	});
+	
 		$("#submitbtn").click(function() {
 			var data = {
 				id : $("#id").val(),
@@ -417,7 +426,12 @@
 					mobile : $("#localGuardian_mobile").val(),
 				},
 			};
-			
+			  	var subjects=[];
+				var $el=$("#subjects_id");
+				$el.find('option:selected').each(function(){
+				    subjects.push({id:$(this).val()});
+				});
+				data['subjects']=subjects;
 			postJsonDataFromApi('/student', data);
 		});
 	</script>

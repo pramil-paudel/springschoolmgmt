@@ -1,5 +1,6 @@
 package com.diginepal.schoolmgmt.restcontroller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.diginepal.schoolmgmt.entities.Exam;
 import com.diginepal.schoolmgmt.entities.Student;
+import com.diginepal.schoolmgmt.entities.Subjects;
 import com.diginepal.schoolmgmt.repo.FatherRepo;
 import com.diginepal.schoolmgmt.repo.LocalguardainRepo;
 import com.diginepal.schoolmgmt.repo.MotherLanguageRepo;
@@ -64,6 +66,12 @@ public class StudentRestController {
 	@PostMapping 
 	public ResponseEntity<?> save(@RequestBody Student student) {
 		ResponseMessage response=new ResponseMessage();
+		List<Subjects> subjects = student.getSubjects();
+		List<Subjects> sublist=new ArrayList<Subjects>();
+		for(Subjects sub:subjects) {
+			sublist.add(subjectsRepo.findById(sub.getId()).get());
+		}
+		student.setSubjects(sublist);
 		student=studentRepo.save(student);
 		if(student==null) {
 			response=Response.badrequest();
@@ -82,6 +90,17 @@ public class StudentRestController {
 			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/list/{id}")
+	public ResponseEntity<?> findOneFromList(@PathVariable int id) {
+		ResponseMessage response = new ResponseMessage();
+		Student student=studentRepo.findById(id).get();
+		if (student==null) {
+			response = Response.resourcenotfound();
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(student, HttpStatus.OK);
 	}
 
 	@GetMapping (value="/{id}")

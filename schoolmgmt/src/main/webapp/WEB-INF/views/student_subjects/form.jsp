@@ -61,7 +61,6 @@
 		var data={};
 		data['id']=$("#id").val();
 		data['subjects']=subjects;
-		alert(JSON.stringify(data));
 		postJsonDataFromApi('/studentsubjects', data);
 	});
 	</script>
