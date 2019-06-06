@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -40,15 +42,19 @@ public class MarksRestController {
 	
 	@Autowired
 	SectionRepo sectionRepo;
+	
+
+	@ModelAttribute
+	public void models(Model model) {
+		model.addAttribute("academicdates",academicdatesRepo.findAll());
+		model.addAttribute("section",sectionRepo.findAll());
+		model.addAttribute("grade",gradeRepo.findAll());
+	}
 
 	@GetMapping(value="/new")
 	public ModelAndView form() 
 	{
 		ModelAndView model = new ModelAndView("marksentry/form");
-		model.addObject("academicdates",academicdatesRepo.findAll());
-		model.addObject("grade",gradeRepo.findAll());
-		model.addObject("section",sectionRepo.findAll());
-		
 		return model;
 	}
 

@@ -104,5 +104,18 @@ public class SubjectsRestController {
 		}
 	}
 	
+	@GetMapping(value="/student/{id}")
+	public ResponseEntity<?> findByStudentId(@PathVariable int id) {
+		ResponseMessage response=new ResponseMessage();
+		List<Subjects> subjectslist= subjectsRepo.findByStudentsId(id);
+		if(subjectslist.size()==0) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(subjectslist, HttpStatus.OK);
+		}
+	}
+	
 	
 }

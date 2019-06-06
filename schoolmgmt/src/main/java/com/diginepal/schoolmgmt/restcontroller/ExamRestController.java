@@ -105,4 +105,17 @@ public ResponseEntity<?> update(@PathVariable int id,@RequestBody Exam exam) {
 	}
 }
 
+@GetMapping (value="/academicdates/{id}")
+public  ResponseEntity<?> findByAcademicdatesId (@PathVariable int id){
+	ResponseMessage response=new ResponseMessage();
+	List<Exam> exam=examRepo.findByAcademicdatesId(id);
+	if(exam==null) {
+		response=Response.resourcenotfound();
+		return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+	}
+	else {
+		return new ResponseEntity<>(exam, HttpStatus.OK);
+	}
+}
+
 }

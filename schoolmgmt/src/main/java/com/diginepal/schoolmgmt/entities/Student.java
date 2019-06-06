@@ -52,6 +52,12 @@ public class Student extends BaseEntity {
 	@OneToOne
 	private MotherLanguage motherLanguage;
 	
+	@OneToOne
+	private Grade grade;
+	
+	@OneToOne
+	private Section section;
+	
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(
 	        name = "student_subjects", 

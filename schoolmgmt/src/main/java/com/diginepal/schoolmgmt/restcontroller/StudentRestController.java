@@ -22,9 +22,11 @@ import com.diginepal.schoolmgmt.entities.Exam;
 import com.diginepal.schoolmgmt.entities.Student;
 import com.diginepal.schoolmgmt.entities.Subjects;
 import com.diginepal.schoolmgmt.repo.FatherRepo;
+import com.diginepal.schoolmgmt.repo.GradeRepo;
 import com.diginepal.schoolmgmt.repo.LocalguardainRepo;
 import com.diginepal.schoolmgmt.repo.MotherLanguageRepo;
 import com.diginepal.schoolmgmt.repo.MotherRepo;
+import com.diginepal.schoolmgmt.repo.SectionRepo;
 import com.diginepal.schoolmgmt.repo.StudentRepo;
 import com.diginepal.schoolmgmt.repo.SubjectsRepo;
 import com.diginepal.schoolmgmt.response.Response;
@@ -42,10 +44,19 @@ public class StudentRestController {
 	@Autowired
 	MotherLanguageRepo motherLanguageRepo;
 	
+	@Autowired
+	GradeRepo gradeRepo;
+	
+	@Autowired
+	SectionRepo sectionRepo;
+	
+	
 	@ModelAttribute
 	public void models(Model model) {
 		model.addAttribute("motherlanguage",motherLanguageRepo.findAll());
 		model.addAttribute("subjects", subjectsRepo.findAll());
+		model.addAttribute("section",sectionRepo.findAll());
+		model.addAttribute("grade",gradeRepo.findAll());
 	}
 	
 	
@@ -137,6 +148,19 @@ public class StudentRestController {
 			studentRepo.delete(student);
 			response = Response.successful();
 			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping(value="/grade/{gradeid}/section/{sectionid}")
+	public ResponseEntity<?> findByGradeIdAndSectionId(@PathVariable int gradeid, @PathVariable int sectionid){
+		ResponseMessage response = new ResponseMessage();
+		List<Student> studentlist=studentRepo.findByGradeIdAndSectionId(gradeid, sectionid);
+		if(studentlist.size()==0) {
+			response = Response.resourcenotfound();
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(studentlist, HttpStatus.OK);
 		}
 	}
 

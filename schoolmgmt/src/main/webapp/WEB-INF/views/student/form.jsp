@@ -174,6 +174,24 @@
 							</form:select>
 						</div>
 					</div>
+						<div class="row">
+					<div class="col-md-4">
+				<form:select class="mdb-select md-form" id="gradeid" path="grade.id">
+					<option value="" disabled >Select Grade </option>
+					<c:forEach items="${grade}" var="b">
+						<option value="${b.id}" >${b.name}</option>  
+					</c:forEach>
+					</form:select>
+			</div>
+			<div class="col-md-4">
+				<form:select class="mdb-select md-form" id="sectionid" path="section.id">
+					<option value="" disabled >Select Section </option>
+					<c:forEach items="${section }" var="b">
+						<option value="${b.id }">${b.name }</option>  
+					</c:forEach>
+					</form:select>
+			</div>
+			</div>
 				</div>
 				<div class="tab-pane fade" id="follow-classic-shadow"
 					role="tabpanel" aria-labelledby="follow-tab-classic-shadow">
@@ -393,8 +411,14 @@
 				admissionDatenp : $("#admissionDatenp").val(),
 				birthCertificateNo : $("#birthCertificateNo").val(),
 				issuedBy : $("#issuedBy").val(),
-				motherlanguage : {
+				motherLanguage : {
 					id : parseInt($("#motherlanguageid").val())
+				},
+				grade:{
+					id: parseInt($("#gradeid").val())
+				},
+				section:{
+					id: parseInt($("#sectionid").val())
 				},
 				father : {
 					id : $("#father_id").val(),
