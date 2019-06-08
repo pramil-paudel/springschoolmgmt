@@ -1,7 +1,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f"%>
 <html>
 <head>
 <tags:meta />
@@ -70,11 +70,15 @@
 								class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
-							<form:select class="mdb-select md-form" id="gender" path="gender">
-								<option value="" disabled>Select Gender</option>
-								<option value="male">Male</option>
-								<option value="female">Female</option>
-								<option value="other">Other</option>
+						<label for="gender"> Gender </label>
+							<form:select class="mdb-select" id="gender" path="gender">
+								<option value="">Select Gender</option>
+								<option value="male"
+									<c:if test="${student.gender eq 'male' }">selected</c:if>>Male</option>
+								<option value="female"
+									<c:if test="${student.gender eq 'female' }">selected</c:if>>Female</option>
+								<option value="other"
+									<c:if test="${student.gender eq 'other' }">selected</c:if>>Other</option>
 							</form:select>
 						</div>
 					</div>
@@ -116,13 +120,15 @@
 					</div>
 					<div class="row">
 						<div class="col-md-4">
-							<form:select class="mdb-select md-form" id="religion"
+							<label for="religion"> Religion </label>
+							<form:select class="mdb-select" id="religion"
 								path="religion">
-								<option value="" disabled>Select Religion</option>
-								<option value="hinduism">Hinduism</option>
-								<option value="buddhism">Buddhism</option>
-								<option value="muslim">Muslim</option>
-								<option value="christianity">Christianity</option>
+								<option value="">Select Religion</option>
+								
+								<option value="hinduism" <c:if test="${student.religion eq 'hinduism' }">selected</c:if>>Hinduism</option>
+								<option value="buddhism" <c:if test="${student.religion eq 'buddhism' }">selected</c:if>>Buddhism</option>
+								<option value="muslim" <c:if test="${student.religion eq 'muslim' }">selected</c:if>>Muslim</option>
+								<option value="christianity" <c:if test="${student.religion eq 'christianity' }">selected</c:if>>Christianity</option>
 							</form:select>
 						</div>
 						<div class="col-md-4">
@@ -165,33 +171,42 @@
 								class="form-control mb-4" value="" />
 						</div>
 						<div class="col-md-4">
-							<form:select class="mdb-select md-form" id="motherlanguageid"
+						<label for="motherlanguageid"> Mother Language </label>
+							<form:select class="mdb-select" id="motherlanguageid"
 								path="motherLanguage.id">
-								<option value="" disabled>Select Mother Language</option>
+								<option value="">Select Mother Language</option>
+
 								<c:forEach items="${motherlanguage }" var="b">
-									<option value="${b.id }">${b.name }</option>
+									<option value="${b.id }"
+										<c:if test="${student.motherLanguage.id eq b.id}">selected</c:if>>${b.name }</option>
 								</c:forEach>
 							</form:select>
 						</div>
 					</div>
-						<div class="row">
-					<div class="col-md-4">
-				<form:select class="mdb-select md-form" id="gradeid" path="grade.id">
-					<option value="" disabled >Select Grade </option>
-					<c:forEach items="${grade}" var="b">
-						<option value="${b.id}" >${b.name}</option>  
-					</c:forEach>
-					</form:select>
-			</div>
-			<div class="col-md-4">
-				<form:select class="mdb-select md-form" id="sectionid" path="section.id">
-					<option value="" disabled >Select Section </option>
-					<c:forEach items="${section }" var="b">
-						<option value="${b.id }">${b.name }</option>  
-					</c:forEach>
-					</form:select>
-			</div>
-			</div>
+					<div class="row">
+						<div class="col-md-4">
+						<label for="gradeid"> Grade </label>
+							<form:select class="mdb-select " id="gradeid"
+								path="grade.id">
+								<option value="">Select Grade</option>
+								<c:forEach items="${grade}" var="b">
+									<option value="${b.id}"
+										<c:if test="${student.grade.id eq b.id}">selected</c:if>>${b.name}</option>
+								</c:forEach>
+							</form:select>
+						</div>
+						<div class="col-md-4">
+						<label for="sectionid"> Section </label>
+							<form:select class="mdb-select " id="sectionid"
+								path="section.id">
+								<option value="">Select Section</option>
+								<c:forEach items="${section }" var="b">
+									<option value="${b.id }"
+										<c:if test="${student.section.id eq b.id}">selected</c:if>>${b.name }</option>
+								</c:forEach>
+							</form:select>
+						</div>
+					</div>
 				</div>
 				<div class="tab-pane fade" id="follow-classic-shadow"
 					role="tabpanel" aria-labelledby="follow-tab-classic-shadow">
@@ -334,13 +349,15 @@
 					role="tabpanel" aria-labelledby="subjects-tab-classic-shadow">
 					<div class="row">
 						<div class="col-md-4">
-					  <select class="mdb-select colorful-select dropdown-primary md-form" id="subjects_id" multiple searchable="Search here..">
+						<label for="subjects_id"> Assigned Subjects </label>
+							<select
+								class="mdb-select colorful-select dropdown-primary"
+								id="subjects_id" multiple searchable="Search here..">
 								<option value="" disabled>Select Subjects</option>
-								<c:forEach items="${subjects }" var="s">
-									<option value="${s.id }">${s.code }-${s.name }</option>
+								<c:forEach items="${subjects }" var="s" varStatus="loop">
+								<option value="${s.id }" <c:if test="${  s.id eq student.subjects[loop.index].id}">selected</c:if>>${s.code }-${s.name }</option>
 								</c:forEach>
-
-							</select> 
+							</select>
 
 						</div>
 					</div>
@@ -369,28 +386,31 @@
 	<tags:footer />
 	<tags:script />
 	<script>
-	$(document).ready(function() {
-		$('#subjectstbl').DataTable({
-			"bFilter": false,
-			 "paging":   false,
-		        "ordering": false,
-		        "info":     false,
-			"scrollX" : true,
-			"bProcessing" : true,
-			"sAjaxDataProp" : "",
-			"bServerSide" : false,
-			"ajax" : {
-				"url" : "/studentsubjects/"+$("#id").val(),
-				"type" : "GET"
-			},
-			"columns" : [ 
-				{"data":"code", "defaultContent":""},
-				{"data":"name", "defaultContent":""}
-			]
+		$(document).ready(function() {
+			$('#subjectstbl').DataTable({
+				"bFilter" : false,
+				"paging" : false,
+				"ordering" : false,
+				"info" : false,
+				"scrollX" : true,
+				"bProcessing" : true,
+				"sAjaxDataProp" : "",
+				"bServerSide" : false,
+				"ajax" : {
+					"url" : "/studentsubjects/" + $("#id").val(),
+					"type" : "GET"
+				},
+				"columns" : [ {
+					"data" : "code",
+					"defaultContent" : ""
+				}, {
+					"data" : "name",
+					"defaultContent" : ""
+				} ]
 
+			});
 		});
-	});
-	
+
 		$("#submitbtn").click(function() {
 			var data = {
 				id : $("#id").val(),
@@ -414,11 +434,11 @@
 				motherLanguage : {
 					id : parseInt($("#motherlanguageid").val())
 				},
-				grade:{
-					id: parseInt($("#gradeid").val())
+				grade : {
+					id : parseInt($("#gradeid").val())
 				},
-				section:{
-					id: parseInt($("#sectionid").val())
+				section : {
+					id : parseInt($("#sectionid").val())
 				},
 				father : {
 					id : $("#father_id").val(),
@@ -450,12 +470,14 @@
 					mobile : $("#localGuardian_mobile").val(),
 				},
 			};
-			  	var subjects=[];
-				var $el=$("#subjects_id");
-				$el.find('option:selected').each(function(){
-				    subjects.push({id:$(this).val()});
+			var subjects = [];
+			var $el = $("#subjects_id");
+			$el.find('option:selected').each(function() {
+				subjects.push({
+					id : $(this).val()
 				});
-				data['subjects']=subjects;
+			});
+			data['subjects'] = subjects;
 			postJsonDataFromApi('/student', data);
 		});
 	</script>
