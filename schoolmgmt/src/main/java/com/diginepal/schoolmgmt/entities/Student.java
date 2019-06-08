@@ -1,16 +1,19 @@
 package com.diginepal.schoolmgmt.entities;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+//github.com/hackersdelima/springschoolmgmt.git
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -67,4 +70,9 @@ public class Student extends BaseEntity {
 	        inverseJoinColumns = { @JoinColumn(name = "subjects_id") }
 	    )
 	    List<Subjects> subjects;
+
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+	private Set<Marks> marks;
 }

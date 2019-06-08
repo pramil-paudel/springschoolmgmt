@@ -2,10 +2,13 @@ package com.diginepal.schoolmgmt.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,6 +40,10 @@ public class Subjects extends BaseEntity implements Serializable{
 	@JsonIgnore
 	@ManyToMany(mappedBy = "subjects")
     private List<Student> students;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "subjects", cascade = CascadeType.ALL)
+	private Set<Marks> marks;
 	
 	
 }

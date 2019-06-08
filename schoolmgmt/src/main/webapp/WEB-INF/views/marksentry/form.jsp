@@ -7,6 +7,10 @@
 <tags:meta />
 <title>Marks Entry </title>
 <tags:style />
+<style>
+#markstbl input{
+border:0.5px solid black;}
+</style>
 </head>
 <body   class="fixed-sn">
 	<tags:header />
@@ -68,7 +72,7 @@
 			</div>
 			</div>	
 			<div class="row">
-				<table id="markstbl" class="table">
+				<table id="markstbl" class="table col-md-8">
 					<thead class="black white-text">
 						<tr>
 							<td>Subject Name</td>
@@ -129,10 +133,14 @@
 
 			 $.getJSON(url, function(data){
 				 $.each(data, function (i, obj) {
-					 var htmlvalue="<tr><td>"+obj.name+"</td><td><input type='text' value='' class='form-control mb-4'></td><td><input type='text' value='' class='form-control mb-4'></td><td><input type='text' value='' class='form-control mb-4'></td>";
+					 var htmlvalue="<tr><td>"+obj.name+"</td><td><input type='hidden' value='"+obj.id+"'><input type='number' value='' class='form-control mb-4'></td><td><input type='number' value='' class='form-control mb-4'></td><td><select class='browser-default form-control'><option value='p'>Present</option><option value='a'>Absent</option><option value='l'>Leave</option></select></td>";
 						$("#markstbl tbody").append(htmlvalue);
+						
 				});
+				 
+				 $('.pal').material_select();
 			});
+			 
 		});
 	</script>
 	
