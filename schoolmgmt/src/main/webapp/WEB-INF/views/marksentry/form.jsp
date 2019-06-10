@@ -19,8 +19,9 @@ border:0.5px solid black;}
 
 		<div class="text-center">
 			<p class="h4 mb-4"> Marks Entry  </p>
+			<p id="finaldata">uio</p>
 			<div class="btn-group btn-group-sm" role="group">
-				<button type="button" class="btn btn-primary btn-sm">Validate</button>
+				<button type="button" class="btn btn-primary btn-sm" id="validate">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
 				<button type="button" class="btn btn-success btn-sm" id="submitbtn">Save</button>
 				<button type="button" class="btn btn-primary btn-sm" id="loadbtn">Load</button>
@@ -82,12 +83,13 @@ border:0.5px solid black;}
 						</tr>
 						
 					</thead>
-					<tbody>
+					<tbody id="markstbody">
 					
 					</tbody>
 				</table>
 			</div>
 	</form>
+	
 	<tags:response/>
 	<tags:footer />
 	<tags:script />
@@ -127,21 +129,84 @@ border:0.5px solid black;}
 		});
 		
 		$("#loadbtn").click(function(){
+			
 			var studentid=$("#studentid").val();
+			var examid=$("#examid").val();
 			var url="/subjects/student/"+studentid;
 			$("#markstbl tbody").empty();
-
-			 $.getJSON(url, function(data){
-				 $.each(data, function (i, obj) {
-					 var htmlvalue="<tr><td>"+obj.name+"</td><td><input type='hidden' value='"+obj.id+"'><input type='number' value='' class='form-control mb-4'></td><td><input type='number' value='' class='form-control mb-4'></td><td><select class='browser-default form-control'><option value='p'>Present</option><option value='a'>Absent</option><option value='l'>Leave</option></select></td>";
-						$("#markstbl tbody").append(htmlvalue);
-						
-				});
-				 
-				 $('.pal').material_select();
+			
+			$.getJSON("/marks/exam/"+examid+"/student/"+studentid+"", function(data){
+				if(jQuery.isEmptyObject(data)){
+					 $.getJSON(url, function(data){
+						 $.each(data, function (i, obj) {
+							 var htmlvalue="<tr><input type='hidden' class='id' value='0'><input type='hidden' class='subjectid' value='"+obj.id+"'><td>"+obj.name+"</td><td><input type='number' value='' class='form-control mb-4 prmarks'></td><td><input type='number' value='' class='form-control mb-4 thmarks'></td><td><select class='browser-default form-control pal'><option value='p'>Present</option><option value='a'>Absent</option><option value='l'>Leave</option></select></td>";
+								$("#markstbl tbody").append(htmlvalue);
+								
+						});
+						 
+						 $('.pal').material_select();
+					});
+				}
+				else{
+					$.each(data, function (i, obj) {
+						console.log(obj.id);
+						 var htmlvalue="<tr><td><input type='hidden' class='id' value='"+obj.id+"'><input type='hidden' class='subjectid' value='"+obj.subjects.id+"'>"+obj.subjects.name+"</td><td><input type='number' value='"+obj.prmarks+"' class='form-control mb-4 prmarks'></td><td><input type='number' value='"+obj.thmarks+"' class='form-control mb-4 thmarks'></td><td><select class='browser-default form-control pal'><option value='p'>Present</option><option value='a'>Absent</option><option value='l'>Leave</option></select></td>";
+							$("#markstbl tbody").append(htmlvalue);
+							$('.pal  option[value="'+obj.pal+'"]').prop("selected", true);
+							
+					});
+				
+				}
 			});
-			 
+
+			
 		});
+	</script>
+	<!-- FORM SUBMITTION -->
+	<script>
+	$("#submitbtn").click(function(){
+		var finaldata=loop();
+		console.log(finaldata);
+		//postJsonDataFromApi('/marks', finaldata);
+		
+		
+	});
+	function loop(){
+	var table = document.getElementById('markstbl');
+
+	var rowLength = table.rows.length;
+	var data=[];
+	var json;
+
+		for(var i=1; i<rowLength; i+=1){
+		  var row = table.rows[i];
+		  var id=parseInt($('#markstbl tr:nth-child('+i+') .id').val());
+		  var subjectid=parseInt($('#markstbl tr:nth-child('+i+') .subjectid').val());
+		  var prmarks=$('#markstbl tr:nth-child('+i+') .prmarks').val();
+		  var thmarks=$('#markstbl tr:nth-child('+i+') .thmarks').val();
+		  var pal=$('#markstbl tr:nth-child('+i+') .pal').val();
+		  var studentid=parseInt($("#studentid").val());
+		  var examid=parseInt($("#examid").val());
+		  
+		  json={
+				  id:id,
+				  prmarks:prmarks,
+				  thmarks:thmarks,
+				  pal:pal,
+				  student:{
+					  id:studentid
+				  },
+				  exam:{
+					  id:examid
+				  },
+				  subjects:{
+					  id:subjectid
+				  }
+		  };
+		  data.push(json);
+		};
+		return data;
+}
 	</script>
 	
 	<tags:formscript/>

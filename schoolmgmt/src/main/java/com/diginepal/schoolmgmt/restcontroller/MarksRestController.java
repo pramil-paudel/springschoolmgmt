@@ -1,5 +1,6 @@
 package com.diginepal.schoolmgmt.restcontroller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,10 +65,15 @@ public class MarksRestController {
 	}
 
 	@PostMapping 
-	public ResponseEntity<?> save(@RequestBody Marks marks) {
+	public ResponseEntity<?> save(@RequestBody List<Marks> markslist) {
 		ResponseMessage response=new ResponseMessage();
+		List<Marks> list=new ArrayList<Marks>();
+		Marks oldmarks=null;
+		for(Marks marks:markslist) {
 		marks=marksRepo.save(marks);
-		if(marks==null) {
+		list.add(marks);
+		}
+		if(markslist.size()!=list.size()) {
 			response=Response.badrequest();
 			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		}
@@ -86,6 +92,19 @@ public class MarksRestController {
 		}
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+	
+	@GetMapping(value="/exam/{examid}/student/{studentid}")
+	public ResponseEntity<?>  findByExamIdAndStudentId(@PathVariable int examid, @PathVariable int studentid){
+		ResponseMessage response=new ResponseMessage();
+		List<Marks> list = marksRepo.findByExamIdAndStudentId(examid, studentid);
+		if(list.isEmpty()) {
+			response=Response.resourcenotfound();
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(list, HttpStatus.OK);
+		
+	}
+	
 
 	@GetMapping (value="/{id}")
 	public  ModelAndView findOne (@PathVariable int id){
