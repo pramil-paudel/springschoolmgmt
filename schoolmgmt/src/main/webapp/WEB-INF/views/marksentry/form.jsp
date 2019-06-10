@@ -134,10 +134,23 @@ border:0.5px solid black;}
 			var examid=$("#examid").val();
 			var url="/subjects/student/"+studentid;
 			$("#markstbl tbody").empty();
-			
-			$.getJSON("/marks/exam/"+examid+"/student/"+studentid+"", function(data){
-				if(jQuery.isEmptyObject(data)){
-					 $.getJSON(url, function(data){
+			$.ajax({
+		        url: "/marks/exam/"+examid+"/student/"+studentid+"",
+		        type: 'GET',
+		        datatype: 'json',
+		        success: function (data) { 
+		        	$.each(data, function (i, obj) {
+						console.log(obj.id);
+						 var htmlvalue="<tr><td><input type='hidden' class='id' value='"+obj.id+"'><input type='hidden' class='subjectid' value='"+obj.subjects.id+"'>"+obj.subjects.name+"</td><td><input type='number' value='"+obj.prmarks+"' class='form-control mb-4 prmarks'></td><td><input type='number' value='"+obj.thmarks+"' class='form-control mb-4 thmarks'></td><td><select class='browser-default form-control pal'><option value='p'>Present</option><option value='a'>Absent</option><option value='l'>Leave</option></select></td>";
+							$("#markstbl tbody").append(htmlvalue);
+							$('.pal  option[value="'+obj.pal+'"]').prop("selected", true);
+							
+					});
+					$('.pal').material_select();
+		        },
+		        error: function (jqXHR, textStatus, errorThrown) { 
+		        	if (jqXHR.status == 404) {
+		        	$.getJSON(url, function(data){
 						 $.each(data, function (i, obj) {
 							 var htmlvalue="<tr><input type='hidden' class='id' value='0'><input type='hidden' class='subjectid' value='"+obj.id+"'><td>"+obj.name+"</td><td><input type='number' value='' class='form-control mb-4 prmarks'></td><td><input type='number' value='' class='form-control mb-4 thmarks'></td><td><select class='browser-default form-control pal'><option value='p'>Present</option><option value='a'>Absent</option><option value='l'>Leave</option></select></td>";
 								$("#markstbl tbody").append(htmlvalue);
@@ -146,20 +159,9 @@ border:0.5px solid black;}
 						 
 						 $('.pal').material_select();
 					});
-				}
-				else{
-					$.each(data, function (i, obj) {
-						console.log(obj.id);
-						 var htmlvalue="<tr><td><input type='hidden' class='id' value='"+obj.id+"'><input type='hidden' class='subjectid' value='"+obj.subjects.id+"'>"+obj.subjects.name+"</td><td><input type='number' value='"+obj.prmarks+"' class='form-control mb-4 prmarks'></td><td><input type='number' value='"+obj.thmarks+"' class='form-control mb-4 thmarks'></td><td><select class='browser-default form-control pal'><option value='p'>Present</option><option value='a'>Absent</option><option value='l'>Leave</option></select></td>";
-							$("#markstbl tbody").append(htmlvalue);
-							$('.pal  option[value="'+obj.pal+'"]').prop("selected", true);
-							
-					});
-				
-				}
-			});
-
-			
+		        	}
+		        }
+		    });
 		});
 	</script>
 	<!-- FORM SUBMITTION -->
@@ -167,9 +169,7 @@ border:0.5px solid black;}
 	$("#submitbtn").click(function(){
 		var finaldata=loop();
 		console.log(finaldata);
-		//postJsonDataFromApi('/marks', finaldata);
-		
-		
+		postJsonDataFromApi('/marks', finaldata);
 	});
 	function loop(){
 	var table = document.getElementById('markstbl');
