@@ -132,17 +132,21 @@ border:0.5px solid black;}
 			var studentid=$("#studentid").val();
 			var examid=$("#examid").val();
 			var url="/subjects/student/"+studentid;
-			$("#markstbl tbody").empty();
+			var markstbl_tbody=$("#markstbl tbody");
+			markstbl_tbody.empty();
+			
 			$.ajax({
 		        url: "/marks/exam/"+examid+"/student/"+studentid+"",
 		        type: 'GET',
 		        datatype: 'json',
 		        success: function (data) { 
 		        	$.each(data, function (i, obj) {
-						console.log(i);
-						 var htmlvalue="<tr><td><input type='hidden' class='id' value='"+obj.id+"'><input type='hidden' class='subjectid' value='"+obj.subjects.id+"'>"+obj.subjects.name+"</td><td><input type='number' value='"+obj.prmarks+"' class='form-control mb-4 prmarks'></td><td><input type='number' value='"+obj.thmarks+"' class='form-control mb-4 thmarks'></td><td><select class='browser-default form-control pal'><option value='p' >Present</option><option value='a'>Absent</option><option value='l'>Leave</option></select></td>";
-							$("#markstbl tbody").append(htmlvalue);
-							$('#markstbl tbody tr:nth-child('+i+') .pal  option[value="'+obj.pal+'"]' ).prop("selected", true);
+						 var htmlvalue="<tr><td><input type='hidden' class='id' value='"+obj.id+"'><input type='hidden' class='subjectid' value='"+obj.subjects.id+"'>"+obj.subjects.name+"</td><td><input type='number' value='"+obj.prmarks+"' class='form-control mb-4 prmarks'></td><td><input type='number' value='"+obj.thmarks+"' class='form-control mb-4 thmarks'></td><td><select class='browser-default form-control pal' id='pal'><option value='p' >Present</option><option value='a'>Absent</option><option value='l' >Leave</option></select></td>";
+						 markstbl_tbody.append(htmlvalue);
+						 var thisrow_pal=$('#markstbl tbody tr:eq('+i+') .pal');
+						 thisrow_pal.material_select('destroy');
+						 thisrow_pal.val(obj.pal);
+						 thisrow_pal.material_select();
 					});
 					
 		        },
@@ -151,11 +155,9 @@ border:0.5px solid black;}
 		        	$.getJSON(url, function(data){
 						 $.each(data, function (i, obj) {
 							 var htmlvalue="<tr><input type='hidden' class='id' value='0'><input type='hidden' class='subjectid' value='"+obj.id+"'><td>"+obj.name+"</td><td><input type='number' value='' class='form-control mb-4 prmarks'></td><td><input type='number' value='' class='form-control mb-4 thmarks'></td><td><select class='browser-default form-control pal'><option value='p'>Present</option><option value='a'>Absent</option><option value='l'>Leave</option></select></td>";
-								$("#markstbl tbody").append(htmlvalue);
+							 markstbl_tbody.append(htmlvalue);
 								
 						});
-						 
-						 $('.pal').material_select();
 					});
 		        	}
 		        }
