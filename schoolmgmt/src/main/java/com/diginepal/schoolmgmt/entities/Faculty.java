@@ -14,11 +14,14 @@ import lombok.EqualsAndHashCode;
 
 @Entity
 @Table (name= "faculty")
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class Faculty extends BaseEntity{
-	private String name; 
-	
+	private String name;
 
-	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	} 
 }

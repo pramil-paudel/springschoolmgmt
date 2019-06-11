@@ -9,11 +9,17 @@ import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name="ethnicgroup")
-@Data
-@EqualsAndHashCode(callSuper= false)
 public class Ethnicgroup extends BaseEntity {
 	
 	@Column(nullable= true)
 	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
 

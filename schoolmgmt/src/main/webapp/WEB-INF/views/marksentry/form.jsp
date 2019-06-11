@@ -139,13 +139,12 @@ border:0.5px solid black;}
 		        datatype: 'json',
 		        success: function (data) { 
 		        	$.each(data, function (i, obj) {
-						console.log(obj.id);
-						 var htmlvalue="<tr><td><input type='hidden' class='id' value='"+obj.id+"'><input type='hidden' class='subjectid' value='"+obj.subjects.id+"'>"+obj.subjects.name+"</td><td><input type='number' value='"+obj.prmarks+"' class='form-control mb-4 prmarks'></td><td><input type='number' value='"+obj.thmarks+"' class='form-control mb-4 thmarks'></td><td><select class='browser-default form-control pal'><option value='p'>Present</option><option value='a'>Absent</option><option value='l'>Leave</option></select></td>";
+						console.log(i);
+						 var htmlvalue="<tr><td><input type='hidden' class='id' value='"+obj.id+"'><input type='hidden' class='subjectid' value='"+obj.subjects.id+"'>"+obj.subjects.name+"</td><td><input type='number' value='"+obj.prmarks+"' class='form-control mb-4 prmarks'></td><td><input type='number' value='"+obj.thmarks+"' class='form-control mb-4 thmarks'></td><td><select class='browser-default form-control pal'><option value='p' >Present</option><option value='a'>Absent</option><option value='l'>Leave</option></select></td>";
 							$("#markstbl tbody").append(htmlvalue);
-							$('.pal  option[value="'+obj.pal+'"]').prop("selected", true);
-							
+							$('#markstbl tbody tr:nth-child('+i+') .pal  option[value="'+obj.pal+'"]' ).prop("selected", true);
 					});
-					$('.pal').material_select();
+					
 		        },
 		        error: function (jqXHR, textStatus, errorThrown) { 
 		        	if (jqXHR.status == 404) {

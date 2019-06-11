@@ -1,6 +1,5 @@
 package com.diginepal.schoolmgmt.entities;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -13,14 +12,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 @Entity
 @Table(name="subjects")
-@Data
-@EqualsAndHashCode(callSuper= false)
-public class Subjects extends BaseEntity implements Serializable{
+public class Subjects extends BaseEntity{
 	
 	private String name;
 	
@@ -44,6 +38,80 @@ public class Subjects extends BaseEntity implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "subjects", cascade = CascadeType.ALL)
 	private Set<Marks> marks;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSubjecttype() {
+		return subjecttype;
+	}
+
+	public void setSubjecttype(String subjecttype) {
+		this.subjecttype = subjecttype;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public float getFullmarks_th() {
+		return fullmarks_th;
+	}
+
+	public void setFullmarks_th(float fullmarks_th) {
+		this.fullmarks_th = fullmarks_th;
+	}
+
+	public float getFullmarks_pr() {
+		return fullmarks_pr;
+	}
+
+	public void setFullmarks_pr(float fullmarks_pr) {
+		this.fullmarks_pr = fullmarks_pr;
+	}
+
+	public float getPassmarks_th() {
+		return passmarks_th;
+	}
+
+	public void setPassmarks_th(float passmarks_th) {
+		this.passmarks_th = passmarks_th;
+	}
+
+	public float getPassmarks_pr() {
+		return passmarks_pr;
+	}
+
+	public void setPassmarks_pr(float passmarks_pr) {
+		this.passmarks_pr = passmarks_pr;
+	}
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
+	public Set<Marks> getMarks() {
+		return marks;
+	}
+
+	public void setMarks(Set<Marks> marks) {
+		this.marks = marks;
+	}
+	
+	
 	
 	
 }

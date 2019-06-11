@@ -11,11 +11,23 @@ import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name="academicdates")
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class Academicdates extends BaseEntity{
 	@Column (unique= true) 
 	private String academicdate; 
 	@Column (unique= true)
 	private String academicdateen;
+	public String getAcademicdate() {
+		return academicdate;
+	}
+	public void setAcademicdate(String academicdate) {
+		this.academicdate = academicdate;
+	}
+	public String getAcademicdateen() {
+		return academicdateen;
+	}
+	public void setAcademicdateen(String academicdateen) {
+		this.academicdateen = academicdateen;
+	}
+	
+	
 }

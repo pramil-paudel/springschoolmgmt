@@ -19,10 +19,8 @@ public class MarksService {
 	
 	public List<Marks> save(List<Marks> markslist){
 		List<Marks> list=new ArrayList<Marks>();
-		for(Marks marks:markslist) {
-		marks=marksRepo.save(marks);
-		list.add(marks);
-		}
+		list=marksRepo.saveAll(markslist);
+		
 		return list;
 	}
 

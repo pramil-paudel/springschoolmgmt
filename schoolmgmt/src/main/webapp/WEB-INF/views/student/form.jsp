@@ -355,7 +355,7 @@
 								id="subjects_id" multiple searchable="Search here..">
 								<option value="" disabled>Select Subjects</option>
 								<c:forEach items="${subjects }" var="s" varStatus="loop">
-								<option value="${s.id }" <c:if test="${  s.id eq student.subjects[loop.index].id}">selected</c:if>>${s.code }-${s.name }</option>
+								<option value="${s.id }" >${s.code }-${s.name }</option>
 								</c:forEach>
 							</select>
 
@@ -387,6 +387,18 @@
 	<tags:script />
 	<script>
 		$(document).ready(function() {
+			 
+			var studentid=$("#id").val();
+			url="/studentsubjects/" + studentid;
+			 $.ajax({url: url, success: function(result){
+				 var list=[];
+				 $.each(result, function (i, obj) {
+					 list.push(obj.id);
+				 });
+				 $('#subjects_id').material_select('destroy');
+				 $('#subjects_id').val(list);
+				 $('#subjects_id').material_select();
+			}});
 			$('#subjectstbl').DataTable({
 				"bFilter" : false,
 				"paging" : false,
@@ -397,7 +409,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/studentsubjects/" + $("#id").val(),
+					"url" : url,
 					"type" : "GET"
 				},
 				"columns" : [ {

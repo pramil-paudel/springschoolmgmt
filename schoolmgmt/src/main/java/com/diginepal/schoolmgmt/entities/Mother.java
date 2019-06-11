@@ -23,9 +23,6 @@ import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "Mother")
-@Data
-@EqualsAndHashCode(callSuper = false)
-@JsonSerialize
 public class Mother extends BaseEntity{
 
 	  
@@ -38,7 +35,58 @@ public class Mother extends BaseEntity{
 	private String office;
 	private double income;
 	private String position;
-	
-	
-	
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public long getTelephone() {
+		return telephone;
+	}
+	public void setTelephone(long telephone) {
+		this.telephone = telephone;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	public String getEphone() {
+		return ephone;
+	}
+	public void setEphone(String ephone) {
+		this.ephone = ephone;
+	}
+	public String getOffice() {
+		return office;
+	}
+	public void setOffice(String office) {
+		this.office = office;
+	}
+	public double getIncome() {
+		return income;
+	}
+	public void setIncome(double income) {
+		this.income = income;
+	}
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
+	}
 }
