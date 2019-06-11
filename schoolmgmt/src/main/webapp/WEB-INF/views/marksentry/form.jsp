@@ -24,7 +24,6 @@ border:0.5px solid black;}
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
 				<button type="button" class="btn btn-success btn-sm" id="submitbtn">Save</button>
 				<button type="button" class="btn btn-primary btn-sm" id="loadbtn">Load</button>
-				<input type="hidden" name="id" id="id" value="${marksentry.id }">
 			</div>
 		</div>
 		<br>
@@ -76,7 +75,7 @@ border:0.5px solid black;}
 					<thead class="black white-text">
 						<tr>
 							<td>Subject Name</td>
-							<td>Pr Makrs</td>
+							<td>Pr Marks</td>
 							<td>Th Marks</td>
 							<td>p/a/l</td>
 						</tr>

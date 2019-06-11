@@ -61,6 +61,13 @@ public class MarksRestController {
 		ModelAndView model = new ModelAndView("marksentry/form");
 		return model;
 	}
+	
+	@GetMapping(value="/search")
+	public ModelAndView search() 
+	{
+		ModelAndView model = new ModelAndView("marksentry/search");
+		return model;
+	}
 
 	@GetMapping
 	public ModelAndView list() {
@@ -116,21 +123,7 @@ public class MarksRestController {
 		return model;
 	}
 
-	@PutMapping(value="/update/{id}")
-	public ResponseEntity<?> update(@PathVariable int id,@RequestBody Marks marks) {
-		ResponseMessage response=new ResponseMessage();
-		Marks search=marksRepo.findById(id).get();
-		if(search==null) {
-			response=Response.resourcenotfound();
-			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
-		}
-		else {
-			marks.setId(id);
-			marks=marksRepo.save(marks);
-			response=Response.successful();
-			return new ResponseEntity<>(response, HttpStatus.OK);
-		}
-	}
+	
 	@DeleteMapping(value="/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id) {
 		ResponseMessage response=new ResponseMessage();
