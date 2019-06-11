@@ -19,7 +19,6 @@ border:0.5px solid black;}
 
 		<div class="text-center">
 			<p class="h4 mb-4"> Marks Entry  </p>
-			<p id="finaldata">uio</p>
 			<div class="btn-group btn-group-sm" role="group">
 				<button type="button" class="btn btn-primary btn-sm" id="validate">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>

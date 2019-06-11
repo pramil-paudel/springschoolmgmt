@@ -26,6 +26,7 @@ import com.diginepal.schoolmgmt.repo.MarksRepo;
 import com.diginepal.schoolmgmt.repo.SectionRepo;
 import com.diginepal.schoolmgmt.response.Response;
 import com.diginepal.schoolmgmt.response.ResponseMessage;
+import com.diginepal.schoolmgmt.service.MarksService;
 
 @CrossOrigin("*")
 @Controller
@@ -43,6 +44,8 @@ public class MarksRestController {
 	
 	@Autowired
 	SectionRepo sectionRepo;
+	
+	@Autowired MarksService marksService;
 	
 
 	@ModelAttribute
@@ -68,11 +71,7 @@ public class MarksRestController {
 	public ResponseEntity<?> save(@RequestBody List<Marks> markslist) {
 		ResponseMessage response=new ResponseMessage();
 		List<Marks> list=new ArrayList<Marks>();
-		Marks oldmarks=null;
-		for(Marks marks:markslist) {
-		marks=marksRepo.save(marks);
-		list.add(marks);
-		}
+		list=marksService.save(markslist);
 		if(markslist.size()!=list.size()) {
 			response=Response.badrequest();
 			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);

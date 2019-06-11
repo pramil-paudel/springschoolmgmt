@@ -12,7 +12,6 @@ import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "localguardian")
-@EqualsAndHashCode(callSuper = false)
 @Data
 @JsonSerialize
 public class LocalGuardian extends BaseEntity {

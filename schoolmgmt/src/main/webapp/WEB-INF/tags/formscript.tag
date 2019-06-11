@@ -20,7 +20,9 @@
 				$('#response').modal('show');
 			},
 			error:function(jqXHR, textStatus, errorThrown){
-				alert('error');
+				$('#statusCode').html(jqXHR.statusCode);
+				$('#msg').html(jqXHR.message);
+				$('#response').modal('show');
 			}
 		});
 		

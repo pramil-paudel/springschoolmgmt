@@ -18,19 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.diginepal.schoolmgmt.entities.Exam;
 import com.diginepal.schoolmgmt.entities.Student;
 import com.diginepal.schoolmgmt.entities.Subjects;
-import com.diginepal.schoolmgmt.repo.FatherRepo;
 import com.diginepal.schoolmgmt.repo.GradeRepo;
-import com.diginepal.schoolmgmt.repo.LocalguardainRepo;
 import com.diginepal.schoolmgmt.repo.MotherLanguageRepo;
-import com.diginepal.schoolmgmt.repo.MotherRepo;
 import com.diginepal.schoolmgmt.repo.SectionRepo;
 import com.diginepal.schoolmgmt.repo.StudentRepo;
 import com.diginepal.schoolmgmt.repo.SubjectsRepo;
 import com.diginepal.schoolmgmt.response.Response;
 import com.diginepal.schoolmgmt.response.ResponseMessage;
+import com.diginepal.schoolmgmt.service.StudentService;
 
 @RestController
 @RequestMapping("student")
@@ -49,6 +46,8 @@ public class StudentRestController {
 	
 	@Autowired
 	SectionRepo sectionRepo;
+	
+	@Autowired StudentService studentService;
 	
 	
 	@ModelAttribute
@@ -77,19 +76,14 @@ public class StudentRestController {
 	@PostMapping 
 	public ResponseEntity<?> save(@RequestBody Student student) {
 		ResponseMessage response=new ResponseMessage();
-		List<Subjects> subjects = student.getSubjects();
-		List<Subjects> sublist=new ArrayList<Subjects>();
-		for(Subjects sub:subjects) {
-			sublist.add(subjectsRepo.findById(sub.getId()).get());
-		}
-		student.setSubjects(sublist);
-		student=studentRepo.save(student);
+		student = studentService.saveStudent(student);
 		if(student==null) {
 			response=Response.badrequest();
 			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		}
 		response=Response.created();
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
+		
 	}
 
 	@GetMapping(value="/list")
