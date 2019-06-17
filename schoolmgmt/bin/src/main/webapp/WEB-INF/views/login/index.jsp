@@ -7,7 +7,7 @@
 <tags:style/>
 </head>
 <body class="fixed-sn ">
-
+<tags:script/>
 <main>
 <!-- Default form login -->
 <form class="text-center border border-light p-5">
@@ -64,7 +64,6 @@
 <!-- Default form login -->
 <tags:footer/>
 <tags:response/>
-<tags:script/>
 
 </body>
 </html>
