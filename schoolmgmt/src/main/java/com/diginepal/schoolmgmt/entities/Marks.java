@@ -16,8 +16,8 @@ import lombok.EqualsAndHashCode;
 	      @UniqueConstraint(columnNames = {"student_id", "exam_id", "subjects_id"})})
 public class Marks extends BaseEntity {
 
-	private long prmarks;
-	private long thmarks;
+	private double prmarks;
+	private double thmarks;
 	private String pal;
 	
 	@ManyToOne
@@ -32,16 +32,22 @@ public class Marks extends BaseEntity {
 	@JoinColumn(name = "subjects_id")
 	private Subjects subjects;
 
-	public long getPrmarks() {
+	
+
+	public double getPrmarks() {
 		return prmarks;
 	}
 
-	public void setPrmarks(long prmarks) {
+	public void setPrmarks(double prmarks) {
 		this.prmarks = prmarks;
 	}
 
-	public long getThmarks() {
+	public double getThmarks() {
 		return thmarks;
+	}
+
+	public void setThmarks(double thmarks) {
+		this.thmarks = thmarks;
 	}
 
 	public void setThmarks(long thmarks) {

@@ -1,24 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 3.7.4  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="marks" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="school" class="java.lang.String"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Java Beans"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="pal" class="java.lang.String">
+		<fieldDescription><![CDATA[pal]]></fieldDescription>
+	</field>
+	<field name="prmarks" class="java.lang.Double">
+		<fieldDescription><![CDATA[prmarks]]></fieldDescription>
+	</field>
+	<field name="thmarks" class="java.lang.Double">
+		<fieldDescription><![CDATA[thmarks]]></fieldDescription>
+	</field>
+	<field name="subjects" class="com.diginepal.schoolmgmt.entities.Subjects">
+		<fieldDescription><![CDATA[subjects]]></fieldDescription>
+	</field>
+	<field name="student" class="com.diginepal.schoolmgmt.entities.Student">
+		<fieldDescription><![CDATA[student]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="57">
+	<pageHeader>
+		<band height="46">
+			<staticText>
+				<reportElement x="0" y="0" width="90" height="23"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Student Name:]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="190" y="27" width="100" height="30"/>
-				<textElement lineSpacing="Single"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{school}]]></textFieldExpression>
+				<reportElement x="90" y="0" width="100" height="22"/>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{student}.getName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="23" width="90" height="23"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Class:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="23" width="100" height="22"/>
+				<textElement textAlignment="Left" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{student}.getGrade().getName()]]></textFieldExpression>
 			</textField>
 		</band>
-	</title>
+	</pageHeader>
+	<columnHeader>
+		<band height="28">
+			<staticText>
+				<reportElement x="0" y="0" width="70" height="23"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="0" width="70" height="23"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pr Marks]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="0" width="70" height="23"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Th Marks]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="70" height="23"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[P/A/L]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
 	<detail>
-		<band height="308" splitType="Stretch"/>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="70" height="30"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{subjects}.getName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="70" height="30">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7b5ff20-b752-4224-938e-428bcf0b0cb0"/>
+				</reportElement>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pal}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 </jasperReport>
