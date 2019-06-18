@@ -40,7 +40,8 @@ public class ReportRestController {
 			JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(markslist);
 			JasperReport report=JasperCompileManager.compileReport("D:\\marks.jrxml");
 			Map<String, Object> parameters=new HashMap<String, Object>();
-			parameters.put("school", "This is schoolname");
+			parameters.put("schoolname", "SUNRISE BOARDING SCHOOL");
+			parameters.put("schooladdress", "ChapaliGhumti, Budhanilkantha");
 			parameters.put("ds", ds);
 			JasperPrint jasperPrint=JasperFillManager.fillReport(report, parameters,ds);
 			//JasperExportManager.exportReportToPdfFile(jasperPrint,"D:\\marks_sheet.pdf");
