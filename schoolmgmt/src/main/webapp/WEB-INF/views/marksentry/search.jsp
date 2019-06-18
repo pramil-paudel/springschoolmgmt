@@ -5,7 +5,7 @@
 <html>
 <head>
 <tags:meta />
-<title>Marks Entry</title>
+<title>Marks Search</title>
 <tags:style />
 <style>
 #markstbl input {
@@ -16,8 +16,7 @@
 <body class="fixed-sn">
 	<tags:header />
 
-	<form class="border border-light p-5" method="post"
-		action="/marksentry">
+	<form class="border border-light p-5" method="get">
 
 		<div class="text-center">
 			<p class="h4 mb-4">SEARCH MARKS</p>
@@ -25,6 +24,7 @@
 				<button type="button" class="btn btn-primary btn-sm" id="validate">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
 				<button type="button" class="btn btn-primary btn-sm" id="loadbtn">Load</button>
+				<button type="button" class="btn btn-success btn-sm" id="printbtn">Print</button>
 			</div>
 		</div>
 		<br>
@@ -139,6 +139,7 @@
 		$("#loadbtn").click(function() {
 			loaddata();
 		});
+		
 		function loaddata() {
 			var examid = $("#examid").val();
 			var studentid = $("#studentid").val();
@@ -180,7 +181,13 @@
 				"bDestroy" : true
 
 			});
-		}
+		};
+		$("#printbtn").click(function() {
+			var studentid=$("#studentid").val();
+			var examid=$("#examid").val();
+			$('form').attr('target','_blank');
+			$('form').attr('action', "/report/pdf/exam/"+examid+"/student/"+studentid).submit();
+		});
 	</script>
 </body>
 </html>

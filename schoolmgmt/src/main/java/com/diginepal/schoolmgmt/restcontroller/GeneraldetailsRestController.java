@@ -40,9 +40,11 @@ AcademicdatesRepo academicdatesRepo;
 @GetMapping(value="/new")
 public ModelAndView form() 
 {
+	Generaldetails generaldetails=genraldetailsRepo.findById(1).get();
 	ModelAndView model = new ModelAndView("generaldetails/form");
 	model.addObject("academicdates",academicdatesRepo.findAll());
-	
+	if(generaldetails!=null)
+	model.addObject(generaldetails);
 	return model;
 }
 

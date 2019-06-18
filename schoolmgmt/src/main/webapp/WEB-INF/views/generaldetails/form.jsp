@@ -20,7 +20,7 @@
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
 				<button type="button" class="btn btn-danger btn-sm" id="submitbtn">Save</button>
-				<input type="hidden" id="id" name="id" value="${generaldetails.id }">
+				<input type="hidden" id="id" name="id" value="1">
 
 			</div>
 		</div>
