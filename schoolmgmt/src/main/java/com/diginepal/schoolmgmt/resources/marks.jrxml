@@ -10,15 +10,65 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="57">
-			<textField>
-				<reportElement x="190" y="27" width="100" height="30"/>
+		<band height="254">
+			<staticText>
+				<reportElement x="40" y="0" width="520" height="40"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[   SUNRISE BOARDING SCHOOL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="40" width="220" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ChapaliGhumti, Budhanilkantha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="60" width="100" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Marks Sheet]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="80" width="250" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[_______ Terminal Exam _______]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="130" width="70" height="21"/>
 				<textElement lineSpacing="Single"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{school}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[S|No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="151" width="180" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="171" width="180" height="19"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Father's Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="190" width="180" height="21"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Mother's Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="210" width="70" height="21"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Roll No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="130" width="140" height="21"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
 		</band>
 	</title>
-	<detail>
-		<band height="308" splitType="Stretch"/>
-	</detail>
 </jasperReport>
