@@ -38,7 +38,7 @@
 				<text><![CDATA[Marks Sheet]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="170" y="80" width="220" height="23"/>
+				<reportElement x="0" y="80" width="555" height="23"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -192,7 +192,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="70" height="20"/>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
@@ -204,6 +204,36 @@
 				</reportElement>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{pal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="70" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{subjects}.getFullmarks_pr())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="0" width="70" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{subjects}.getPassmarks_pr())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="70" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{subjects}.getFullmarks_th())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="64" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{subjects}.getPassmarks_th())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="0" width="70" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{prmarks})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="0" width="70" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{thmarks})]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

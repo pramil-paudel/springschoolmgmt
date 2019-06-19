@@ -16,7 +16,7 @@
 <body class="fixed-sn">
 	<tags:header />
 
-	<form class="border border-light p-5" method="get">
+	<form class="border border-light p-5" method="post">
 
 		<div class="text-center">
 			<p class="h4 mb-4">SEARCH MARKS</p>

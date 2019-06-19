@@ -23,13 +23,13 @@ public class Subjects extends BaseEntity{
 	private String code;
 	
 	@Column (nullable= true)
-	private float fullmarks_th;
+	private double fullmarks_th;
 	
-	private float fullmarks_pr;
+	private double fullmarks_pr;
 	
-	private float passmarks_th;
+	private double passmarks_th;
 	
-	private float passmarks_pr; 
+	private double passmarks_pr; 
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "subjects")
@@ -63,32 +63,49 @@ public class Subjects extends BaseEntity{
 		this.code = code;
 	}
 
-	public float getFullmarks_th() {
+
+	public double getFullmarks_th() {
 		return fullmarks_th;
+	}
+
+	public void setFullmarks_th(double fullmarks_th) {
+		this.fullmarks_th = fullmarks_th;
 	}
 
 	public void setFullmarks_th(float fullmarks_th) {
 		this.fullmarks_th = fullmarks_th;
 	}
 
-	public float getFullmarks_pr() {
-		return fullmarks_pr;
-	}
-
 	public void setFullmarks_pr(float fullmarks_pr) {
 		this.fullmarks_pr = fullmarks_pr;
-	}
-
-	public float getPassmarks_th() {
-		return passmarks_th;
 	}
 
 	public void setPassmarks_th(float passmarks_th) {
 		this.passmarks_th = passmarks_th;
 	}
 
-	public float getPassmarks_pr() {
+	public double getFullmarks_pr() {
+		return fullmarks_pr;
+	}
+
+	public void setFullmarks_pr(double fullmarks_pr) {
+		this.fullmarks_pr = fullmarks_pr;
+	}
+
+	public double getPassmarks_th() {
+		return passmarks_th;
+	}
+
+	public void setPassmarks_th(double passmarks_th) {
+		this.passmarks_th = passmarks_th;
+	}
+
+	public double getPassmarks_pr() {
 		return passmarks_pr;
+	}
+
+	public void setPassmarks_pr(double passmarks_pr) {
+		this.passmarks_pr = passmarks_pr;
 	}
 
 	public void setPassmarks_pr(float passmarks_pr) {
