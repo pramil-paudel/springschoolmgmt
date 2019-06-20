@@ -25,9 +25,27 @@
 	<field name="exam" class="com.diginepal.schoolmgmt.entities.Exam">
 		<fieldDescription><![CDATA[exam]]></fieldDescription>
 	</field>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
+	<variable name="prmarks_total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{subjects}.getFullmarks_pr()]]></variableExpression>
+	</variable>
+	<variable name="pr_passmakrs_total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{subjects}.getPassmarks_pr()]]></variableExpression>
+	</variable>
+	<variable name="thmarks_total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{subjects}.getFullmarks_th()]]></variableExpression>
+	</variable>
+	<variable name="th_passmarks_total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{subjects}.getPassmarks_th()]]></variableExpression>
+	</variable>
+	<variable name="obt_prmarks_total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{prmarks}]]></variableExpression>
+	</variable>
+	<variable name="obt_thmarks_total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{thmarks}]]></variableExpression>
+	</variable>
+	<variable name="percentage" class="java.lang.Double">
+		<variableExpression><![CDATA[(($V{obt_prmarks_total}+$V{obt_thmarks_total})/($V{prmarks_total}+$V{thmarks_total}))*100]]></variableExpression>
+	</variable>
 	<title>
 		<band height="109">
 			<staticText>
@@ -61,7 +79,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="79">
+		<band height="75">
 			<staticText>
 				<reportElement x="0" y="0" width="90" height="23"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
@@ -129,112 +147,241 @@
 				<textElement textAlignment="Left" lineSpacing="Single"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{student}.getSection().getName()]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="74" width="555" height="1"/>
+			</line>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="23">
+		<band height="39">
 			<staticText>
-				<reportElement x="0" y="0" width="70" height="23"/>
+				<reportElement x="0" y="0" width="70" height="34"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Subject]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="0" width="70" height="23"/>
+				<reportElement x="70" y="0" width="60" height="34"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Pr Marks]]></text>
+				<text><![CDATA[Pr Full Marks]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="140" y="0" width="70" height="23"/>
+				<reportElement x="190" y="0" width="70" height="34"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Pr Pass Marks]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="485" y="0" width="70" height="23"/>
+				<reportElement x="480" y="0" width="34" height="34"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[P/A/L]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="345" y="0" width="70" height="23"/>
+				<reportElement x="320" y="0" width="60" height="34"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Obt. Pr Marks]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="415" y="0" width="70" height="23"/>
+				<reportElement x="380" y="0" width="50" height="34"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Obt. Th Marks]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="210" y="0" width="70" height="23"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
-					<font size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Th Marks]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="280" y="0" width="65" height="23"/>
+				<reportElement x="260" y="0" width="60" height="34"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Th Pass Marks]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="60" height="34"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Th Full Marks]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="0" width="50" height="34"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Obt. Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="34" width="555" height="1"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="25" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="70" height="20"/>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{subjects}.getName()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="485" y="0" width="70" height="20">
+				<reportElement x="480" y="0" width="34" height="20">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7b5ff20-b752-4224-938e-428bcf0b0cb0"/>
 				</reportElement>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{pal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="70" y="0" width="70" height="20"/>
+				<reportElement x="70" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{subjects}.getFullmarks_pr())]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="140" y="0" width="70" height="20"/>
+				<reportElement x="190" y="0" width="70" height="20"/>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{subjects}.getPassmarks_pr())]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="210" y="0" width="70" height="20"/>
+				<reportElement x="130" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{subjects}.getFullmarks_th())]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="280" y="0" width="64" height="20"/>
+				<reportElement x="260" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{subjects}.getPassmarks_th())]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="345" y="0" width="70" height="20"/>
+				<reportElement x="320" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{prmarks})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="415" y="0" width="70" height="20"/>
+				<reportElement x="380" y="0" width="50" height="20"/>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{thmarks})]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="430" y="0" width="50" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{thmarks}+$F{prmarks})]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
+	<summary>
+		<band height="185">
+			<staticText>
+				<reportElement x="0" y="5" width="70" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="5" width="60" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($V{prmarks_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="5" width="70" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($V{pr_passmakrs_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="5" width="60" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($V{thmarks_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="5" width="60" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($V{th_passmarks_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="5" width="60" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($V{obt_prmarks_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="5" width="50" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($V{obt_thmarks_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="5" width="50" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($V{obt_thmarks_total}+$V{obt_prmarks_total})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="44" width="70" height="20"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Percentage :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="64" width="70" height="20"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Result :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="84" width="70" height="20"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Remarks:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="164" width="140" height="20"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Class Teacher's Signature]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="160" width="140" height="1"/>
+			</line>
+			<line>
+				<reportElement x="449" y="160" width="106" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="450" y="165" width="105" height="20"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Principal's Signature]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="84" width="100" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($V{percentage})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
 </jasperReport>

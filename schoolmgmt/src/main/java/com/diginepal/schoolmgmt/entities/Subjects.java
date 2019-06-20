@@ -1,5 +1,6 @@
 package com.diginepal.schoolmgmt.entities;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -14,8 +15,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="subjects")
-public class Subjects extends BaseEntity{
-	
+public class Subjects extends BaseEntity implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	private String name;
 	
 	private String subjecttype;
@@ -23,13 +25,13 @@ public class Subjects extends BaseEntity{
 	private String code;
 	
 	@Column (nullable= true)
-	private double fullmarks_th;
+	private Double fullmarks_th;
 	
-	private double fullmarks_pr;
+	private Double fullmarks_pr;
 	
-	private double passmarks_th;
+	private Double passmarks_th;
 	
-	private double passmarks_pr; 
+	private Double passmarks_pr; 
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "subjects")
@@ -72,17 +74,7 @@ public class Subjects extends BaseEntity{
 		this.fullmarks_th = fullmarks_th;
 	}
 
-	public void setFullmarks_th(float fullmarks_th) {
-		this.fullmarks_th = fullmarks_th;
-	}
-
-	public void setFullmarks_pr(float fullmarks_pr) {
-		this.fullmarks_pr = fullmarks_pr;
-	}
-
-	public void setPassmarks_th(float passmarks_th) {
-		this.passmarks_th = passmarks_th;
-	}
+	
 
 	public double getFullmarks_pr() {
 		return fullmarks_pr;
@@ -108,7 +100,24 @@ public class Subjects extends BaseEntity{
 		this.passmarks_pr = passmarks_pr;
 	}
 
-	public void setPassmarks_pr(float passmarks_pr) {
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setFullmarks_th(Double fullmarks_th) {
+		this.fullmarks_th = fullmarks_th;
+	}
+
+	public void setFullmarks_pr(Double fullmarks_pr) {
+		this.fullmarks_pr = fullmarks_pr;
+	}
+
+	public void setPassmarks_th(Double passmarks_th) {
+		this.passmarks_th = passmarks_th;
+	}
+
+	public void setPassmarks_pr(Double passmarks_pr) {
 		this.passmarks_pr = passmarks_pr;
 	}
 

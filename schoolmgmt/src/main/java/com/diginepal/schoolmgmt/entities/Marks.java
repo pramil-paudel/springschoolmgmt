@@ -16,8 +16,8 @@ import lombok.EqualsAndHashCode;
 	      @UniqueConstraint(columnNames = {"student_id", "exam_id", "subjects_id"})})
 public class Marks extends BaseEntity {
 
-	private double prmarks;
-	private double thmarks;
+	private Double prmarks;
+	private Double thmarks;
 	private String pal;
 	
 	@ManyToOne
@@ -50,7 +50,11 @@ public class Marks extends BaseEntity {
 		this.thmarks = thmarks;
 	}
 
-	public void setThmarks(long thmarks) {
+	public void setPrmarks(Double prmarks) {
+		this.prmarks = prmarks;
+	}
+
+	public void setThmarks(Double thmarks) {
 		this.thmarks = thmarks;
 	}
 
