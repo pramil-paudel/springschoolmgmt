@@ -36,12 +36,27 @@ public class ReportRestController {
 		try {
 			ServletOutputStream servletOutputStream=response.getOutputStream();
 		List<Marks> markslist=marksRepo.findByExamIdAndStudentId(examid, studentid);
+		String result="PASSED";
+		Double passmarks_th, passmarks_pr, obtmarks_th, obtmarks_pr;
+		
+		for(Marks marks:markslist) {
+			passmarks_th=marks.getSubjects().getPassmarks_th();
+			passmarks_pr=marks.getSubjects().getPassmarks_pr();
+			
+			obtmarks_th=marks.getThmarks();
+			obtmarks_pr=marks.getPrmarks();
+			
+			if(obtmarks_th<passmarks_th || obtmarks_pr<passmarks_pr) {
+				result="FAILED";
+			}
+		}
 		
 			JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(markslist);
 			JasperReport report=JasperCompileManager.compileReport("D:\\marks.jrxml");
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			parameters.put("schoolname", "SUNRISE BOARDING SCHOOL");
 			parameters.put("schooladdress", "ChapaliGhumti, Budhanilkantha");
+			parameters.put("result", result);
 			parameters.put("ds", ds);
 			JasperPrint jasperPrint=JasperFillManager.fillReport(report, parameters,ds);
 			//JasperExportManager.exportReportToPdfFile(jasperPrint,"D:\\marks_sheet.pdf");
