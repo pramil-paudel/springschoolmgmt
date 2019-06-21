@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -31,8 +32,17 @@ public class Marks extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "subjects_id")
 	private Subjects subjects;
-
 	
+	@OneToOne
+	Gradesheet gradesheet;
+	
+	public Gradesheet getGradesheet() {
+		return gradesheet;
+	}
+
+	public void setGradesheet(Gradesheet gradesheet) {
+		this.gradesheet = gradesheet;
+	}
 
 	public double getPrmarks() {
 		return prmarks;
