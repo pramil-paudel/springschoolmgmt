@@ -32,4 +32,12 @@ public class Response {
 		return response;
 		
 	}
+	public static ResponseMessage formerror() {
+		ResponseMessage response=new ResponseMessage();
+		response.setMessage("FORM ERROR");
+		response.setStatus(false);
+		response.setStatusCode(400);
+		return response;
+		
+	}
 }

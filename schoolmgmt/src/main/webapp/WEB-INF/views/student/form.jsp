@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <html>
 <head>
 <tags:meta />
@@ -379,7 +381,9 @@
 			</div>
 		</form:form>
 	</div>
-	<p id="p"></p>
+	<p id="p">
+	
+	</p>
 	<!-- Classic tabs -->
 
 	<tags:response />
@@ -491,6 +495,7 @@
 			});
 			data['subjects'] = subjects;
 			postJsonDataFromApi('/student', data);
+			
 		});
 	</script>
 	<tags:formscript />

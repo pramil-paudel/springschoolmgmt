@@ -3,10 +3,14 @@ package com.diginepal.schoolmgmt.restcontroller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingErrorProcessor;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -74,8 +78,13 @@ public class StudentRestController {
 	
 
 	@PostMapping 
-	public ResponseEntity<?> save(@RequestBody Student student) {
+	public ResponseEntity<?> save(@RequestBody @Valid Student student, BindingResult result) {
 		ResponseMessage response=new ResponseMessage();
+		if(result.hasErrors()) {
+			response=Response.formerror();
+			response.setErrors(result.getAllErrors());
+			 return new ResponseEntity<>(response, HttpStatus.CREATED);
+		}
 		student = studentService.saveStudent(student);
 		if(student==null) {
 			response=Response.badrequest();

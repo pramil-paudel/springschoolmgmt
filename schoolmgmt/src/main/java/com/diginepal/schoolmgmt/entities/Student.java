@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 //github.com/hackersdelima/springschoolmgmt.git
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,6 +24,7 @@ import lombok.EqualsAndHashCode;
 public class Student extends BaseEntity {
 
 	private String legacyId;
+	@NotNull(message="Name cannot be empty")
 	private String name;
 	private String gender;
 	private String dobNepali;

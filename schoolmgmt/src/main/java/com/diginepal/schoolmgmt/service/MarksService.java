@@ -17,7 +17,10 @@ import com.diginepal.schoolmgmt.repo.MarksRepo;
 public class MarksService {
 	@Autowired MarksRepo marksRepo;
 	
+	
 	public List<Marks> save(List<Marks> markslist){
+		
+		//set grade for each markslist
 		List<Marks> list=new ArrayList<Marks>();
 		list=marksRepo.saveAll(markslist);
 		
