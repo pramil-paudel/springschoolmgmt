@@ -31,8 +31,10 @@ public Object getErrors() {
 	return errors;
 }
 public void setErrors(Object errors) {
+
 	this.errors = errors;
 }
+
 
 
 }

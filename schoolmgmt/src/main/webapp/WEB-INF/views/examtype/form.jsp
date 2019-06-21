@@ -30,9 +30,53 @@
 			
 		</div>
 	</form>
+	<div class="card">
+  <div class="card-header">
+     Exam Type
+  </div>
+  <div class="card-body">
+	<table id="datatablee" class="table table-striped" cellspacing="0"
+		width="100%">
+		<thead>
+			<tr>
+				<th class="th-sm"> Exam Type </th>
+				<th class="th-sm"> Action </th>
+			</tr>
+		</thead>
+	</table>
+	</div>
+	</div>
 	<tags:response/>
 	<tags:footer />
 	<tags:script />
+	<script>
+		$(document).ready(function() {
+			$('#datatablee').DataTable({
+				"scrollX" : true,
+				"bProcessing" : true,
+				"sAjaxDataProp" : "",
+				"bServerSide" : false,
+				"ajax" : {
+					"url" : "/examtype/list",
+					"type" : "GET"
+				},
+				"columns" : [ 
+					{"data":"name", "defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/examtype/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
+					
+				]
+
+			});
+		});
+	</script>
+	
 	<tags:formscript/>
 	
 </body>

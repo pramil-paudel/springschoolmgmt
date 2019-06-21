@@ -33,12 +33,57 @@
 	</div>
 </div>
 </form>
+<div class="card">
+  <div class="card-header">
+    ACADEMIC DATES
+  </div>
+  <div class="card-body">
+	<table id="customerstbl" class="table table-striped" cellspacing="0"
+		width="100%">
+		<thead>
+			<tr>
+				<th class="th-sm"> Academic Date </th>
+				<th class="th-sm"> Academic Date English </th>
+				<th class="th-sm"> Action </th>
+				</tr>
+		</thead>
+	</table>
+	</div>
+	</div>
+	
     
 
     
 <tags:footer/>
 <tags:response/>
 <tags:script/>
+<script>
+		$(document).ready(function() {
+			$('#customerstbl').DataTable({
+				"scrollX" : true,
+				"bProcessing" : true,
+				"sAjaxDataProp" : "",
+				"bServerSide" : false,
+				"ajax" : {
+					"url" : "/academicdates/list",
+					"type" : "GET"
+				},
+				"columns" : [ 
+					{"data":"academicdate", "defaultContent":""},
+					{"data":"academicdateen","defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/academicdates/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
+				]
+
+			});
+		});
+	</script>
 <tags:formscript/>
 </body>
 </html>

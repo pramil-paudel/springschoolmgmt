@@ -30,9 +30,48 @@
 			
 		</div>
 	</form>
+	 <div class="card-body">
+	<table id="datatablee" class="table table-striped" cellspacing="0"
+		width="100%">
+		<thead>
+			<tr>
+				<th class="th-sm"> House group </th>
+				<th class="th-sm"> Action </th>
+			</tr>
+		</thead>
+	</table>
+	</div>
+	</div>
 	<tags:response/>
 	<tags:footer />
 	<tags:script />
+	<script>
+		$(document).ready(function() {
+			$('#datatablee').DataTable({
+				"scrollX" : true,
+				"bProcessing" : true,
+				"sAjaxDataProp" : "",
+				"bServerSide" : false,
+				"ajax" : {
+					"url" : "/housegroup/list",
+					"type" : "GET"
+				},
+				"columns" : [ 
+					{"data":"name", "defaultContent":""},
+					{"data":"Action",
+						"orderable":false,
+						"searchable":false,
+						"render":function(data, type, row, meta){
+							var a= '<a href="/housegroup/'+row.id+'">Edit</a>';
+							return a;
+						}
+					}
+					
+				]
+
+			});
+		});
+	</script>
 	<tags:formscript/>
 </body>
 </html>
