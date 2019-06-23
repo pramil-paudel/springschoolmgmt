@@ -24,7 +24,6 @@ import lombok.EqualsAndHashCode;
 public class Student extends BaseEntity {
 
 	private String legacyId;
-	@NotNull(message="Name cannot be empty")
 	private String name;
 	private String gender;
 	private String dobNepali;

@@ -78,13 +78,8 @@ public class StudentRestController {
 	
 
 	@PostMapping 
-	public ResponseEntity<?> save(@RequestBody @Valid Student student, BindingResult result) {
+	public ResponseEntity<?> save(@RequestBody Student student) {
 		ResponseMessage response=new ResponseMessage();
-		if(result.hasErrors()) {
-			response=Response.formerror();
-			response.setErrors(result.getAllErrors());
-			 return new ResponseEntity<>(response, HttpStatus.CREATED);
-		}
 		student = studentService.saveStudent(student);
 		if(student==null) {
 			response=Response.badrequest();

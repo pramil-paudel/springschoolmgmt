@@ -38,15 +38,10 @@
 			},
 			data:jsondata,
 			success: function(data){
-				if(data.message='FORM ERROR'){
-					alert("VALIDATION ERROR");
-	                     console.log('validation error found');
-				}
-				else{
+				
 				$('#statusCode').html(data.statusCode);
 				$('#msg').html(data.message);
 				$('#response').modal('show');
-				}
 			},
 			error:function(jqXHR, textStatus, errorThrown){
 				

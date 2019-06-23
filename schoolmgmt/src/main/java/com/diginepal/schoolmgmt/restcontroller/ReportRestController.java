@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.diginepal.schoolmgmt.entities.Marks;
+import com.diginepal.schoolmgmt.repo.GradesheetRepo;
 import com.diginepal.schoolmgmt.repo.MarksRepo;
 
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -30,6 +31,8 @@ public class ReportRestController {
 	@Autowired
 	private MarksRepo marksRepo;
 	
+	@Autowired GradesheetRepo gradesheetRepo;
+	
 	@PostMapping(value="/pdf/exam/{examid}/student/{studentid}")
 	public void pdf(@PathVariable int examid, @PathVariable int studentid,HttpServletResponse response) 
 	{
@@ -38,6 +41,8 @@ public class ReportRestController {
 		List<Marks> markslist=marksRepo.findByExamIdAndStudentId(examid, studentid);
 		String result="PASSED";
 		Double passmarks_th, passmarks_pr, obtmarks_th, obtmarks_pr;
+		Double obt_total=0.00;
+		Double subjects_total=0.00;
 		
 		for(Marks marks:markslist) {
 			passmarks_th=marks.getSubjects().getPassmarks_th();
@@ -46,9 +51,13 @@ public class ReportRestController {
 			obtmarks_th=marks.getThmarks();
 			obtmarks_pr=marks.getPrmarks();
 			
+			
+			
 			if(obtmarks_th<passmarks_th || obtmarks_pr<passmarks_pr) {
 				result="FAILED";
 			}
+			subjects_total=marks.getSubjects().getFullmarks_pr()+marks.getSubjects().getFullmarks_th();
+			obt_total=obtmarks_th+obtmarks_pr;
 		}
 		
 			JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(markslist);
@@ -56,6 +65,10 @@ public class ReportRestController {
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			parameters.put("schoolname", "SUNRISE BOARDING SCHOOL");
 			parameters.put("schooladdress", "ChapaliGhumti, Budhanilkantha");
+			
+			Double percentage_total=(obt_total/subjects_total)*100;
+			String finalgrade=gradesheetRepo.findGradeByMarks(percentage_total).getGrade();
+			parameters.put("finalgrade", finalgrade);
 			parameters.put("result", result);
 			parameters.put("ds", ds);
 			JasperPrint jasperPrint=JasperFillManager.fillReport(report, parameters,ds);

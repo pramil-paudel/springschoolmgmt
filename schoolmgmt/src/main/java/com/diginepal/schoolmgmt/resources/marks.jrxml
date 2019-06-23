@@ -26,6 +26,9 @@
 	<field name="exam" class="com.diginepal.schoolmgmt.entities.Exam">
 		<fieldDescription><![CDATA[exam]]></fieldDescription>
 	</field>
+	<field name="gradesheet" class="com.diginepal.schoolmgmt.entities.Gradesheet">
+		<fieldDescription><![CDATA[gradesheet]]></fieldDescription>
+	</field>
 	<variable name="prmarks_total" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{subjects}.getFullmarks_pr()]]></variableExpression>
 	</variable>
@@ -154,7 +157,7 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="39">
+		<band height="35">
 			<staticText>
 				<reportElement x="0" y="0" width="70" height="34"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
@@ -177,7 +180,7 @@
 				<text><![CDATA[Pr Pass Marks]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="480" y="0" width="34" height="34"/>
+				<reportElement x="521" y="-1" width="34" height="34"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font size="10" isBold="true"/>
 				</textElement>
@@ -221,6 +224,13 @@
 			<line>
 				<reportElement x="0" y="34" width="555" height="1"/>
 			</line>
+			<staticText>
+				<reportElement x="480" y="0" width="41" height="34"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grade]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -231,7 +241,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{subjects}.getName()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="480" y="0" width="34" height="20">
+				<reportElement x="521" y="-1" width="34" height="20">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7b5ff20-b752-4224-938e-428bcf0b0cb0"/>
 				</reportElement>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
@@ -271,6 +281,13 @@
 				<reportElement x="430" y="0" width="50" height="20"/>
 				<textElement textAlignment="Center" lineSpacing="Single"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[Double.toString($F{thmarks}+$F{prmarks})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="40" height="20">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b725567-9d01-490c-a822-3dfee2b2584f"/>
+				</reportElement>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression><![CDATA[$F{gradesheet}.getGrade()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
