@@ -58,7 +58,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/student/'+row.id+'">Edit</a>';
+							var a= '<a href="${pageContext.request.contextPath}/student/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}
