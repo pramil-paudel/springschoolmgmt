@@ -17,23 +17,15 @@
 		width="100%">
 		<thead>
 			<tr>
-				<th class="th-sm"> Legacy ID  </th>
 				<th class="th-sm"> Name </th>
+				<th class="th-sm"> Grade </th>
+				<th class="th-sm"> Section </th>
 				<th class="th-sm"> Gender </th>
 				<th class="th-sm"> Date of Birth Nepali </th>
 				<th class="th-sm"> Date of Birth English </th>
-				<th class="th-sm">  District   </th>
-				<th class="th-sm">  Hobby   </th>
 				<th class="th-sm"> Roll No. </th>
-				<th class="th-sm"> Municipality </th>
 				<th class="th-sm"> Religion </th>
-				<th class="th-sm"> Temporary Address </th>
-				<th class="th-sm">  Ward No </th>
-				<th class="th-sm"> Old school  </th>
-				<th class="th-sm"> Reason of Leave </th>
 				<th class="th-sm"> Admission Date Nepali </th>
-				<th class="th-sm"> Birth Certificate Number </th>
-				<th class="th-sm"> Issued By  </th>
 				<th class="th-sm"> Action </th>
 			</tr>
 		</thead>
@@ -49,27 +41,19 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/student/list",
+					"url" : "list",
 					"type" : "GET"
 				},
 				"columns" : [ 
-					{"data":"legacyId", "defaultContent":""},
 					{"data":"name", "defaultContent":""},
+					{"data":"grade.name", "defaultContent":""},
+					{"data":"section.name", "defaultContent":""},
 					{"data":"gender", "defaultContent":""},
 					{"data":"dobNepali", "defaultContent":""},
 					{"data":"dobEnglish", "defaultContent":""},
-					{"data":"district", "defaultContent":""},
-					{"data":"hobby", "defaultContent":""},
 					{"data":"rollNo", "defaultContent":""},
-					{"data":"municipality", "defaultContent":""},
 					{"data":"religion", "defaultContent":""},
-					{"data":"temporaryAddress", "defaultContent":""},
-					{"data":"wardNo", "defaultContent":""},
-					{"data":"oldSchool", "defaultContent":""},
-					{"data":"reasonLeave", "defaultContent":""},
 					{"data":"admissionDatenp", "defaultContent":""},
-					{"data":"birthCertificateNo", "defaultContent":""},
-					{"data":"issuedBy", "defaultContent":""},
 					{"data":"Action",
 						"orderable":false,
 						"searchable":false,
