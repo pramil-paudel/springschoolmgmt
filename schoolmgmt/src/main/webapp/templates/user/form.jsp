@@ -1,10 +1,8 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-<!DOCTYPE html>
 <html>
 <head>
-<tags:meta />
 <title> User </title>
 <tags:style />
 </head>
