@@ -61,7 +61,7 @@ public class ReportRestController {
 		}
 		
 			JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(markslist);
-			JasperReport report=JasperCompileManager.compileReport("D:\\marks.jrxml");
+			JasperReport report=JasperCompileManager.compileReport("/opt/tomcat/webapps/reports/school");
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			parameters.put("schoolname", "SUNRISE BOARDING SCHOOL");
 			parameters.put("schooladdress", "ChapaliGhumti, Budhanilkantha");

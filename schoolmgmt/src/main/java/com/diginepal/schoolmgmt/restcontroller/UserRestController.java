@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,10 +31,13 @@ import com.diginepal.schoolmgmt.response.ResponseMessage;
 public class UserRestController {
 	
 	@Autowired
-	UserRepo userRepo;
+	private UserRepo userRepo;
 	
 	@Autowired
-	EmployeeRepo employeeRepo;
+	private EmployeeRepo employeeRepo;
+	
+	@Autowired 
+	private BCryptPasswordEncoder  passwordEncoder;
 	
 	@GetMapping(value="/new")
 	public ModelAndView form() 
@@ -51,6 +55,9 @@ public class UserRestController {
 	@PostMapping 
 	public ResponseEntity<?>save(@RequestBody User user) {
 		ResponseMessage response= new ResponseMessage();
+		String pwd=user.getPassword();
+		String encryptPwd=passwordEncoder.encode(pwd);
+		user.setPassword(encryptPwd);
 		user=userRepo.save(user);
 		if (user==null) {
 			response=Response.badrequest();
