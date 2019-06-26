@@ -41,7 +41,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "list",
+					"url" : "${pageContext.request.contextPath}/student/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
