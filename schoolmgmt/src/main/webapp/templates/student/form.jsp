@@ -393,7 +393,7 @@
 		$(document).ready(function() {
 			 
 			var studentid=$("#id").val();
-			url="/studentsubjects/" + studentid;
+			url="${pageContext.request.contextPath}/studentsubjects/" + studentid;
 			 $.ajax({url: url, success: function(result){
 				 var list=[];
 				 $.each(result, function (i, obj) {
