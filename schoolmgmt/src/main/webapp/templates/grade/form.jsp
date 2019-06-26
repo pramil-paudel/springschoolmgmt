@@ -9,7 +9,7 @@
 <body class="fixed-sn ">
 	<tags:header />
 
-	<form class="border border-light p-5" method="post" action="/grade">
+	<form class="border border-light p-5" method="post" >
 
 		<div class="text-center">
 			<p class="h4 mb-4"> Grade </p>
@@ -17,7 +17,7 @@
 				aria-label="Basic example">
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/grade')">Save</button>		
+				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('${pageContext.request.contextPath}/grade')">Save</button>		
 				<input type="hidden" id="id" name="id" value="${grade.id }">	
 					</div>
 		</div>
