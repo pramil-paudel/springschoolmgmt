@@ -494,7 +494,7 @@
 				});
 			});
 			data['subjects'] = subjects;
-			postJsonDataFromApi('/student', data);
+			postJsonDataFromApi('${pageContext.request.contextPath}/student', data);
 			
 		});
 	</script>
