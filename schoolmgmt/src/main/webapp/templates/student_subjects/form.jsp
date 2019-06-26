@@ -61,7 +61,7 @@
 		var data={};
 		data['id']=$("#id").val();
 		data['subjects']=subjects;
-		postJsonDataFromApi('/studentsubjects', data);
+		postJsonDataFromApi('${pageContext.request.contextPath}/studentsubjects', data);
 	});
 	</script>
 	<tags:formscript/>

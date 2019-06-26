@@ -14,7 +14,7 @@
         <div class="btn-group btn-group-sm" role="group" >
   <button type="button" class="btn btn-primary btn-sm">Validate</button>
   <button type="reset" class="btn btn-warning btn-sm">Reset</button>
-  <button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/academicdates')">Save</button>
+  <button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('${pageContext.request.contextPath}/academicdates')">Save</button>
   <input type="hidden" name="id" value="${academicdates.id }">
 </div>
     </div>
@@ -65,7 +65,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/academicdates/list",
+					"url" : "${pageContext.request.contextPath}/academicdates/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -75,7 +75,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/academicdates/'+row.id+'">Edit</a>';
+							var a= '<a href="${pageContext.request.contextPath}/academicdates/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}

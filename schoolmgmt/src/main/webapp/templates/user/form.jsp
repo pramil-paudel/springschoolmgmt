@@ -71,7 +71,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/user/list",
+					"url" : "${pageContext.request.contextPath}/user/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -81,7 +81,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/user/'+row.id+'">Edit</a>';
+							var a= '<a href="${pageContext.request.contextPath}/user/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}
@@ -100,7 +100,7 @@
 					id: parseInt($("#employeeid").val())
 				}
 			};
-		postJsonDataFromApi('/user',data);
+		postJsonDataFromApi('${pageContext.request.contextPath}/user',data);
 	});
 	</script>
 		<tags:formscript/>

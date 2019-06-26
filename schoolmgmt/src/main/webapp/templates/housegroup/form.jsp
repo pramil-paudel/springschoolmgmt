@@ -17,7 +17,7 @@
 				aria-label="Basic example">
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-					<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/housegroup')">Save</button>
+					<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('${pageContext.request.contextPath}/housegroup')">Save</button>
 						<input type="hidden" id="id" name="id" value="${housegroup.id}">
 			</div>
 		</div>
@@ -53,7 +53,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/housegroup/list",
+					"url" : "${pageContext.request.contextPath}/housegroup/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -62,7 +62,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/housegroup/'+row.id+'">Edit</a>';
+							var a= '<a href="${pageContext.request.contextPath}/housegroup/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}

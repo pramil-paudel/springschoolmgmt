@@ -58,7 +58,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/grade/list",
+					"url" : "${pageContext.request.contextPath}/grade/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -67,7 +67,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/grade/'+row.id+'">Edit</a>';
+							var a= '${pageContext.request.contextPath}<a href="/grade/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}

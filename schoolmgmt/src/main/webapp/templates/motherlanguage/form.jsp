@@ -17,7 +17,7 @@
 				aria-label="Basic example">
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-					<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/motherlanguage')">Save</button>	
+					<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('${pageContext.request.contextPath}/motherlanguage')">Save</button>	
 					<input type="hidden" id="id" name="id" value="${motherLanguage.id}">	
 						</div>
 		</div>
@@ -57,7 +57,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/motherlanguage/list",
+					"url" : "${pageContext.request.contextPath}/motherlanguage/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -66,7 +66,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/motherlanguage/'+row.id+'">Edit</a>';
+							var a= '<a href="${pageContext.request.contextPath}/motherlanguage/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}

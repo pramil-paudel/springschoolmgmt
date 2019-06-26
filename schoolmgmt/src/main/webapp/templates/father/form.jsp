@@ -16,7 +16,7 @@
 			<div class="btn-group btn-group-sm" role="group">
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/father')">Save</button>
+				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('${pageContext.request.contextPath}/father')">Save</button>
 				<input type="hidden" name="id" id="id" value="${father.id }">
 			</div>
 		</div>

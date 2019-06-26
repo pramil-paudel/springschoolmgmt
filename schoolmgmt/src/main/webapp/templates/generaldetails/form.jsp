@@ -106,7 +106,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "generaldetails/list",
+					"url" : "${pageContext.request.contextPath}/generaldetails/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -121,7 +121,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/generaldetails/'+row.id+'">Edit</a>';
+							var a= '<a href="${pageContext.request.contextPath}/generaldetails/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}
@@ -144,7 +144,7 @@
 					id: $("#academicdatesid").val()
 				}
 			};
-		postJsonDataFromApi('/generaldetails',data);
+		postJsonDataFromApi('${pageContext.request.contextPath}/generaldetails',data);
 	});
 	
 	</script>

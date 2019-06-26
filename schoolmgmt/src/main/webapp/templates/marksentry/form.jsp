@@ -94,7 +94,7 @@ border:0.5px solid black;}
 	<script>
 		$("#academicdatesid").change(function(){
 			var id=$(this).val();
-			var url="/exam/academicdates/"+id;
+			var url="${pageContext.request.contextPath}/exam/academicdates/"+id;
 			 $.getJSON(url, function(data){
 				 $('#examid')
 				    .find('option')
@@ -135,7 +135,7 @@ border:0.5px solid black;}
 			markstbl_tbody.empty();
 			
 			$.ajax({
-		        url: "/marks/exam/"+examid+"/student/"+studentid+"",
+		        url: "${pageContext.request.contextPath}/marks/exam/"+examid+"/student/"+studentid+"",
 		        type: 'GET',
 		        datatype: 'json',
 		        success: function (data) { 
@@ -168,7 +168,7 @@ border:0.5px solid black;}
 	$("#submitbtn").click(function(){
 		var finaldata=loop();
 		console.log(finaldata);
-		postJsonDataFromApi('/marks', finaldata);
+		postJsonDataFromApi('${pageContext.request.contextPath}/marks', finaldata);
 	});
 	function loop(){
 	var table = document.getElementById('markstbl');

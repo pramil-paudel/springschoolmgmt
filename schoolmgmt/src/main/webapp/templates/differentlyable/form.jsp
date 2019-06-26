@@ -16,7 +16,7 @@
 			<div class="btn-group btn-group-sm" role="group">
 				<button type="button" class="btn btn-primary btn-sm">Validate</button>
 				<button type="reset" class="btn btn-warning btn-sm">Reset</button>
-				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('/differentlyable')">Save</button>
+				<button type="button" class="btn btn-danger btn-sm" onclick="postDataFromApi('${pageContext.request.contextPath}/differentlyable')">Save</button>
 				<input type="hidden" id="id" name="id" value="${differentlyAbleType.id }">
 			</div>
 		</div>
@@ -56,7 +56,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/differentlyable/list",
+					"url" : "${pageContext.request.contextPath}/differentlyable/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -65,7 +65,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/differentlyable/'+row.id+'">Edit</a>';
+							var a= '<a href="${pageContext.request.contextPath}/differentlyable/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}

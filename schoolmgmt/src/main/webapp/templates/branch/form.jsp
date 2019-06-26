@@ -97,7 +97,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/branch/list",
+					"url" : "${pageContext.request.contextPath}/branch/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -110,7 +110,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/branch/'+row.id+'">Edit</a>';
+							var a= '<a href="${pageContext.request.contextPath}/branch/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}
@@ -134,7 +134,7 @@
 					id : parseInt($("#companyid").val())
 				},
 			};
-			postJsonDataFromApi('/branch', data);
+			postJsonDataFromApi('${pageContext.request.contextPath}/branch', data);
 		});
 	</script>
 	<tags:formscript />

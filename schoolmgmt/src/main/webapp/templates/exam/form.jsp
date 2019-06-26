@@ -100,7 +100,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/exam/list",
+					"url" : "${pageContext.request.contextPath}/exam/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -114,7 +114,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/exam/'+row.id+'">Edit</a>';
+							var a= '<a href="${pageContext.request.contextPath}/exam/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}
@@ -138,7 +138,7 @@
 					id : parseInt($("#examtypesid").val())
 				}
 			};
-			postJsonDataFromApi('/exam', data);
+			postJsonDataFromApi('${pageContext.request.contextPath}/exam', data);
 		});
 	</script>
 	<tags:formscript />

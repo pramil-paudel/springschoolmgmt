@@ -116,7 +116,7 @@
 					id: parseInt($("#branchid").val())
 				}
 				};
-		postJsonDataFromApi('/employee',data);
+		postJsonDataFromApi('${pageContext.request.contextPath}/employee',data);
 	});
 	
 	</script>
@@ -128,7 +128,7 @@
 				"sAjaxDataProp" : "",
 				"bServerSide" : false,
 				"ajax" : {
-					"url" : "/employee/list",
+					"url" : "${pageContext.request.contextPath}/employee/list",
 					"type" : "GET"
 				},
 				"columns" : [ 
@@ -145,7 +145,7 @@
 						"orderable":false,
 						"searchable":false,
 						"render":function(data, type, row, meta){
-							var a= '<a href="/employee/'+row.id+'">Edit</a>';
+							var a= '<a href="${pageContext.request.contextPath}/employee/'+row.id+'">Edit</a>';
 							return a;
 						}
 					}
