@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.diginepal.schoolmgmt.entities.Employee;
-import com.diginepal.schoolmgmt.entities.User;
+import com.diginepal.schoolmgmt.entities.DigiUser;
 import com.diginepal.schoolmgmt.repo.EmployeeRepo;
 import com.diginepal.schoolmgmt.repo.UserRepo;
 import com.diginepal.schoolmgmt.response.Response;
@@ -48,7 +47,7 @@ public class UserRestController {
 	}
 	
 	@PostMapping 
-	public ResponseEntity<?>save(@RequestBody User user) {
+	public ResponseEntity<?>save(@RequestBody DigiUser user) {
 		ResponseMessage response= new ResponseMessage();
 		user=userRepo.save(user);
 		if (user==null) {
@@ -62,7 +61,7 @@ public class UserRestController {
 	@GetMapping(value="/list")
 	public ResponseEntity<?> findAll(){
 		ResponseMessage response=new ResponseMessage();
-		List<User> list=userRepo.findAll();
+		List<DigiUser> list=userRepo.findAll();
 		if(list.isEmpty()) {
 			response=Response.resourcenotfound();
 			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
@@ -73,7 +72,7 @@ public class UserRestController {
 	
 	@GetMapping (value="/{id}")
 	public ResponseEntity<?> findOne (@PathVariable int id){
-		User user=userRepo.findById(id).get();
+		DigiUser user=userRepo.findById(id).get();
 		ResponseMessage response=new ResponseMessage();
 		if(user==null) {
 			response=Response.resourcenotfound();
@@ -83,9 +82,9 @@ public class UserRestController {
 	}
 
 	@PutMapping(value="/{id}")
-	public ResponseEntity<?> update(@PathVariable int id,@RequestBody User user) {
+	public ResponseEntity<?> update(@PathVariable int id,@RequestBody DigiUser user) {
 		ResponseMessage response=new ResponseMessage();
-		User search=userRepo.findById(id).get();
+		DigiUser search=userRepo.findById(id).get();
 		if(search==null) {
 			response=Response.resourcenotfound();
 			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
@@ -100,7 +99,7 @@ public class UserRestController {
 	@DeleteMapping(value="/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id) {
 		ResponseMessage response=new ResponseMessage();
-		User user=userRepo.findById(id).get();
+		DigiUser user=userRepo.findById(id).get();
 		if(user==null) {
 			response=Response.resourcenotfound();
 			return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);

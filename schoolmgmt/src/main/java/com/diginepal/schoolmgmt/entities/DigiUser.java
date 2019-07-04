@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 @Table(name="user")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class User extends BaseEntity{
+public class DigiUser extends BaseEntity{
 	
 	private String username;
 	private String password; 
