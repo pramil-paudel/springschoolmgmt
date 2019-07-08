@@ -61,10 +61,11 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token", "client_credentials", "implicit")
                 .authorities(
                         "SUPER_ADMIN",
-                        "CSR",
-                        "PRODUCER_AGENCY",
-                        "PRODUCER",
-                        "POT_INSURE")
+                        "HEADMASTER",
+                        "TEACHER",
+                        "PARENT",
+                        "STUDENT",
+                        "SUPER_ADMIN" )
                 .scopes("read", "write")
                 .autoApprove(true)
                 .accessTokenValiditySeconds(1800)
