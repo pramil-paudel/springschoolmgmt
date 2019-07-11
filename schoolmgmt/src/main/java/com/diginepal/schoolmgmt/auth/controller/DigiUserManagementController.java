@@ -1,6 +1,8 @@
 package com.diginepal.schoolmgmt.auth.controller;
 
 
+import com.diginepal.schoolmgmt.auth.dto.UserDto;
+import com.diginepal.schoolmgmt.auth.model.Role;
 import com.diginepal.schoolmgmt.auth.model.User;
 import com.diginepal.schoolmgmt.auth.repository.UserRepository;
 import com.diginepal.schoolmgmt.auth.services.UserService;
@@ -20,8 +22,12 @@ public class DigiUserManagementController {
     UserService userService;
 
     @PostMapping(value = "add/users")
-    public User addQuestions(@RequestBody User user) {
-        return userService.addNewUser(user);
+    public User addQuestions(@RequestBody UserDto user) {
+        User userToAdd = new User();
+        userToAdd.setEmail(user.getEmail());
+        userToAdd.setPassword(user.getPassword());
+        userToAdd.setRole(Role.valueOf(user.getRole()));
+        return userService.addNewUser(userToAdd);
     }
 
     @GetMapping(value = "/userdetails")
